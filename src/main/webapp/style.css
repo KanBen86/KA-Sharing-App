@@ -8,3 +8,14 @@ and open the template in the editor.
     Author     : Benjamin Kanzler
 */
 
+
+/*CSS für die Navigationsleiste*/
+
+.logo {
+    max-height: 3em;
+}
+
+.brand {
+    color: #0069d9 !important;
+    text-align: left;
+}
