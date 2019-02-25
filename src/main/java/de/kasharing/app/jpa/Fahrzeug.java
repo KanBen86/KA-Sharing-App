@@ -63,6 +63,16 @@ public class Fahrzeug implements Serializable {
     private float anschaffungsPreis;
 
     private Date hauptuntersuchungBis;
+    
+    private String getriebeart;
+
+    public String getGetriebeart() {
+        return getriebeart;
+    }
+
+    public void setGetriebeart(String getriebeart) {
+        this.getriebeart = getriebeart;
+    }
 
     public void setHersteller(String hersteller) {
         this.hersteller = hersteller;
@@ -231,26 +241,27 @@ public class Fahrzeug implements Serializable {
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 59 * hash + Objects.hashCode(this.id);
-        hash = 59 * hash + Objects.hashCode(this.hersteller);
-        hash = 59 * hash + Objects.hashCode(this.modell);
-        hash = 59 * hash + Objects.hashCode(this.typ);
-        hash = 59 * hash + Objects.hashCode(this.ausfuehrung);
-        hash = 59 * hash + this.plaetze;
-        hash = 59 * hash + this.raeder;
-        hash = 59 * hash + (this.klimaanlage ? 1 : 0);
-        hash = 59 * hash + (this.elektrischeFensterheber ? 1 : 0);
-        hash = 59 * hash + (this.servolenkung ? 1 : 0);
-        hash = 59 * hash + (this.abs ? 1 : 0);
-        hash = 59 * hash + (this.esp ? 1 : 0);
-        hash = 59 * hash + (this.cd ? 1 : 0);
-        hash = 59 * hash + (this.navigation ? 1 : 0);
-        hash = 59 * hash + (this.fahrassiSystem ? 1 : 0);
-        hash = 59 * hash + Float.floatToIntBits(this.preisProTag);
-        hash = 59 * hash + Objects.hashCode(this.leihStatus);
-        hash = 59 * hash + Objects.hashCode(this.anschaffungsDatum);
-        hash = 59 * hash + Float.floatToIntBits(this.anschaffungsPreis);
-        hash = 59 * hash + Objects.hashCode(this.hauptuntersuchungBis);
+        hash = 89 * hash + Objects.hashCode(this.id);
+        hash = 89 * hash + Objects.hashCode(this.hersteller);
+        hash = 89 * hash + Objects.hashCode(this.modell);
+        hash = 89 * hash + Objects.hashCode(this.typ);
+        hash = 89 * hash + Objects.hashCode(this.ausfuehrung);
+        hash = 89 * hash + this.plaetze;
+        hash = 89 * hash + this.raeder;
+        hash = 89 * hash + (this.klimaanlage ? 1 : 0);
+        hash = 89 * hash + (this.elektrischeFensterheber ? 1 : 0);
+        hash = 89 * hash + (this.servolenkung ? 1 : 0);
+        hash = 89 * hash + (this.abs ? 1 : 0);
+        hash = 89 * hash + (this.esp ? 1 : 0);
+        hash = 89 * hash + (this.cd ? 1 : 0);
+        hash = 89 * hash + (this.navigation ? 1 : 0);
+        hash = 89 * hash + (this.fahrassiSystem ? 1 : 0);
+        hash = 89 * hash + Float.floatToIntBits(this.preisProTag);
+        hash = 89 * hash + Objects.hashCode(this.leihStatus);
+        hash = 89 * hash + Objects.hashCode(this.anschaffungsDatum);
+        hash = 89 * hash + Float.floatToIntBits(this.anschaffungsPreis);
+        hash = 89 * hash + Objects.hashCode(this.hauptuntersuchungBis);
+        hash = 89 * hash + Objects.hashCode(this.getriebeart);
         return hash;
     }
 
@@ -317,6 +328,9 @@ public class Fahrzeug implements Serializable {
         if (!Objects.equals(this.leihStatus, other.leihStatus)) {
             return false;
         }
+        if (!Objects.equals(this.getriebeart, other.getriebeart)) {
+            return false;
+        }
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
@@ -331,9 +345,8 @@ public class Fahrzeug implements Serializable {
 
     @Override
     public String toString() {
-        return "Fahrzeug{" + "id=" + id + ", hersteller=" + hersteller + ", modell=" + modell + ", typ=" + typ + ", ausfuehrung=" + ausfuehrung + ", plaetze=" + plaetze + ", raeder=" + raeder + ", klimaanlage=" + klimaanlage + ", elektrischeFensterheber=" + elektrischeFensterheber + ", servolenkung=" + servolenkung + ", abs=" + abs + ", esp=" + esp + ", cd=" + cd + ", navigation=" + navigation + ", fahrassiSystem=" + fahrassiSystem + ", preisProTag=" + preisProTag + ", leihStatus=" + leihStatus + ", anschaffungsDatum=" + anschaffungsDatum + ", anschaffungsPreis=" + anschaffungsPreis + ", hauptuntersuchungBis=" + hauptuntersuchungBis + '}';
+        return "Fahrzeug{" + "id=" + id + ", hersteller=" + hersteller + ", modell=" + modell + ", typ=" + typ + ", ausfuehrung=" + ausfuehrung + ", plaetze=" + plaetze + ", raeder=" + raeder + ", klimaanlage=" + klimaanlage + ", elektrischeFensterheber=" + elektrischeFensterheber + ", servolenkung=" + servolenkung + ", abs=" + abs + ", esp=" + esp + ", cd=" + cd + ", navigation=" + navigation + ", fahrassiSystem=" + fahrassiSystem + ", preisProTag=" + preisProTag + ", leihStatus=" + leihStatus + ", anschaffungsDatum=" + anschaffungsDatum + ", anschaffungsPreis=" + anschaffungsPreis + ", hauptuntersuchungBis=" + hauptuntersuchungBis + ", getriebeart=" + getriebeart + '}';
     }
-    
-    
 
+    
 }
