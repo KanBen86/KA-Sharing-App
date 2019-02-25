@@ -12,8 +12,8 @@
 <template:base>
     <jsp:attribute name="title">Index</jsp:attribute>
     <jsp:attribute name="main">
-        <div>
-            <h1>Hier entsteht eine <b>neue</b> Internetpräsenz</h1>
+        <div>  
+            <h1>Hier entsteht eine <b>neue</b> Internetpräsenz</h1> 
         </div>        
     </jsp:attribute>
 </template:base>

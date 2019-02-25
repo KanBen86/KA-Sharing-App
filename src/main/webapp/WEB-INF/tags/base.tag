@@ -20,13 +20,25 @@
         <meta charset="utf-8">
 
         <title>🗑️ KA-Sharing | ${title}</title>
+        <link rel="stylesheet" href="<c:url value="/css/bootstrap.min.css"/>" />         
+        <script src="<c:url value="/js/bootstrap.min.js"/>"></script>  
         <link rel="stylesheet" href="<c:url value="/style.css"/>" />
-
+        
         <jsp:invoke fragment="head"/>
     </head>
     <body>
         <header>
-            <jsp:invoke fragment="header"></jsp:invoke>
+            
+            <!--Navigationsbar-->
+            <nav class="navbar sticky-top navbar-light bg-light p-0">
+                <!--Logo und Name-->
+                <a class="navbar-brand p-0">
+                    <img class="logo p-0" src="<c:url value="/pictures/LogoWithout.png"/>" alt="KA-SHARING Logo" />
+                    <span class="brand h3">KA-SHARING</span>
+                </a>
+                <!--An-Abmeldebutton-->
+                <button type="button" class="btn btn-primary btn-sm mr-2">Anmelden</button>
+            </nav>
         </header>
         <main>
             <jsp:invoke fragment="main"></jsp:invoke>
