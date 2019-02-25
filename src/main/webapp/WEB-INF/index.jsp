@@ -12,8 +12,11 @@
 <template:base>
     <jsp:attribute name="title">Index</jsp:attribute>
     <jsp:attribute name="main">
-        <div>  
+        
+         <div>  
             <h1>Hier entsteht eine <b>neue</b> Internetpräsenz</h1> 
-        </div>        
+        </div> 
+        <button type="button" class="btn btn-danger btn-lg">Achtung</button>
+        
     </jsp:attribute>
 </template:base>
