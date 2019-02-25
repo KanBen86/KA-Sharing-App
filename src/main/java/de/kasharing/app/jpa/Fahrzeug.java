@@ -24,7 +24,7 @@ public class Fahrzeug implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     private String hersteller;
 
@@ -33,6 +33,8 @@ public class Fahrzeug implements Serializable {
     private String typ;
 
     private String ausfuehrung;
+    
+    private int plaetze;
 
     private int raeder;
 
@@ -210,42 +212,46 @@ public class Fahrzeug implements Serializable {
         return hauptuntersuchungBis;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
+    }
+
+    public int getPlaetze() {
+        return plaetze;
+    }
+
+    public void setPlaetze(int plaetze) {
+        this.plaetze = plaetze;
     }
 
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 89 * hash + Objects.hashCode(this.id);
-        hash = 89 * hash + Objects.hashCode(this.hersteller);
-        hash = 89 * hash + Objects.hashCode(this.modell);
-        hash = 89 * hash + Objects.hashCode(this.typ);
-        hash = 89 * hash + Objects.hashCode(this.ausfuehrung);
-        hash = 89 * hash + this.raeder;
-        hash = 89 * hash + (this.klimaanlage ? 1 : 0);
-        hash = 89 * hash + (this.elektrischeFensterheber ? 1 : 0);
-        hash = 89 * hash + (this.servolenkung ? 1 : 0);
-        hash = 89 * hash + (this.abs ? 1 : 0);
-        hash = 89 * hash + (this.esp ? 1 : 0);
-        hash = 89 * hash + (this.cd ? 1 : 0);
-        hash = 89 * hash + (this.navigation ? 1 : 0);
-        hash = 89 * hash + (this.fahrassiSystem ? 1 : 0);
-        hash = 89 * hash + Objects.hashCode(this.preisProTag);
-        hash = 89 * hash + Objects.hashCode(this.leihStatus);
-        hash = 89 * hash + Objects.hashCode(this.anschaffungsDatum);
-        hash = 89 * hash + Float.floatToIntBits(this.anschaffungsPreis);
-        hash = 89 * hash + Objects.hashCode(this.hauptuntersuchungBis);
+        hash = 59 * hash + Objects.hashCode(this.id);
+        hash = 59 * hash + Objects.hashCode(this.hersteller);
+        hash = 59 * hash + Objects.hashCode(this.modell);
+        hash = 59 * hash + Objects.hashCode(this.typ);
+        hash = 59 * hash + Objects.hashCode(this.ausfuehrung);
+        hash = 59 * hash + this.plaetze;
+        hash = 59 * hash + this.raeder;
+        hash = 59 * hash + (this.klimaanlage ? 1 : 0);
+        hash = 59 * hash + (this.elektrischeFensterheber ? 1 : 0);
+        hash = 59 * hash + (this.servolenkung ? 1 : 0);
+        hash = 59 * hash + (this.abs ? 1 : 0);
+        hash = 59 * hash + (this.esp ? 1 : 0);
+        hash = 59 * hash + (this.cd ? 1 : 0);
+        hash = 59 * hash + (this.navigation ? 1 : 0);
+        hash = 59 * hash + (this.fahrassiSystem ? 1 : 0);
+        hash = 59 * hash + Float.floatToIntBits(this.preisProTag);
+        hash = 59 * hash + Objects.hashCode(this.leihStatus);
+        hash = 59 * hash + Objects.hashCode(this.anschaffungsDatum);
+        hash = 59 * hash + Float.floatToIntBits(this.anschaffungsPreis);
+        hash = 59 * hash + Objects.hashCode(this.hauptuntersuchungBis);
         return hash;
-    }
-
-    @Override
-    public String toString() {
-        return "Fahrzeug{" + "id=" + id + ", hersteller=" + hersteller + ", modell=" + modell + ", typ=" + typ + ", ausfuehrung=" + ausfuehrung + ", raeder=" + raeder + ", klimaanlage=" + klimaanlage + ", elektrischeFensterheber=" + elektrischeFensterheber + ", servolenkung=" + servolenkung + ", abs=" + abs + ", esp=" + esp + ", cd=" + cd + ", navigation=" + navigation + ", fahrassiSystem=" + fahrassiSystem + ", preisProTag=" + preisProTag + ", leihStatus=" + leihStatus + ", anschaffungsDatum=" + anschaffungsDatum + ", anschaffungsPreis=" + anschaffungsPreis + ", hauptuntersuchungBis=" + hauptuntersuchungBis + '}';
     }
 
     @Override
@@ -260,6 +266,9 @@ public class Fahrzeug implements Serializable {
             return false;
         }
         final Fahrzeug other = (Fahrzeug) obj;
+        if (this.plaetze != other.plaetze) {
+            return false;
+        }
         if (this.raeder != other.raeder) {
             return false;
         }
@@ -287,10 +296,10 @@ public class Fahrzeug implements Serializable {
         if (this.fahrassiSystem != other.fahrassiSystem) {
             return false;
         }
-        if (Float.floatToIntBits(this.anschaffungsPreis) != Float.floatToIntBits(other.anschaffungsPreis)) {
+        if (Float.floatToIntBits(this.preisProTag) != Float.floatToIntBits(other.preisProTag)) {
             return false;
         }
-        if (!Objects.equals(this.id, other.id)) {
+        if (Float.floatToIntBits(this.anschaffungsPreis) != Float.floatToIntBits(other.anschaffungsPreis)) {
             return false;
         }
         if (!Objects.equals(this.hersteller, other.hersteller)) {
@@ -305,10 +314,10 @@ public class Fahrzeug implements Serializable {
         if (!Objects.equals(this.ausfuehrung, other.ausfuehrung)) {
             return false;
         }
-        if (!Objects.equals(this.preisProTag, other.preisProTag)) {
+        if (!Objects.equals(this.leihStatus, other.leihStatus)) {
             return false;
         }
-        if (!Objects.equals(this.leihStatus, other.leihStatus)) {
+        if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         if (!Objects.equals(this.anschaffungsDatum, other.anschaffungsDatum)) {
@@ -319,5 +328,12 @@ public class Fahrzeug implements Serializable {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "Fahrzeug{" + "id=" + id + ", hersteller=" + hersteller + ", modell=" + modell + ", typ=" + typ + ", ausfuehrung=" + ausfuehrung + ", plaetze=" + plaetze + ", raeder=" + raeder + ", klimaanlage=" + klimaanlage + ", elektrischeFensterheber=" + elektrischeFensterheber + ", servolenkung=" + servolenkung + ", abs=" + abs + ", esp=" + esp + ", cd=" + cd + ", navigation=" + navigation + ", fahrassiSystem=" + fahrassiSystem + ", preisProTag=" + preisProTag + ", leihStatus=" + leihStatus + ", anschaffungsDatum=" + anschaffungsDatum + ", anschaffungsPreis=" + anschaffungsPreis + ", hauptuntersuchungBis=" + hauptuntersuchungBis + '}';
+    }
+    
+    
 
 }
