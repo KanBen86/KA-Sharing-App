@@ -28,7 +28,6 @@
     </head>
     <body>
         <header>
-            
             <!--Navigationsbar-->
             <nav class="navbar sticky-top navbar-light bg-light p-0">
                 <!--Logo und Name-->
@@ -41,7 +40,9 @@
             </nav>
         </header>
         <main>
-            <jsp:invoke fragment="main"></jsp:invoke>
+            <div class="container">
+                <jsp:invoke fragment="main"></jsp:invoke>
+            </div>
         </main>
         <footer>
             <jsp:invoke fragment="footer"></jsp:invoke>
