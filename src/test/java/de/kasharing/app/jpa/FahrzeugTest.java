@@ -36,21 +36,8 @@ public class FahrzeugTest {
     
     @Before
     public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
-    
-    @Test
-    public void createFahrzeuge(){
+        
         f1 = new Fahrzeug();
-        
-        assertNotNull(f1);
-        
-        f2 = new Fahrzeug();
-        
-        assertNotNull(f2);
         
         f1.setAbs(true);
         f1.setAusfuehrung("Elegance");
@@ -71,6 +58,8 @@ public class FahrzeugTest {
         f1.setServolenkung(true);
         f1.setTyp("Kombi");
         
+        f2 = new Fahrzeug();
+        
         f2.setAbs(true);
         f2.setAusfuehrung("Elegance");
         f2.setAnschaffungsPreis(11111.11f);
@@ -89,6 +78,20 @@ public class FahrzeugTest {
         f2.setRaeder(4);
         f2.setServolenkung(true);
         f2.setTyp("Limusine");
+    }
+    
+    @After
+    public void tearDown() {
+    }
+    
+    @Test
+    public void createFahrzeuge(){
+        
+        assertNotNull(f1);
+        
+        assertNotNull(f2);
+        
+        
         
         assertTrue(f1.isAbs());
         assertTrue(f1.isCd());
