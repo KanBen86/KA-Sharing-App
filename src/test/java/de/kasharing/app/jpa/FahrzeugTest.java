@@ -6,7 +6,9 @@ package de.kasharing.app.jpa;
  * and open the template in the editor.
  */
 
-import de.kasharing.app.jpa.Fahrzeug;
+import de.kasharing.app.enums.FahrzeugHersteller;
+import de.kasharing.app.enums.FahrzeugStatus;
+import de.kasharing.app.enums.FahrzeugTyp;
 import java.util.Date;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -48,15 +50,15 @@ public class FahrzeugTest {
         f1.setEsp(true);
         f1.setFahrassiSystem(true);
         f1.setHauptuntersuchungBis(new Date());
-        f1.setHersteller("Nissan");
+        f1.setHersteller(FahrzeugHersteller.NISSAN);
         f1.setKlimaanlage(true);
-        f1.setLeihStatus("verliehen");
+        f1.setLeihStatus(FahrzeugStatus.VERFÜGBAR);
         f1.setModell("Tuscan");
         f1.setNavigation(true);
         f1.setPreisProTag(59.99f);
         f1.setRaeder(4);
         f1.setServolenkung(true);
-        f1.setTyp("Kombi");
+        f1.setTyp(FahrzeugTyp.KOMBI);
         
         f2 = new Fahrzeug();
         
@@ -69,15 +71,15 @@ public class FahrzeugTest {
         f2.setEsp(true);
         f2.setFahrassiSystem(true);
         f2.setHauptuntersuchungBis(new Date());
-        f2.setHersteller("Nissan");
+        f2.setHersteller(FahrzeugHersteller.VOLVO);
         f2.setKlimaanlage(true);
-        f2.setLeihStatus("verliehen");
+        f2.setLeihStatus(FahrzeugStatus.REPERATUR);
         f2.setModell("Tuscan");
         f2.setNavigation(true);
         f2.setPreisProTag(59.99f);
         f2.setRaeder(4);
         f2.setServolenkung(true);
-        f2.setTyp("Limusine");
+        f2.setTyp(FahrzeugTyp.LIMUSINE);
     }
     
     @After
@@ -103,9 +105,9 @@ public class FahrzeugTest {
         assertTrue(f1.isServolenkung());
         
         assertTrue(f1.getAusfuehrung().equals("Elegance"));
-        assertTrue(f1.getLeihStatus().equals("verliehen"));
+        assertTrue(f1.getLeihStatus().equals(FahrzeugStatus.VERFÜGBAR));
         assertTrue(f1.getModell().equals("Tuscan"));
-        assertTrue(f1.getTyp().equals("Kombi"));
+        assertTrue(f1.getTyp().equals(FahrzeugTyp.KOMBI));
         
         assertNotNull(f1.getHauptuntersuchungBis());
         assertNotNull(f1.getAnschaffungsDatum());

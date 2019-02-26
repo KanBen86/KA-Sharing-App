@@ -5,6 +5,8 @@
  */
 package de.kasharing.app.ejb;
 
+import de.kasharing.app.enums.FahrzeugKlasse;
+import de.kasharing.app.enums.FahrzeugTyp;
 import de.kasharing.app.jpa.Fahrzeug;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -29,7 +31,6 @@ public class FahrzeugBean {
     }
 
     public List<Fahrzeug> findAll() {
-
         return em.createQuery("SELECT f FROM Fahrzeug f ORDER BY f.id DESC").getResultList();
     }
 
@@ -37,6 +38,18 @@ public class FahrzeugBean {
         return em.createQuery("SELECT f FROM Fahrzeug f WHERE f.modell LIKE " + modell).getResultList();
     }
 
+    public List<Fahrzeug> findByHersteller(String hersteller){
+        return em.createQuery("SELECT f FROM Fahrzeug f WHERE f.hersteller LIKE " + hersteller).getResultList();
+    }
+    
+    public List<Fahrzeug> findByTyp(FahrzeugTyp typ){
+        return em.createQuery("SELECT f FROM Fahrzeug f WHERE f.typ LIKE " + typ).getResultList();
+    }
+    
+    public List<Fahrzeug> findByKlasse(FahrzeugKlasse klasse){
+        return em.createQuery("SELECT f FROM Fahrzeug f WHERE f.klasse LIKE " + klasse).getResultList();
+    }
+    
     public Fahrzeug
             findById(long id) {
         return em.find(Fahrzeug.class,
