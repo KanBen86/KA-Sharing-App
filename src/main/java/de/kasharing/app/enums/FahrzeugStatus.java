@@ -10,5 +10,11 @@ package de.kasharing.app.enums;
  * @author Benjamin Kanzler
  */
 public enum FahrzeugStatus {
-    AUSGELIEHEN, WARTUNG, REPERATUR, TOTALSCHADEN, VERFÜGBAR, RESERVIERT;
+    AUSGELIEHEN("ausgeliehen"), WARTUNG("Wartung"), REPERATUR("Reperatur"), TOTALSCHADEN("Totalschaden"), VERFUEGBAR("Verfügbar"), RESERVIERT("Reserviert");
+    
+    private String bezeichnung;
+    
+    private FahrzeugStatus(String bez){
+        this.bezeichnung = bez;
+    }
 }

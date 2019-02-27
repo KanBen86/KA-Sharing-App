@@ -11,5 +11,11 @@ package de.kasharing.app.enums;
  */
 public enum FahrzeugTyp {
 
-    KOMBI, LIMUSINE, STUFENHECK;
+    KOMBI("Kombi"), LIMUSINE("Limusine"), STUFENHECK("Stufenheck"), CABRIO("Cabriolet"), SUV("SUV");
+    
+    private String bezeichnung;
+    
+    private FahrzeugTyp(String bez){
+        this.bezeichnung = bez;
+    }
 }

@@ -10,5 +10,11 @@ package de.kasharing.app.enums;
  * @author Benjamin Kanzler
  */
 public enum FahrzeugGetriebeArt {
-    AUTOMATIK, SCHALTGETRIEBE, HALBAUTOMATIK, TIPTRONIK;
+    AUTOMATIK("Automatik"), SCHALTGETRIEBE("Schaltgetriebe"), HALBAUTOMATIK("Halbautomatik"), TIPTRONIK("Tiptronik");
+
+    private String bezeichnung;
+
+    private FahrzeugGetriebeArt(String bez) {
+        this.bezeichnung = bez;
+    }
 }

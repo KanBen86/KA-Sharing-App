@@ -10,5 +10,11 @@ package de.kasharing.app.enums;
  * @author Benjamin Kanzler
  */
 public enum FahrzeugKlasse {
-    KLEINWAGEN, MITTELKLASSE, OBERKLASSE, LUXUSKLASSE;
+    KLEINWAGEN("Kleinwagen"), GOLFKLASSE("Golfklasse"), MITTELKLASSE("Mittelklasse"), OBERKLASSE("Oberklasse"), LUXUSKLASSE("Luxusklasse");
+    
+    private String bezeichnung;
+    
+    private FahrzeugKlasse(String str){
+        this.bezeichnung = str;
+    }
 }
