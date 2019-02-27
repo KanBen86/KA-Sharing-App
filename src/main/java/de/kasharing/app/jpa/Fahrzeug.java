@@ -5,18 +5,15 @@
  */
 package de.kasharing.app.jpa;
 
-import de.kasharing.app.enums.FahrzeugGetriebeArt;
-import de.kasharing.app.enums.FahrzeugHersteller;
-import de.kasharing.app.enums.FahrzeugKlasse;
-import de.kasharing.app.enums.FahrzeugStatus;
-import de.kasharing.app.enums.FahrzeugTyp;
-import java.io.Serializable;
-import java.util.Date;
-import java.util.Objects;
+import de.kasharing.app.enums.*;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.io.Serializable;
+import java.util.Date;
+import java.util.Objects;
 
 /**
  *
