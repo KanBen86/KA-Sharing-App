@@ -52,7 +52,7 @@ public class FahrzeugTest {
         f1.setHauptuntersuchungBis(new Date());
         f1.setHersteller(FahrzeugHersteller.NISSAN);
         f1.setKlimaanlage(true);
-        f1.setLeihStatus(FahrzeugStatus.VERFÜGBAR);
+        f1.setLeihStatus(FahrzeugStatus.VERFUEGBAR);
         f1.setModell("Tuscan");
         f1.setNavigation(true);
         f1.setPreisProTag(59.99f);
@@ -105,7 +105,7 @@ public class FahrzeugTest {
         assertTrue(f1.isServolenkung());
         
         assertTrue(f1.getAusfuehrung().equals("Elegance"));
-        assertTrue(f1.getLeihStatus().equals(FahrzeugStatus.VERFÜGBAR));
+        assertTrue(f1.getLeihStatus().equals(FahrzeugStatus.VERFUEGBAR));
         assertTrue(f1.getModell().equals("Tuscan"));
         assertTrue(f1.getTyp().equals(FahrzeugTyp.KOMBI));
         
