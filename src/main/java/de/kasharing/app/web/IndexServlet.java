@@ -42,9 +42,8 @@ public class IndexServlet extends HttpServlet {
             throws ServletException, IOException {
         // Anfrage an die index.jsp weiterleiten
         List<Fahrzeug> fahrzeuge = fahrzeugBean.findAll();
-        for (Fahrzeug fahrzeug : fahrzeuge){
-            System.out.println(fahrzeug);
-        }
+        request.setAttribute("AlleFahrzeuge", fahrzeuge);
+        
         request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
         
     }
