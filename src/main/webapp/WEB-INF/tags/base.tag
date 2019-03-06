@@ -35,8 +35,16 @@
                     <img class="logo p-0" src="<c:url value="/pictures/LogoWithout.png"/>" alt="KA-SHARING Logo" />
                     <span class="brand h3">KA-SHARING</span>
                 </a>
-                <!--An-Abmeldebutton-->
-                <button type="button" class="btn btn-primary btn-sm mr-2">Anmelden</button>
+                    
+                <div>
+                    <!--+ Fahrzeug Button-->
+                    <button type="button" class="btn btn-success btn-sm">+ Fahrzeug</button>
+                    
+                    <!--An-Abmeldebutton-->
+                    <button type="button" class="btn btn-primary btn-sm mr-2">Anmelden</button>
+       
+                </div>
+                
             </nav>
         </header>
         <main>
