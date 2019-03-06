@@ -14,6 +14,8 @@ import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -62,10 +64,12 @@ public class Fahrzeug implements Serializable {
 
     private FahrzeugStatus leihStatus;
 
+    @Temporal(TemporalType.DATE)
     private Date anschaffungsDatum;
 
     private float anschaffungsPreis;
-
+    
+    @Temporal(TemporalType.DATE)
     private Date hauptuntersuchungBis;
 
     private FahrzeugGetriebeArt getriebeart;

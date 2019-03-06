@@ -21,7 +21,7 @@ import javax.persistence.PersistenceContext;
 public class FahrzeugBean {
 
     @PersistenceContext
-    EntityManager em;
+    protected EntityManager em;
 
     public Fahrzeug updateFahrzeug(Fahrzeug f) {
 
@@ -31,27 +31,39 @@ public class FahrzeugBean {
     }
 
     public List<Fahrzeug> findAll() {
-        return em.createQuery("SELECT f FROM Fahrzeug f ORDER BY f.id DESC").getResultList();
+        return em.createQuery("SELECT f FROM Fahrzeug f ORDER BY f.id DESC")
+                .getResultList();
     }
 
     public List<Fahrzeug> findByModell(String modell) {
-        return em.createQuery("SELECT f FROM Fahrzeug f WHERE f.modell LIKE " + modell).getResultList();
+        modell = "%" + modell + "%";
+
+        return em.createQuery("SELECT f FROM Fahrzeug f WHERE f.modell LIKE :MODELL")
+                .setParameter("MODELL", modell)
+                .getResultList();
     }
 
-    public List<Fahrzeug> findByHersteller(String hersteller){
-        return em.createQuery("SELECT f FROM Fahrzeug f WHERE f.hersteller LIKE " + hersteller).getResultList();
+    public List<Fahrzeug> findByHersteller(String hersteller) {
+        hersteller = "%" + hersteller + "%";
+
+        return em.createQuery("SELECT f FROM Fahrzeug f WHERE f.hersteller LIKE :HERSTELLER")
+                .setParameter("HERSTELLER", hersteller)
+                .getResultList();
     }
-    
-    public List<Fahrzeug> findByTyp(FahrzeugTyp typ){
-        return em.createQuery("SELECT f FROM Fahrzeug f WHERE f.typ LIKE " + typ).getResultList();
+
+    public List<Fahrzeug> findByTyp(FahrzeugTyp typ) {
+        return em.createQuery("SELECT f FROM Fahrzeug f WHERE f.typ LIKE :TYP")
+                .setParameter("TYP", typ)
+                .getResultList();
     }
-    
-    public List<Fahrzeug> findByKlasse(FahrzeugKlasse klasse){
-        return em.createQuery("SELECT f FROM Fahrzeug f WHERE f.klasse LIKE " + klasse).getResultList();
+
+    public List<Fahrzeug> findByKlasse(FahrzeugKlasse klasse) {
+        return em.createQuery("SELECT f FROM Fahrzeug f WHERE f.klasse LIKE :KLASSE")
+                .setParameter("KLASSE", klasse)
+                .getResultList();
     }
-    
-    public Fahrzeug
-            findById(long id) {
+
+    public Fahrzeug findById(long id) {
         return em.find(Fahrzeug.class,
                 id);
     }
