@@ -42,82 +42,100 @@
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="plaetze">Plätze: </label>
-                        <input id="plaetze" type="number" class="form-control"></input>
+                        <input name="plaetze" type="number" class="form-control"
+                               value="${detailFahrzeug.plaetze}"></input>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="raeder">Räder: </label>
-                        <input id="raeder" type="number" class="form-control"></input>
+                        <input name="raeder" type="number" class="form-control"
+                               value="${detailFahrzeug.raeder}"></input>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="tueren">Türen: </label>
-                        <input id="tueren" type="number" class="form-control"></input>
+                        <input name="tueren" type="number" class="form-control"
+                               value="${detailFahrzeug.tueren}"></input>
                     </div>
                 </div>
                 
                 <div class="form-row">
                     <div class="form-group col-md-4">
-                        <label>Klimaanlage: </label>
-                        <input id="klimaanlage" type="checkbox"></input>
+                        <label for="klimaanlage">Klimaanlage: </label>
+                        <input name="klimaanlage" type="checkbox"
+                               value="${detailFahrzeug.klimaanlage}"></input>
                     </div>
                     <div class="form-group col-md-4">
-                        <label>elektischer Fensterheber: </label>
-                        <input id="elFensterheber" type="checkbox"></input>
+                        <label for="elFensterheber">elektischer Fensterheber: </label>
+                        <input name="elFensterheber" type="checkbox"
+                               value="${detailFahrzeug.elektrischeFensterheber}"></input>
                     </div>
                     <div class="form-group col-md-4">
-                        <label>Servolenkung: </label>
-                        <input id="servolenkung" type="checkbox"></input>
-                    </div>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group col-md-4">
-                        <label>ABS: </label>
-                        <input id="abs" type="checkbox"></input>
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label>ESP: </label>
-                        <input id="esp" type="checkbox"></input>
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label>CD: </label>
-                        <input id="cd" type="checkbox"></input>
+                        <label for="servolenkung">Servolenkung: </label>
+                        <input name="servolenkung" type="checkbox"
+                               value="${detailFahrzeug.servolenkung}"></input>
                     </div>
                 </div>
                 
                 <div class="form-row">
                     <div class="form-group col-md-4">
-                        <label>Navigationsgerät: </label>
-                        <input id="navigation" type="checkbox"></input>
+                        <label for="abs">ABS: </label>
+                        <input name="abs" type="checkbox"
+                               value="${detailFahrzeug.abs}"></input>
                     </div>
                     <div class="form-group col-md-4">
-                        <label>Fahrassistent: </label>
-                        <input id="fahrassistent" type="checkbox"></input>
+                        <label for="esp">ESP: </label>
+                        <input name="esp" type="checkbox"
+                               value="${detailFahrzeug.esp}"></input>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="cd">CD: </label>
+                        <input name="cd" type="checkbox"
+                               value="${detailFahrzeug.cd}"></input>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="navigation">Navigationsgerät: </label>
+                        <input name="navigation" type="checkbox"
+                               value="${detailFahrzeug.navigation}"></input>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="fahrassistent">Fahrassistent: </label>
+                        <input name="fahrassistent" type="checkbox"
+                               value="${detailFahrzeug.fahrassiSystem}"></input>
                     </div>
                 </div>
                 
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="leihstatus">Verfügbarkeit: </label>
-                        <select id="leihstatus">
-                            <option>Test</option>
+                        <select name="leihstatus" >
+                            <c:forEach items="${statusList}" var="statusValue">
+                                <option value="${statusValue}">
+                                    ${statusValue}
+                                </option>
+                            </c:forEach>
                         </select>
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="anschaffungsDatum"></label>
-                        <input id="anschaffungsDatum" type="date"></input>
+                        <label for="anschaffungsDatum">Anschaffungsdatum: </label>
+                        <input name="anschaffungsDatum" type="date"
+                               value="${detailFahrzeug.anschaffungsDatum}"></input>
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="anschaffungsPreis"></label>
-                        <input id="anschaffungsPreis" type="number"></input>
+                        <label for="anschaffungsPreis">Anschaffungspreis: </label>
+                        <input name="anschaffungsPreis" type="number"
+                               value="${detailFahrzeug.anschaffungsPreis}"></input>
                     </div>
                 </div>
                 
             </div>
         
             
-        <button type="button" class="btn btn-primary m-3">Zurück</button>
-        <button type="button" class="btn btn-success m-3">Speichern</button>
+            <button type="button" class="btn btn-primary m-3">Zurück</button>
+            <button type="button" class="btn btn-success m-3">Speichern</button>
     
         </form>
+        
     </jsp:attribute>
 </template:base>
