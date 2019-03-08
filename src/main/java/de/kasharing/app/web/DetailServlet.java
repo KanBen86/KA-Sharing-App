@@ -7,6 +7,7 @@ package de.kasharing.app.web;
 
 import de.kasharing.app.ejb.FahrzeugBean;
 import de.kasharing.app.jpa.Fahrzeug;
+import de.kasharing.app.enums.FahrzeugStatus;
 import java.io.IOException;
 import java.util.List;
 import javax.ejb.EJB;
@@ -25,6 +26,7 @@ public class DetailServlet extends HttpServlet {
     
     @EJB
     FahrzeugBean fahrzeugBean;
+    FahrzeugStatus fahrzeugstatus;
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     
@@ -44,10 +46,11 @@ public class DetailServlet extends HttpServlet {
         }
         
         Fahrzeug detailFahrzeug = fahrzeugBean.findById(id);
-        
         request.setAttribute("detailFahrzeug", detailFahrzeug);
         
-        request.getRequestDispatcher("/WEB-INF/detail.jsp").forward(request, response);
+        FahrzeugStatus[] statusList = fahrzeugstatus.values();
+        request.setAttribute("statusList", statusList);
         
+        request.getRequestDispatcher("/WEB-INF/detail.jsp").forward(request, response); 
     }
 }
