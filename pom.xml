@@ -97,6 +97,7 @@
             <scope>provided</scope>
         </dependency>
         <!-- Abhängigkeiten für JUnit5 (werden auch nur für die Tests gebraucht) -->
+        <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
