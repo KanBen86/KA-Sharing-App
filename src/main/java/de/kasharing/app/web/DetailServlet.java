@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Dominik
  */
-@WebServlet(urlPatterns = {"/detail/*"})
+@WebServlet(urlPatterns = {"/new/", "/detail/*"})
 public class DetailServlet extends HttpServlet {
     
     @EJB
