@@ -24,13 +24,17 @@
                                 <div class="card-body">
                                     <h5 class="card-title">${fahrzeug.modell}</h5>
                                     <p class="card-text">Getriebe: ${fahrzeug.getriebeart}</p>
+                                    <a href="<c:url value="/detail/${fahrzeug.id}/"/>">
+                                        <button class="btn btn-primary btn-sm">
+                                            Details
+                                        </button>
+                                    </a>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="card-body">
                                     <p class="card-text">Preis/Tag: ${fahrzeug.preisProTag}</p>
-                                    <button type="button" class="btn btn-primary btn-lg">Buchen</button>
-                                    <a href="<c:url value="${'/detail/' += fahrzeug.id += '/'}"/>">Hier klicken</a>
+                                    <button type="button" class="btn btn-primary btn-sm">Buchen</button>
                                 </div>
                             </div>
                         </div>
