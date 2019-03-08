@@ -6,9 +6,13 @@
 package de.kasharing.app.web;
 
 import de.kasharing.app.ejb.FahrzeugBean;
+import de.kasharing.app.enums.FahrzeugGetriebeArt;
+import de.kasharing.app.enums.FahrzeugHersteller;
+import de.kasharing.app.enums.FahrzeugKlasse;
+import de.kasharing.app.enums.FahrzeugStatus;
+import de.kasharing.app.enums.FahrzeugTyp;
 import de.kasharing.app.jpa.Fahrzeug;
 import java.io.IOException;
-import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,6 +35,22 @@ public class DetailServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        //Bereitstellen von den Enum-Werten für die Drop-Downs der Detail-Seite
+        FahrzeugGetriebeArt[] getriebeArtListe = FahrzeugGetriebeArt.values();
+        FahrzeugHersteller[] herstellerListe = FahrzeugHersteller.values(); 
+        FahrzeugKlasse[] klasseListe = FahrzeugKlasse.values();
+        FahrzeugStatus[] statusListe = FahrzeugStatus.values();
+        FahrzeugTyp[] typListe = FahrzeugTyp.values();
+        
+        //Die Enum-Werte als Attribut setzen
+        request.setAttribute("getriebeArtListe", getriebeArtListe);
+        request.setAttribute("herstellerList", herstellerListe);
+        request.setAttribute("klasseList", klasseListe);
+        request.setAttribute("statusList", statusListe);
+        request.setAttribute("typList", typListe);
+        
+
         // Anfrage an die index.jsp weiterleiten
         long id = -1;
         String pathInfo = request.getPathInfo();
