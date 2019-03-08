@@ -6,6 +6,7 @@
 package de.kasharing.app.jpa;
 
 import de.kasharing.app.enums.*;
+import java.awt.Image;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -73,6 +74,16 @@ public class Fahrzeug implements Serializable {
     private Date hauptuntersuchungBis;
 
     private FahrzeugGetriebeArt getriebeart;
+    
+    private Image bild;
+
+    public Image getBild() {
+        return bild;
+    }
+
+    public void setBild(Image bild) {
+        this.bild = bild;
+    }
 
     public FahrzeugStatus getLeihStatus() {
         return leihStatus;
