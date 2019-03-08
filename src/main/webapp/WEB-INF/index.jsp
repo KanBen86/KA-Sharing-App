@@ -30,6 +30,6 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>                
     </jsp:attribute>
 </template:base>
