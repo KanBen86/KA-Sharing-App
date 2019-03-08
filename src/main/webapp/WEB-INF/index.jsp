@@ -12,27 +12,10 @@
 <template:base>
     <jsp:attribute name="title">Index</jsp:attribute>
     <jsp:attribute name="main">
-        <div class="row no-gutters">
-            <div class="col-md-4">
-                <img src="<c:url value="/pictures/TestAuto.png"/>" class="card-img" alt="...">
-            </div>
-            <div class="col-md-4">
-                <div class="card-body">
-                    <h5 class="card-title">Testmodell</h5>
-                    <p class="card-text">Getriebe: Testautomatik</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card-body">
-                    <p class="card-text">Preis/Tag: 3000€/Tag</p>
-                    <button type="button" class="btn btn-primary btn-lg">Buchen</button>
-                </div>
-            </div>
-        </div>
         <c:choose>
             <c:when test="${!empty AlleFahrzeuge}">
                 <c:forEach items="${AlleFahrzeuge}" var="fahrzeug">
-                    <div class="card mb-3" style="max-width: 1000px;">
+                    <div href="<c:url value="${'/detail/' += fahrzeug.id += '/'}"/>" class="card mb-3" style="max-width: 1000px;">
                         <div class="row no-gutters">
                             <div class="col-md-4">
                                 <img src="<c:url value="/pictures/TestAuto.png"/>" class="card-img" alt="...">
