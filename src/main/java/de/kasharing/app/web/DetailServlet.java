@@ -31,6 +31,10 @@ public class DetailServlet extends HttpServlet {
     @EJB
     FahrzeugBean fahrzeugBean;
     FahrzeugStatus fahrzeugstatus;
+    FahrzeugGetriebeArt fahrzeugGetriebeArt;
+    FahrzeugHersteller fahrzeugHersteller;
+    FahrzeugKlasse fahrzeugKlasse;
+    FahrzeugTyp fahrzeugTyp;
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     
@@ -56,6 +60,18 @@ public class DetailServlet extends HttpServlet {
         
         FahrzeugStatus[] statusList = fahrzeugstatus.values();
         request.setAttribute("statusList", statusList);
+        
+        FahrzeugGetriebeArt[] getriebeList = fahrzeugGetriebeArt.values();
+        request.setAttribute("getriebeList", getriebeList);
+        
+        FahrzeugHersteller[] herstellerList = fahrzeugHersteller.values();
+        request.setAttribute("herstellerList", herstellerList);
+        
+        FahrzeugKlasse[] klassenList = fahrzeugKlasse.values();
+        request.setAttribute("klassenList", klassenList);
+        
+        FahrzeugTyp[] typList = fahrzeugTyp.values();
+        request.setAttribute("typList", typList);
         
         request.getRequestDispatcher("/WEB-INF/detail.jsp").forward(request, response); 
     }
