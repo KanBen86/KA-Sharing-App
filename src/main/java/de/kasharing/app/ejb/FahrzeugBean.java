@@ -31,7 +31,7 @@ public class FahrzeugBean {
     }
 
     public List<Fahrzeug> findAll() {
-        return em.createQuery("SELECT f FROM Fahrzeug f ORDER BY f.id DESC")
+        return em.createQuery("SELECT f FROM Fahrzeug f")
                 .getResultList();
     }
 
