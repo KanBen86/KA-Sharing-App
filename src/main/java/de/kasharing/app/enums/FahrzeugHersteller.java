@@ -10,7 +10,14 @@ package de.kasharing.app.enums;
  * @author Benjamin Kanzler
  */
 public enum FahrzeugHersteller {
-    AUDI("Audi"), FORD("Ford"), MAZDA("Mazda"), NISSAN("Nissan"), MERCEDES("Mercedes"), OPEL("Opel"), TOYOTA("Toyota"), VOLVO("Volvo");
+    AUDI("Audi"), 
+    FORD("Ford"), 
+    MAZDA("Mazda"), 
+    NISSAN("Nissan"), 
+    MERCEDES("Mercedes"), 
+    OPEL("Opel"), 
+    TOYOTA("Toyota"), 
+    VOLVO("Volvo");
 
     private String bezeichnung;
 
