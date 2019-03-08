@@ -25,8 +25,8 @@
                         <label for="hersteller">Hersteller: </label>
                         <select name="hersteller" class="form-control form-control-sm" >
                             <option value="null" var=""></option>
-                            <c:forEach items="${herstellerListe}" var="herstellerValue">
-                                <option value="${herstellerListe}">
+                            <c:forEach items="${herstellerList}" var="herstellerValue">
+                                <option value="${herstellerList}">
                                     ${herstellerValue}
                                 </option>
                             </c:forEach>
@@ -39,8 +39,8 @@
                         <label for="typ">Typ: </label>
                         <select name="typ" class="form-control form-control-sm" >
                             <option value="null" var=""></option>
-                            <c:forEach items="${typListe}" var="typValue">
-                                <option value="${typListe}">
+                            <c:forEach items="${typList}" var="typValue">
+                                <option value="${typList}">
                                     ${typValue}
                                 </option>
                             </c:forEach>
@@ -61,8 +61,8 @@
                         <label for="klasse">Klasse: </label>
                         <select name="klasse" class="form-control form-control-sm" >
                             <option value="null" var=""></option>
-                            <c:forEach items="${klasseListe}" var="klasseValue">
-                                <option value="${klasseListe}">
+                            <c:forEach items="${klassenList}" var="klasseValue">
+                                <option value="${klassenList}">
                                     ${klasseValue}
                                 </option>
                             </c:forEach>
