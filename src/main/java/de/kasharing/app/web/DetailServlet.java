@@ -36,20 +36,6 @@ public class DetailServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        //Bereitstellen von den Enum-Werten für die Drop-Downs der Detail-Seite
-        FahrzeugGetriebeArt[] getriebeArtListe = FahrzeugGetriebeArt.values();
-        FahrzeugHersteller[] herstellerListe = FahrzeugHersteller.values(); 
-        FahrzeugKlasse[] klasseListe = FahrzeugKlasse.values();
-        FahrzeugStatus[] statusListe = FahrzeugStatus.values();
-        FahrzeugTyp[] typListe = FahrzeugTyp.values();
-        
-        //Die Enum-Werte als Attribut setzen
-        request.setAttribute("getriebeArtListe", getriebeArtListe);
-        request.setAttribute("herstellerList", herstellerListe);
-        request.setAttribute("klasseList", klasseListe);
-        request.setAttribute("statusList", statusListe);
-        request.setAttribute("typList", typListe);
-        
 
         // Anfrage an die index.jsp weiterleiten
         long id = -1;
