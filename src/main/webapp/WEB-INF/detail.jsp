@@ -196,8 +196,10 @@
                 </div>
             </div>
         
-            
-            <button type="button" class="btn btn-primary m-3">Zurück</button>
+            <a href="<c:url value="/"/>">
+                <button type="button" class="btn btn-primary m-3">Zurück</button>
+            </a>
+       
             <button type="button" class="btn btn-success m-3">Speichern</button>
     
         </form>
