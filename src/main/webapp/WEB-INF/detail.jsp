@@ -16,63 +16,74 @@
         
         <form>
             <!--Card von der Übersichtsseite-->
-            <div class="mb-3 mt-3">
-                <div class="form-row">
-                    <div class="col-md-4">
-                        <img src="<c:url value="/pictures/TestAuto.png"/>" class="card-img" alt="Testauto Bild">
+            <div class="card">
+                <div class="card-body mb-3 mt-3">
+                    <div class="form-row">
+                        <div class="col-md-4">
+                            <img src="<c:url value="/pictures/TestAuto.png"/>" class="card-img" alt="Testauto Bild">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="hersteller">Hersteller: </label>
+                            <select name="hersteller" class="form-control form-control-sm" >
+                                <option value="null" var=""></option>
+                                <c:forEach items="${herstellerList}" var="herstellerValue">
+                                    <option value="${herstellerList}">
+                                        ${herstellerValue}
+                                    </option>
+                                </c:forEach>
+                            </select>
+                        
+                            <label for="modell">Modell: </label>
+                            <input name="modell" type="text" class="form-control form-control-sm"
+                                value="${detailFahrzeug.modell}"></input>
+                               
+                            <label for="klasse">Klasse: </label>
+                            <select name="klasse" class="form-control form-control-sm" >
+                                <option value="null" var=""></option>
+                                <c:forEach items="${klassenList}" var="klasseValue">
+                                    <option value="${klassenList}">
+                                        ${klasseValue}
+                                    </option>
+                                </c:forEach>
+                            </select>
+                        
+                            <label for="getriebeart">Getriebeart: </label>
+                            <select name="getriebeart" class="form-control form-control-sm" >
+                                <option value="null" var=""></option>
+                                <c:forEach items="${getriebeList}" var="getriebeValue">
+                                    <option value="${getriebeList}">
+                                        ${getriebeValue}
+                                    </option>
+                                </c:forEach>
+                            </select>
+                        
+                        </div>
+                        <div class="col-md-4">
+                            <label for="typ">Typ: </label>
+                            <select name="typ" class="form-control form-control-sm" >
+                                <option value="null" var=""></option>
+                                <c:forEach items="${typList}" var="typValue">
+                                    <option value="${typList}">
+                                        ${typValue}
+                                    </option>
+                                </c:forEach>
+                            </select>
+                        
+                            <label for="ausfuehrung">Ausführung: </label>
+                            <input name="ausfuehrung" type="text" class="form-control form-control-sm"
+                                   value="${detailFahrzeug.ausfuehrung}"></input>
+                        
+                            <label for="preisProTag">Preis pro Tag: </label>
+                            <input name="preisProTag" type="number" class="form-control form-control-sm"
+                                   value="${detailFahrzeug.preisProTag}"></input>
+                        
+                            <label for="hauptuntersuchung">Hauptuntersuchung bis: </label>
+                            <br/>
+                            <input name="hauptuntersuchung" type="date" lass="form-control form-control-sm"
+                                       value="${detailFahrzeug.hauptuntersuchungBis}"></input>
+                        </div>
                     </div>
-                    <div class="col-md-4">
-                        <label for="hersteller">Hersteller: </label>
-                        <select name="hersteller" class="form-control form-control-sm" >
-                            <option value="null" var=""></option>
-                            <c:forEach items="${herstellerList}" var="herstellerValue">
-                                <option value="${herstellerList}">
-                                    ${herstellerValue}
-                                </option>
-                            </c:forEach>
-                        </select>
-                        <label for="modell">Modell: </label>
-                        <input name="modell" type="text" class="form-control form-control-sm"
-                               value="${detailFahrzeug.modell}"></input>
-                    </div>
-                    <div class="col-md-4">
-                        <label for="typ">Typ: </label>
-                        <select name="typ" class="form-control form-control-sm" >
-                            <option value="null" var=""></option>
-                            <c:forEach items="${typList}" var="typValue">
-                                <option value="${typList}">
-                                    ${typValue}
-                                </option>
-                            </c:forEach>
-                        </select>
-                        <label for="ausfuehrung">Ausführung: </label>
-                        <input name="ausfuehrung" type="text" class="form-control form-control-sm"
-                               value="${detailFahrzeug.ausfuehrung}"></input>
 
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-4">
-                        <label for="hauptuntersuchung">Hauptuntersuchung bis: </label>
-                        <input name="hauptuntersuchung" type="date" lass="form-control form-control-sm"
-                                   value="${detailFahrzeug.hauptuntersuchungBis}"></input>
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="klasse">Klasse: </label>
-                        <select name="klasse" class="form-control form-control-sm" >
-                            <option value="null" var=""></option>
-                            <c:forEach items="${klassenList}" var="klasseValue">
-                                <option value="${klassenList}">
-                                    ${klasseValue}
-                                </option>
-                            </c:forEach>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="preisProTag">Preis pro Tag: </label>
-                        <input name="preisProTag" type="number" class="form-control form-control-sm"
-                               value="${detailFahrzeug.preisProTag}"></input>
-                    </div>
                 </div>
             </div>
                 
@@ -170,11 +181,13 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label for="anschaffungsDatum">Anschaffungsdatum: </label>
+                            <br/>
                             <input name="anschaffungsDatum" type="date" lass="form-control form-control-sm"
                                    value="${detailFahrzeug.anschaffungsDatum}"></input>
                         </div>
                        <div class="form-group col-md-4">
                             <label for="anschaffungsPreis">Anschaffungspreis: </label>
+                            <br/>
                             <input name="anschaffungsPreis" type="number" lass="form-control form-control-sm"
                                    value="${detailFahrzeug.anschaffungsPreis}"></input>
                         </div>
