@@ -115,19 +115,25 @@
                             <label for="klimaanlage">Klimaanlage: </label>
                             <br/>
                             <input name="klimaanlage" type="checkbox"
-                                   value="${detailFahrzeug.klimaanlage}"></input>
+                                   value="${detailFahrzeug.klimaanlage}"
+                                   <c:if test="${detailFahrzeug.klimaanlage}">checked="true"</c:if>
+                                   ></input>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="elFensterheber">elektischer Fensterheber: </label>
                             <br/>
                             <input name="elFensterheber" type="checkbox"
-                                   value="${detailFahrzeug.elektrischeFensterheber}"></input>
+                                   value="${detailFahrzeug.elektrischeFensterheber}"
+                                    <c:if test="${detailFahrzeug.elektrischeFensterheber}">checked="true"</c:if>
+                                    ></input>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="servolenkung">Servolenkung: </label>
                             <br/>
                             <input name="servolenkung" type="checkbox"
-                                   value="${detailFahrzeug.servolenkung}"></input>
+                                   value="${detailFahrzeug.servolenkung}"
+                                   <c:if test="${detailFahrzeug.servolenkung}">checked="true"</c:if>
+                                    ></input>
                         </div>
                     </div>
                     
@@ -136,19 +142,25 @@
                             <label for="abs">ABS: </label>
                             <br/>
                             <input name="abs" type="checkbox"
-                                   value="${detailFahrzeug.abs}"></input>
+                                   value="${detailFahrzeug.abs}"
+                                    <c:if test="${detailFahrzeug.abs}">checked="true"</c:if>
+                                    ></input>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="esp">ESP: </label>
                             <br/>
                             <input name="esp" type="checkbox"
-                                   value="${detailFahrzeug.esp}"></input>
+                                   value="${detailFahrzeug.esp}"
+                                   <c:if test="${detailFahrzeug.esp}">checked="true"</c:if>
+                                    ></input>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="cd">CD: </label>
                             <br/>
                             <input name="cd" type="checkbox"
-                                   value="${detailFahrzeug.cd}"></input>
+                                   value="${detailFahrzeug.cd}"
+                                   <c:if test="${detailFahrzeug.cd}">checked="true"</c:if>
+                                    ></input>
                         </div>
                     </div>
                     
@@ -157,13 +169,17 @@
                             <label for="navigation">Navigationsgerät: </label>
                             <br/>
                             <input name="navigation" type="checkbox"
-                                   value="${detailFahrzeug.navigation}"></input>
+                                   value="${detailFahrzeug.navigation}"
+                                   <c:if test="${detailFahrzeug.navigation}">checked="true"</c:if>
+                                    ></input>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="fahrassistent">Fahrassistent: </label>
                             <br/>
                             <input name="fahrassistent" type="checkbox"
-                                   value="${detailFahrzeug.fahrassiSystem}"></input>
+                                   value="${detailFahrzeug.fahrassiSystem}"
+                                    <c:if test="${detailFahrzeug.fahrassiSystem}">checked="true"</c:if>
+                                    ></input>
                         </div>
                     </div>
                     
@@ -186,7 +202,7 @@
                                    value="${detailFahrzeug.anschaffungsDatum}"></input>
                         </div>
                        <div class="form-group col-md-4">
-                            <label for="anschaffungsPreis">Anschaffungspreis: </label>
+                            <label for="anschaffungsPreis">Anschaffungspreis in €: </label>
                             <br/>
                             <input name="anschaffungsPreis" type="number" lass="form-control form-control-sm"
                                    value="${detailFahrzeug.anschaffungsPreis}"></input>
