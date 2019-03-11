@@ -14,7 +14,7 @@
     <jsp:attribute name="title">Detailansicht</jsp:attribute>
     <jsp:attribute name="main">
         
-        <form>
+        <form method="POST">
             <!--Card von der Übersichtsseite-->
             <div class="card">
                 <div class="card-body mb-3 mt-3">

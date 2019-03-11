@@ -52,6 +52,7 @@ public class CreateFahrzeugServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        request.setCharacterEncoding("utf-8");
         
         Fahrzeug neuesFahrzeug = new Fahrzeug();
         request.setAttribute("detailFahrzeug", neuesFahrzeug);
@@ -88,31 +89,35 @@ public class CreateFahrzeugServlet extends HttpServlet {
         
             Fahrzeug f = new Fahrzeug();
             
-            /*f.setAbs(request.getAttribute("abs"));
-            f.setAnschaffungsDatum(request.getAttribute("anschaffungsDatum"));
-            f.setAnschaffungsPreis(request.getAttribute("anschaffungsPreis"));
-            f.setAusfuehrung(request.getAttribute("ausfuehrung"));
-            f.setBild(request.getAttribute("bild"));
-            f.setCd(request.getAttribute("cd"));
-            f.setElektrischeFensterheber(request.getAttribute("elektrischerFensterheber"));
-            f.setEsp(request.getAttribute("esp"));
-            f.setFahrassiSystem(request.getAttribute("fahrassiSystem"));
-            f.setGetriebeart(request.getAttribute("getriebeart"));
-            f.setHauptuntersuchungBis(request.getAttribute("hauptuntersuchungBis"));
-            f.setHersteller(request.getAttribute("hersteller"));
-            f.setKlasse(request.getAttribute("klasse"));
-            f.setKlimaanlage(request.getAttribute("klimaanlage"));
-            f.setLeihStatus(request.getAttribute("leihStatus"));
-            f.setModell(request.getAttribute("modell"));
-            f.setNavigation(request.getAttribute("navigation"));
-            f.setPlaetze(request.getAttribute("plaetze"));
-            f.setPreisProTag(request.getAttribute("preisProTag"));
-            f.setRaeder(request.getAttribute("raeder"));
-            f.setServolenkung(request.getAttribute("servolenkung"));
-            f.setTyp(request.getAttribute("typ"));*/
+            //boolean test = request.getParameter("abs") != null;
             
-            System.out.println(request.getAttribute("abs"));
-            System.out.println("Test");
+            /*f.setAbs(request.getParameter("abs"));
+            f.setAnschaffungsDatum(request.getParameter("anschaffungsDatum"));
+            f.setAnschaffungsPreis(request.getParameter("anschaffungsPreis"));
+            f.setAusfuehrung(request.getParameter("ausfuehrung"));
+            f.setBild(request.getParameter("bild"));
+            f.setCd(request.getParameter("cd"));
+            f.setElektrischeFensterheber(request.getParameter("elektrischerFensterheber"));
+            f.setEsp(request.getParameter("esp"));
+            f.setFahrassiSystem(request.getParameter("fahrassiSystem"));
+            f.setGetriebeart(request.getParameter("getriebeart"));
+            f.setHauptuntersuchungBis(request.getParameter("hauptuntersuchungBis"));
+            f.setHersteller(request.getParameter("hersteller"));
+            f.setKlasse(request.getParameter("klasse"));
+            f.setKlimaanlage(request.getParameter("klimaanlage"));
+            f.setLeihStatus(request.getParameter("leihStatus"));
+            f.setModell(request.getParameter("modell"));
+            f.setNavigation(request.getParameter("navigation"));
+            f.setPlaetze(request.getParameter("plaetze"));
+            f.setPreisProTag(request.getParameter("preisProTag"));
+            f.setRaeder(request.getParameter("raeder"));
+            f.setServolenkung(request.getParameter("servolenkung"));
+            f.setTyp(request.getParameter("typ"));*/
+            
+            log(request.getParameter("abs"));
+            log("" + request.getParameter("hersteller"));
+            log("" + request.getParameter("preisProTag"));
+            log("Test");
             
             //Kontrolle, ab Fahrzeug korrekt erstellt wurde
             /*if (f.checkValues()) {
