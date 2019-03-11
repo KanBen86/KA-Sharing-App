@@ -27,6 +27,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "CreateFahrzeugServlet", urlPatterns = {"/newCar"})
 public class CreateFahrzeugServlet extends HttpServlet {
+    
+    public static final String URL = "/newCar";
 
     @EJB
     FahrzeugBean fahrzeugBean;
@@ -82,7 +84,44 @@ public class CreateFahrzeugServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+        throws ServletException, IOException {
+        
+            Fahrzeug f = new Fahrzeug();
+            
+            /*f.setAbs(request.getAttribute("abs"));
+            f.setAnschaffungsDatum(request.getAttribute("anschaffungsDatum"));
+            f.setAnschaffungsPreis(request.getAttribute("anschaffungsPreis"));
+            f.setAusfuehrung(request.getAttribute("ausfuehrung"));
+            f.setBild(request.getAttribute("bild"));
+            f.setCd(request.getAttribute("cd"));
+            f.setElektrischeFensterheber(request.getAttribute("elektrischerFensterheber"));
+            f.setEsp(request.getAttribute("esp"));
+            f.setFahrassiSystem(request.getAttribute("fahrassiSystem"));
+            f.setGetriebeart(request.getAttribute("getriebeart"));
+            f.setHauptuntersuchungBis(request.getAttribute("hauptuntersuchungBis"));
+            f.setHersteller(request.getAttribute("hersteller"));
+            f.setKlasse(request.getAttribute("klasse"));
+            f.setKlimaanlage(request.getAttribute("klimaanlage"));
+            f.setLeihStatus(request.getAttribute("leihStatus"));
+            f.setModell(request.getAttribute("modell"));
+            f.setNavigation(request.getAttribute("navigation"));
+            f.setPlaetze(request.getAttribute("plaetze"));
+            f.setPreisProTag(request.getAttribute("preisProTag"));
+            f.setRaeder(request.getAttribute("raeder"));
+            f.setServolenkung(request.getAttribute("servolenkung"));
+            f.setTyp(request.getAttribute("typ"));*/
+            
+            System.out.println(request.getAttribute("abs"));
+            System.out.println("Test");
+            
+            //Kontrolle, ab Fahrzeug korrekt erstellt wurde
+            /*if (f.checkValues()) {
+                f = fahrzeugBean.createFahrzeug(f);
+            }
+            else {
+                System.out.println("Fahrzeug konnte nicht erstellt werden.");
+                response.sendRedirect(request.getContextPath() + CreateFahrzeugServlet.URL);
+            }*/
     }
 
 }
