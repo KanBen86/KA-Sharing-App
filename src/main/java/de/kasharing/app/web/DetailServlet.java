@@ -24,11 +24,12 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Dominik
  */
-@WebServlet(urlPatterns = {"/new/", "/detail/*"})
+@WebServlet(urlPatterns = {"/detail/*"})
 public class DetailServlet extends HttpServlet {
     
     @EJB
     FahrzeugBean fahrzeugBean;
+    
     FahrzeugStatus fahrzeugstatus;
     FahrzeugGetriebeArt fahrzeugGetriebeArt;
     FahrzeugHersteller fahrzeugHersteller;
