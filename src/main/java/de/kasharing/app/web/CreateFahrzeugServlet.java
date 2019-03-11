@@ -20,6 +20,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;  
+import java.util.Date;  
 
 /**
  *
@@ -89,8 +91,6 @@ public class CreateFahrzeugServlet extends HttpServlet {
         
             Fahrzeug f = new Fahrzeug();
             
-            //boolean test = request.getParameter("abs") != null;
-            
             /*f.setAbs(request.getParameter("abs"));
             f.setAnschaffungsDatum(request.getParameter("anschaffungsDatum"));
             f.setAnschaffungsPreis(request.getParameter("anschaffungsPreis"));
@@ -114,10 +114,18 @@ public class CreateFahrzeugServlet extends HttpServlet {
             f.setServolenkung(request.getParameter("servolenkung"));
             f.setTyp(request.getParameter("typ"));*/
             
+            //Code für Testzwecke:
+            //boolean abs = request.getParameter("abs") != null;
+            //Date anschaffungsDatum = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("anschaffungsDatum"));
+            //double preisProTag = Double.parseDouble(request.getParameter("preisProTag"));
+            /*log("ABS:");
             log(request.getParameter("abs"));
+            log("Hersteller:");
             log("" + request.getParameter("hersteller"));
+            log("Preis pro Tag:");
             log("" + request.getParameter("preisProTag"));
-            log("Test");
+            log("Anschaffungsdatum:");
+            log(request.getParameter("anschaffungsDatum"));*/
             
             //Kontrolle, ab Fahrzeug korrekt erstellt wurde
             /*if (f.checkValues()) {
