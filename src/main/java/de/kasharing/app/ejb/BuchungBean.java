@@ -43,4 +43,8 @@ public class BuchungBean {
 
         return em.createQuery("SELECT b FROM Buchung b WHERE b.nutzer LIKE :NID").setParameter("NID", id).getResultList();
     }
+    
+    public void storniereBuchung(Buchung b){
+        em.remove(b);
+    }
 }
