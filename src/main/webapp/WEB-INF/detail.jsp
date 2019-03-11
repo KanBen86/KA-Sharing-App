@@ -220,9 +220,11 @@
             <a href="<c:url value="/"/>">
                 <button type="button" class="btn btn-primary btn-sm m-3">Zurück</button>
             </a>
-       
-            <button type="button" class="btn btn-success btn-sm m-3">Speichern</button>
-    
+            
+            
+            <button type="submit" class="btn btn-success btn-sm m-3">Speichern</button>
+            
+            
         </form>
         
     </jsp:attribute>
