@@ -38,8 +38,9 @@
                     
                 <div>
                     <!--+ Fahrzeug Button-->
-                    <button type="button" class="btn btn-success btn-sm">+ Fahrzeug</button>
-                    
+                    <a href="<c:url value="/newCar"/>">
+                        <button type="button" class="btn btn-success btn-sm">+ Fahrzeug</button>
+                    </a>
                     <!--An-Abmeldebutton-->
                     <button type="button" class="btn btn-primary btn-sm mr-2">Anmelden</button>
        
