@@ -378,4 +378,8 @@ public class Fahrzeug implements Serializable {
     public String toString() {
         return "Fahrzeug{" + "id=" + id + ", hersteller=" + hersteller + ", modell=" + modell + ", typ=" + typ + ", ausfuehrung=" + ausfuehrung + ", klasse=" + klasse + ", plaetze=" + plaetze + ", raeder=" + raeder + ", klimaanlage=" + klimaanlage + ", elektrischeFensterheber=" + elektrischeFensterheber + ", servolenkung=" + servolenkung + ", abs=" + abs + ", esp=" + esp + ", cd=" + cd + ", navigation=" + navigation + ", fahrassiSystem=" + fahrassiSystem + ", preisProTag=" + preisProTag + ", leihStatus=" + leihStatus + ", anschaffungsDatum=" + anschaffungsDatum + ", anschaffungsPreis=" + anschaffungsPreis + ", hauptuntersuchungBis=" + hauptuntersuchungBis + ", getriebeart=" + getriebeart + '}';
     }
+    
+    public boolean checkValues(){
+        return true;
+    }
 }
