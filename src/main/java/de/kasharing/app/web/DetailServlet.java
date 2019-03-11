@@ -9,7 +9,6 @@ import de.kasharing.app.ejb.FahrzeugBean;
 import de.kasharing.app.enums.FahrzeugGetriebeArt;
 import de.kasharing.app.enums.FahrzeugHersteller;
 import de.kasharing.app.enums.FahrzeugKlasse;
-import de.kasharing.app.enums.FahrzeugStatus;
 import de.kasharing.app.enums.FahrzeugTyp;
 import de.kasharing.app.jpa.Fahrzeug;
 import de.kasharing.app.enums.FahrzeugStatus;
@@ -75,4 +74,11 @@ public class DetailServlet extends HttpServlet {
         
         request.getRequestDispatcher("/WEB-INF/detail.jsp").forward(request, response); 
     }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doPost(req, resp); //To change body of generated methods, choose Tools | Templates.
+        
+    }
+    
 }
