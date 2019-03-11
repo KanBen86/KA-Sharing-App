@@ -22,11 +22,13 @@ public class FahrzeugBean {
 
     @PersistenceContext
     protected EntityManager em;
+    
+    public Fahrzeug createFahrzeug(Fahrzeug f) {
+        em.persist(f);
+        return em.merge(f);
+    }
 
     public Fahrzeug updateFahrzeug(Fahrzeug f) {
-
-        em.persist(f);
-
         return em.merge(f);
     }
 
@@ -66,6 +68,14 @@ public class FahrzeugBean {
     public Fahrzeug findById(long id) {
         return em.find(Fahrzeug.class,
                 id);
+    }
+    
+    public Fahrzeug deleteFahrzeug(long id){
+        Fahrzeug f = findById(id);
+        if (f != null){
+            em.remove(f);
+        }
+        return f;
     }
 
 }
