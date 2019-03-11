@@ -34,6 +34,7 @@
                             <div class="col-md-4">
                                 <div class="card-body">
                                     <p class="card-text">Preis/Tag: ${fahrzeug.preisProTag}</p>
+                                    <p class="card-text">Sitzplätze: ${fahrzeug.plaetze}</p>
                                     <button type="button" class="btn btn-primary btn-sm">Buchen</button>
                                 </div>
                             </div>
