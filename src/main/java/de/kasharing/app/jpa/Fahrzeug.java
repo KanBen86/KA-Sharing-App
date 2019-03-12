@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
@@ -74,6 +75,7 @@ public class Fahrzeug implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date hauptuntersuchungBis;
 
+    @Column(insertable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastChange;
     
@@ -404,12 +406,4 @@ public class Fahrzeug implements Serializable {
         return true;
     }
 
-    public boolean checkValues() {
-
-        if (true) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 }
