@@ -292,6 +292,14 @@ public class Fahrzeug implements Serializable {
         this.tueren = tueren;
     }
 
+    public Date getLastChange() {
+        return lastChange;
+    }
+
+    public void setLastChange(Date lastChange) {
+        this.lastChange = lastChange;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
