@@ -54,8 +54,6 @@ public class CreateFahrzeugServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        request.setCharacterEncoding("utf-8");
-        
         Fahrzeug neuesFahrzeug = new Fahrzeug();
         request.setAttribute("detailFahrzeug", neuesFahrzeug);
         
@@ -88,6 +86,8 @@ public class CreateFahrzeugServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
+        
+            request.setCharacterEncoding("utf-8");
         
             Fahrzeug f = new Fahrzeug();
             

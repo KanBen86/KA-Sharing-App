@@ -25,12 +25,13 @@ import javax.servlet.http.HttpServletResponse;
  * @author Dominik
  */
 @WebServlet(urlPatterns = {"/detail/*"})
+
 public class FahrzeugDetailServlet extends HttpServlet {
     
     @EJB
     FahrzeugBean fahrzeugBean;
     
-    FahrzeugStatus fahrzeugstatus;
+    FahrzeugStatus fahrzeugStatus;
     FahrzeugGetriebeArt fahrzeugGetriebeArt;
     FahrzeugHersteller fahrzeugHersteller;
     FahrzeugKlasse fahrzeugKlasse;
@@ -58,7 +59,7 @@ public class FahrzeugDetailServlet extends HttpServlet {
         Fahrzeug detailFahrzeug = fahrzeugBean.findById(id);
         request.setAttribute("detailFahrzeug", detailFahrzeug);
         
-        FahrzeugStatus[] statusList = fahrzeugstatus.values();
+        FahrzeugStatus[] statusList = fahrzeugStatus.values();
         request.setAttribute("statusList", statusList);
         
         FahrzeugGetriebeArt[] getriebeList = fahrzeugGetriebeArt.values();
