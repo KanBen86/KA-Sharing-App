@@ -22,14 +22,21 @@ public class FahrzeugBean {
 
     @PersistenceContext
     protected EntityManager em;
-    
+
     public Fahrzeug createFahrzeug(Fahrzeug f) {
         em.persist(f);
         return em.merge(f);
     }
 
     public Fahrzeug updateFahrzeug(Fahrzeug f) {
-        return em.merge(f);
+
+        Fahrzeug databaseFahrzeug = findById(f.getId());
+        if (databaseFahrzeug.getLastChange() == f.getLastChange()) {
+            return em.merge(f);
+        } else {
+            databaseFahrzeug.setError("Leider wurde das Fahrzeug in der Datenbank in der Zwischenzeit geändert.");
+            return databaseFahrzeug;
+        }
     }
 
     public List<Fahrzeug> findAll() {
@@ -69,10 +76,10 @@ public class FahrzeugBean {
         return em.find(Fahrzeug.class,
                 id);
     }
-    
-    public Fahrzeug deleteFahrzeug(long id){
+
+    public Fahrzeug deleteFahrzeug(long id) {
         Fahrzeug f = findById(id);
-        if (f != null){
+        if (f != null) {
             em.remove(f);
         }
         return f;
