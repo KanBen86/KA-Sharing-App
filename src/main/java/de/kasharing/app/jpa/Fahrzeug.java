@@ -71,10 +71,13 @@ public class Fahrzeug implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date anschaffungsDatum;
 
-    private float anschaffungsPreis;
-
     @Temporal(TemporalType.DATE)
     private Date hauptuntersuchungBis;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date lastChange;
+    
+    private float anschaffungsPreis;
 
     private FahrzeugGetriebeArt getriebeart;
 
