@@ -126,7 +126,7 @@ public class CreateFahrzeugServlet extends HttpServlet {
             f.setLeihStatus(Enum.valueOf(FahrzeugStatus.class, request.getParameter("leihStatus")));
             f.setTyp(Enum.valueOf(FahrzeugTyp.class, request.getParameter("typ")));
             //Fahrzeugbild: (to-do)
-            f.setBild(request.getAttribute("bild"));
+            //f.setBild(request.getAttribute("bild"));
             
             //Kontrolle, ab Fahrzeug korrekt erstellt wurde
             /*if (f.checkValues()) {
