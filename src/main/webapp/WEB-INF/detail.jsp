@@ -27,7 +27,7 @@
                             <select name="hersteller" class="form-control form-control-sm" >
                                 <option value="null" var=""></option>
                                 <c:forEach items="${herstellerList}" var="herstellerValue">
-                                    <option value="${detailFahrzeug.hersteller}"
+                                    <option value="${herstellerValue}"
                                             ${herstellerValue == detailFahrzeug.hersteller ? 'selected' : ''}>
                                         ${herstellerValue}
                                     </option>
@@ -42,7 +42,7 @@
                             <select name="klasse" class="form-control form-control-sm" >
                                 <option value="null" var=""></option>
                                 <c:forEach items="${klassenList}" var="klasseValue">
-                                    <option value="${detailFahrzeug.klasse}"
+                                    <option value="${klasseValue}"
                                             ${klasseValue == detailFahrzeug.klasse ? 'selected' : ''}>
                                         ${klasseValue}
                                     </option>
@@ -53,7 +53,7 @@
                             <select name="getriebeart" class="form-control form-control-sm" >
                                 <option value="null" var=""></option>
                                 <c:forEach items="${getriebeList}" var="getriebeValue">
-                                    <option value="${detailFahrzeug.getriebeart}"
+                                    <option value="${getriebeValue}"
                                             ${getriebeValue == detailFahrzeug.getriebeart ? 'selected' : ''}>
                                         ${getriebeValue}
                                     </option>
@@ -66,7 +66,7 @@
                             <select name="typ" class="form-control form-control-sm" >
                                 <option value="null" var=""></option>
                                 <c:forEach items="${typList}" var="typValue">
-                                    <option value="${detailFahrzeug.typ}"
+                                    <option value="${typValue}"
                                             ${typValue == detailFahrzeug.typ ? 'selected' : ''}>
                                         ${typValue}
                                     </option>
@@ -193,7 +193,7 @@
                             <select name="leihstatus" class="form-control form-control-sm" >
                                 <option value="null" var=""></option>
                                 <c:forEach items="${statusList}" var="statusValue">
-                                    <option value="${detailFahrzeug.leihStatus}"
+                                    <option value="${statusValue}"
                                             ${statusValue == detailFahrzeug.leihStatus ? 'selected' : ''}>
                                         ${statusValue}
                                     </option>
