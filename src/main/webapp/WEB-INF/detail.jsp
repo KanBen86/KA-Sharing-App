@@ -110,7 +110,7 @@
                         <div class="form-group col-md-4">
                             <label for="tueren">Türen: </label>
                             <input name="tueren" type="number" class="form-control form-control-sm"
-                                   value="${detailFahrzeug.tueren}"></input>
+                                    value="${detailFahrzeug.tueren}"></input>
                         </div>
                     </div>
                     
