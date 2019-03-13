@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Orlando Jähde
  */
-@WebServlet(urlPatterns = {"/book/*"})
+@WebServlet(name = "BuchungServlet", urlPatterns = {"/book/*"})
 
 public class BuchungServlet extends HttpServlet {
     
@@ -52,6 +52,7 @@ public class BuchungServlet extends HttpServlet {
         Fahrzeug detailFahrzeug = fahrzeugBean.findById(id);
         request.setAttribute("detailFahrzeug", detailFahrzeug);
         
+        request.getRequestDispatcher("/WEB-INF/book.jsp").forward(request, response);
     }
 
     @Override
