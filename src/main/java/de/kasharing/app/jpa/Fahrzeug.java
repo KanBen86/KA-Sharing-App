@@ -414,4 +414,9 @@ public class Fahrzeug implements Serializable {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "Fahrzeug{" + "id=" + id + ", hersteller=" + hersteller + ", modell=" + modell + ", typ=" + typ + ", ausfuehrung=" + ausfuehrung + ", klasse=" + klasse + ", plaetze=" + plaetze + ", raeder=" + raeder + ", tueren=" + tueren + ", klimaanlage=" + klimaanlage + ", elektrischeFensterheber=" + elektrischeFensterheber + ", servolenkung=" + servolenkung + ", abs=" + abs + ", esp=" + esp + ", cd=" + cd + ", navigation=" + navigation + ", fahrassiSystem=" + fahrassiSystem + ", preisProTag=" + preisProTag + ", leihStatus=" + leihStatus + ", anschaffungsDatum=" + anschaffungsDatum + ", hauptuntersuchungBis=" + hauptuntersuchungBis + ", lastChange=" + lastChange + ", anschaffungsPreis=" + anschaffungsPreis + ", getriebeart=" + getriebeart + '}';
+    }
+
 }
