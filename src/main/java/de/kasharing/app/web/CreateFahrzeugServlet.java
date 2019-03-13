@@ -120,8 +120,10 @@ public class CreateFahrzeugServlet extends HttpServlet {
             //double preisProTag = Double.parseDouble(request.getParameter("preisProTag"));
             /*log("ABS:");
             log(request.getParameter("abs"));
-            log("Hersteller:");
-            log("" + request.getParameter("hersteller"));
+            */
+            FahrzeugHersteller hersteller = Enum.valueOf(FahrzeugHersteller.class, request.getParameter("hersteller"));
+            log("Hersteller: " + hersteller);
+            /*
             log("Preis pro Tag:");
             log("" + request.getParameter("preisProTag"));
             log("Anschaffungsdatum:");
