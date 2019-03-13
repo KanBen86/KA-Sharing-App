@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.text.SimpleDateFormat;  
 import java.util.Date;  
+import java.text.ParseException;
 
 /**
  *
@@ -91,52 +92,50 @@ public class CreateFahrzeugServlet extends HttpServlet {
         
             Fahrzeug f = new Fahrzeug();
             
-            /*f.setAbs(request.getParameter("abs"));
-            f.setAnschaffungsDatum(request.getParameter("anschaffungsDatum"));
-            f.setAnschaffungsPreis(request.getParameter("anschaffungsPreis"));
-            f.setAusfuehrung(request.getParameter("ausfuehrung"));
-            f.setBild(request.getParameter("bild"));
-            f.setCd(request.getParameter("cd"));
-            f.setElektrischeFensterheber(request.getParameter("elektrischerFensterheber"));
-            f.setEsp(request.getParameter("esp"));
-            f.setFahrassiSystem(request.getParameter("fahrassiSystem"));
-            f.setGetriebeart(request.getParameter("getriebeart"));
-            f.setHauptuntersuchungBis(request.getParameter("hauptuntersuchungBis"));
-            f.setHersteller(request.getParameter("hersteller"));
-            f.setKlasse(request.getParameter("klasse"));
-            f.setKlimaanlage(request.getParameter("klimaanlage"));
-            f.setLeihStatus(request.getParameter("leihStatus"));
+            //Setzen der Werte für das neue Fahrzeug
+            //Boolsche Variablen:
+            f.setAbs(request.getParameter("abs") != null);
+            f.setCd(request.getParameter("cd") != null);
+            f.setElektrischeFensterheber(request.getParameter("elektrischerFensterheber") != null);
+            f.setEsp(request.getParameter("esp") != null);
+            f.setFahrassiSystem(request.getParameter("fahrassiSystem") != null);
+            f.setNavigation(request.getParameter("navigation") != null);
+            f.setKlimaanlage(request.getParameter("klimaanlage") != null);
+            f.setServolenkung(request.getParameter("servolenkung") != null);
+            //String Variablen:
             f.setModell(request.getParameter("modell"));
-            f.setNavigation(request.getParameter("navigation"));
-            f.setPlaetze(request.getParameter("plaetze"));
-            f.setPreisProTag(request.getParameter("preisProTag"));
-            f.setRaeder(request.getParameter("raeder"));
-            f.setServolenkung(request.getParameter("servolenkung"));
-            f.setTyp(request.getParameter("typ"));*/
-            
-            //Code für Testzwecke:
-            //boolean abs = request.getParameter("abs") != null;
-            //Date anschaffungsDatum = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("anschaffungsDatum"));
-            //double preisProTag = Double.parseDouble(request.getParameter("preisProTag"));
-            /*log("ABS:");
-            log(request.getParameter("abs"));
-            */
-            FahrzeugHersteller hersteller = Enum.valueOf(FahrzeugHersteller.class, request.getParameter("hersteller"));
-            log("Hersteller: " + hersteller);
-            /*
-            log("Preis pro Tag:");
-            log("" + request.getParameter("preisProTag"));
-            log("Anschaffungsdatum:");
-            log(request.getParameter("anschaffungsDatum"));*/
+            f.setAusfuehrung(request.getParameter("ausfuehrung"));
+            //Datums Variablen:
+            try {
+                f.setAnschaffungsDatum(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("anschaffungsDatum")));
+                f.setHauptuntersuchungBis(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("hauptuntersuchungBis")));
+            }
+            catch (ParseException parseException) {
+                log ("Datum konnte nicht gesetzt werden:" + parseException.getStackTrace());
+            }
+            //Float/Integer Variablen:           
+            f.setAnschaffungsPreis(Float.parseFloat(request.getParameter("anschaffungsPreis")));
+            f.setPlaetze(Integer.parseInt(request.getParameter("plaetze")));
+            f.setPreisProTag(Float.parseFloat(request.getParameter("preisProTag")));
+            f.setRaeder(Integer.parseInt(request.getParameter("raeder")));
+            //Enums:
+            f.setGetriebeart(Enum.valueOf(FahrzeugGetriebeArt.class, request.getParameter("getriebeart")));            
+            f.setHersteller(Enum.valueOf(FahrzeugHersteller.class, request.getParameter("hersteller")));
+            f.setKlasse(Enum.valueOf(FahrzeugKlasse.class, request.getParameter("klasse")));
+            f.setLeihStatus(Enum.valueOf(FahrzeugStatus.class, request.getParameter("leihStatus")));
+            f.setTyp(Enum.valueOf(FahrzeugTyp.class, request.getParameter("typ")));
+            //Fahrzeugbild: (to-do)
+            //f.setBild(request.getParameter("bild"));
             
             //Kontrolle, ab Fahrzeug korrekt erstellt wurde
-            /*if (f.checkValues()) {
+            if (f.checkValues()) {
                 f = fahrzeugBean.createFahrzeug(f);
+                response.sendRedirect(request.getContextPath() + "/" + f.getId());
             }
             else {
                 System.out.println("Fahrzeug konnte nicht erstellt werden.");
                 response.sendRedirect(request.getContextPath() + CreateFahrzeugServlet.URL);
-            }*/
+            }
     }
 
 }
