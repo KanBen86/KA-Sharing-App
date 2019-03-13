@@ -35,7 +35,9 @@
                                 <div class="card-body">
                                     <p class="card-text">Preis/Tag: ${fahrzeug.preisProTag}</p>
                                     <p class="card-text">Sitzplätze: ${fahrzeug.plaetze}</p>
-                                    <button type="button" class="btn btn-primary btn-sm">Buchen</button>
+                                    <a href="<c:url value="/book/${fahrzeug.id}/"/>">
+                                        <button type="button" class="btn btn-primary btn-sm">Buchen</button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
