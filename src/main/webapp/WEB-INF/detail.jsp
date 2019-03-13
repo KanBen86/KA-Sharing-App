@@ -20,7 +20,7 @@
                 <div class="card-body mb-3 mt-3">
                     <div class="form-row">
                         <div class="col-md-4">
-                            <img src="<c:url value="/pictures/TestAuto.png"/>" class="card-img" alt="Testauto Bild">
+                            <img src="<c:url value=""/>" class="card-img" alt="Bild vom Auto">
                         </div>
                         <div class="col-md-4">
                             <label for="hersteller">Hersteller: </label>
@@ -110,7 +110,7 @@
                         <div class="form-group col-md-4">
                             <label for="tueren">Türen: </label>
                             <input name="tueren" type="number" class="form-control form-control-sm"
-                                   value=""></input>
+                                   value="${detailFahrzeug.tueren}"></input>
                         </div>
                     </div>
                     
