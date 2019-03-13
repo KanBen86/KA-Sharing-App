@@ -22,10 +22,25 @@
                         <div class="col-md-4">
                             <c:choose>
                                 <c:when test="${detailFahrzeug.bild != null}">
-                                    <img src="<c:url value="${detailFahrzeug.bild}"/>" class="card-img" alt="Bild vom Auto">
+                                    <div class="d-flex justify-content-center fulldiv">
+                                        <img src="<c:url value="${detailFahrzeug.bild}"/>" class="card-img" alt="Bild vom Auto">
+                                    </div>        
                                 </c:when>
-                                <c:otherwise>
-                                    
+                                <c:otherwise> 
+                                    <div class="align-middle fulldiv">
+                                        <div class="d-flex justify-content-center">
+                                            <i class="fas fa-car fa-9x"></i>
+                                        </div>
+                                        <br />
+                                        <div class="d-flex justify-content-center">
+                                            <form action = "UploadServlet" method = "post" enctype = "multipart/form-data">
+                                                <input type="file" name="file" value="${detailFahrzeug.bild}"/>
+                                                <button type="submit" value = "Upload File">
+                                                    <i class="fas fa-arrow-up"></i>
+                                                </button>
+                                            </form>
+                                        </div>  
+                                    </div>                                   
                                 </c:otherwise>
                             </c:choose>
                         </div>
