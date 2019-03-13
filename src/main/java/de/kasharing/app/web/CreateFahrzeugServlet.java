@@ -129,10 +129,10 @@ public class CreateFahrzeugServlet extends HttpServlet {
             //f.setBild(request.getAttribute("bild"));
             
             //Kontrolle, ab Fahrzeug korrekt erstellt wurde
-            /*if (f.checkValues()) {
+            //if (f.checkValues()) {
                 f = fahrzeugBean.createFahrzeug(f);
                 response.sendRedirect(request.getContextPath() + "/" + f.getId());
-            }
+            /*}
             else {
                 System.out.println("Fahrzeug konnte nicht erstellt werden.");
                 response.sendRedirect(request.getContextPath() + CreateFahrzeugServlet.URL);

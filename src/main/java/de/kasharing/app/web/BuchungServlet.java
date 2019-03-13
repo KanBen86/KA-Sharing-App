@@ -12,7 +12,6 @@ import de.kasharing.app.ejb.BuchungBean;
 import de.kasharing.app.ejb.FahrzeugBean;
 import javax.ejb.EJB;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,11 +27,12 @@ import javax.servlet.http.HttpServletResponse;
 public class BuchungServlet extends HttpServlet {
     
     @EJB
-    BuchungBean buchungBean;
     FahrzeugBean fahrzeugBean;
+    @EJB
+    BuchungBean buchungBean;    
+    @EJB
     NutzerBean nutzerBean;
     
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code."
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
