@@ -31,17 +31,22 @@ public class BuchungBean {
     }
 
     public List<Buchung> findAll() {
-        return em.createQuery("SELECT b FROM Buchung b").getResultList();
+        return em.createQuery("SELECT b FROM Buchung b")
+                .getResultList();
     }
 
     public List<Buchung> findByFahrzeugId(Long id) {
-
-        return em.createQuery("SELECT b FROM Buchung b WHERE b.fahrzeug LIKE :FID").setParameter("FID", id).getResultList();
+        
+        return em.createQuery("SELECT b FROM Buchung b WHERE b.fahrzeug LIKE :FID")
+                .setParameter("FID", id)
+                .getResultList();
     }
     
     public List<Buchung> findByNutzerId(Long id) {
 
-        return em.createQuery("SELECT b FROM Buchung b WHERE b.nutzer LIKE :NID").setParameter("NID", id).getResultList();
+        return em.createQuery("SELECT b FROM Buchung b WHERE b.nutzer LIKE :NID")
+                .setParameter("NID", id)
+                .getResultList();
     }
     
     public void storniereBuchung(Buchung b){
