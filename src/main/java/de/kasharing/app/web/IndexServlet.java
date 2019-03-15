@@ -46,13 +46,13 @@ public class IndexServlet extends HttpServlet {
             boolean notAvailable = false;
             List<Buchung> buchungen = buchungBean.findByFahrzeug(fahrzeug);
             if (buchungen != null) {
-                for (Buchung buchung : buchungen) {
+                /*for (Buchung buchung : buchungen) {
                     if (!date.after(buchung.getGeliehenBis())) {
                         if (date.after(buchung.getGeliehenAb()) && date.before(buchung.getGeliehenBis())) {
                             notAvailable = true;
                         }
                     }
-                }
+                }*/
             }
             if (notAvailable) {
                 fahrzeug.setLeihStatus(FahrzeugStatus.AUSGELIEHEN);

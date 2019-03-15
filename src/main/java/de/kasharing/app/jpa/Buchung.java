@@ -43,8 +43,10 @@ public class Buchung implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date timestamp;
 
+    @Temporal(TemporalType.DATE)
     private Date geliehenAb;
 
+    @Temporal(TemporalType.DATE)
     private Date geliehenBis;
 
     public Long getId() {
@@ -146,14 +148,12 @@ public class Buchung implements Serializable {
     }
 
     public boolean checkValues() {
-
+        Date date = new Date();
         if (this.nutzer != null) {
+            System.out.println("Nutzer gesetzt");
             if (this.fahrzeug != null) {
-                if (this.geliehenAb != null && this.geliehenAb.after(new Date())) {
-                    if (this.geliehenBis.after(new Date())) {
-                        return true;
-                    }
-                }
+                System.out.println("Fahrzeug gesetzt");
+                return true;
             }
         }
         return false;

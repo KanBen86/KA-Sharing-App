@@ -23,7 +23,7 @@
 <template:base>
     <jsp:attribute name="title">Buchen</jsp:attribute>
     <jsp:attribute name="main">
-        
+        <form method="POST">
             <div class="card mb-3" style="max-width: 1000px;">
                 <div class="row no-gutters">
                     <div class="col-md-4">
@@ -44,7 +44,8 @@
                         </div>
                     </div>
                 </div>
-        
+            </div>
+        </form>
     </jsp:attribute>
 </template:base>
 
