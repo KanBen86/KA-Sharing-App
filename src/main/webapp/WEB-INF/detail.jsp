@@ -33,12 +33,7 @@
                                         </div>
                                         <br />
                                         <div class="d-flex justify-content-center">
-                                            <form action = "UploadServlet" method = "post" enctype = "multipart/form-data">
-                                                <input type="file" name="file" value="${detailFahrzeug.bild}"/>
-                                                <button type="submit" value = "Upload File">
-                                                    <i class="fas fa-arrow-up"></i>
-                                                </button>
-                                            </form>
+                                            <input type="file" name="file" value="${detailFahrzeug.bild}"/>
                                         </div>  
                                     </div>                                   
                                 </c:otherwise>
