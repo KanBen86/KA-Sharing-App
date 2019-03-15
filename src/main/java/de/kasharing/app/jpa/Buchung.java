@@ -145,4 +145,18 @@ public class Buchung implements Serializable {
         return "Buchung{" + "id=" + id + ", fahrzeug=" + fahrzeug + ", nutzer=" + nutzer + ", timestamp=" + timestamp + ", geliehenAb=" + geliehenAb + ", geliehenBis=" + geliehenBis + '}';
     }
 
+    public boolean checkValues() {
+
+        if (this.nutzer != null) {
+            if (this.fahrzeug != null) {
+                if (this.geliehenAb != null && this.geliehenAb.after(new Date())) {
+                    if (this.geliehenBis.after(new Date())) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
 }

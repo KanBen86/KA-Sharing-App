@@ -6,10 +6,12 @@
 package de.kasharing.app.ejb;
 
 import de.kasharing.app.jpa.Buchung;
+import de.kasharing.app.jpa.Fahrzeug;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -31,17 +33,24 @@ public class BuchungBean {
     }
 
     public List<Buchung> findAll() {
-        return em.createQuery("SELECT b FROM Buchung b").getResultList();
+        return em.createQuery("SELECT b FROM Buchung b")
+                .getResultList();
     }
 
-    public List<Buchung> findByFahrzeugId(Long id) {
-
-        return em.createQuery("SELECT b FROM Buchung b WHERE b.fahrzeug LIKE :FID").setParameter("FID", id).getResultList();
+    public List<Buchung> findByFahrzeug(Fahrzeug fahrzeug) {
+        Query query;
+        query = em.createQuery("SELECT b FROM Buchung b WHERE b.fahrzeug = :FAHRZEUG")
+                .setParameter("FAHRZEUG", fahrzeug);
+        List<Buchung> buchungen = query
+                .getResultList();
+        return buchungen;
     }
     
     public List<Buchung> findByNutzerId(Long id) {
 
-        return em.createQuery("SELECT b FROM Buchung b WHERE b.nutzer LIKE :NID").setParameter("NID", id).getResultList();
+        return em.createQuery("SELECT b FROM Buchung b WHERE b.nutzer LIKE :NID")
+                .setParameter("NID", id)
+                .getResultList();
     }
     
     public void storniereBuchung(Buchung b){

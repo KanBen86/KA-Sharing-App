@@ -20,10 +20,13 @@ public class NutzerBean {
     @PersistenceContext
     protected EntityManager em;
     
-    public Nutzer updateNutzer(Nutzer n){
+    public Nutzer createNutzer(Nutzer n){
         
         em.persist(n);
-        
+        return em.merge(n);
+    }
+    
+    public Nutzer updateNutzer(Nutzer n){
         return em.merge(n);
     }
     
