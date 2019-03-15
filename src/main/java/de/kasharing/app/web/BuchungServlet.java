@@ -28,9 +28,7 @@ public class BuchungServlet extends HttpServlet {
     
     @EJB
     FahrzeugBean fahrzeugBean;
-    @EJB
     BuchungBean buchungBean;    
-    @EJB
     NutzerBean nutzerBean;
     
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code."
@@ -69,13 +67,29 @@ public class BuchungServlet extends HttpServlet {
                 // URL enthält keine gültige Long-Zahl
             }
         }
+        
+        //Erstellen des (noch leeren) Nutzers
+        Nutzer nutzer = new Nutzer();
+
         //Erstellen der Buchung
         Buchung buchung = new Buchung();
+
         //Füllen der Buchung mit nötigen Informationen
-        /*buchung.setFahrzeug(fahrzeugBean.findById(id));
-        buchung.setGeliehenAb(request.getParameter("datumBeginn"));
-        buchung.setGeliehenBis(request.getParameter("datumEnde"));
-        buchung.setNutzer();*/
+        buchung.setFahrzeug(fahrzeugBean.findById(id));
+        buchung.setNutzer(nutzerBean.findById(nutzer.getId()));
+
+        try{
+            buchung.setGeliehenAb(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("datumBeginn"));
+            buchung.setGeliehenBis(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("datumEnde"));
+            }
+        catch (ParseException parseException) {
+                log ("Datum konnte nicht gesetzt werden:" + parseException.getStackTrace());
+            }
+        
+
+        
+
+        
         
         //Kontrolle, ab Buchung korrekt erstellt wurde
         /*if (buchung.checkValues()) {
