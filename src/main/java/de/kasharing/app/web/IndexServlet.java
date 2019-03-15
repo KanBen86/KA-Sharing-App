@@ -5,9 +5,13 @@
  */
 package de.kasharing.app.web;
 
+import de.kasharing.app.ejb.BuchungBean;
 import de.kasharing.app.ejb.FahrzeugBean;
+import de.kasharing.app.enums.FahrzeugStatus;
+import de.kasharing.app.jpa.Buchung;
 import de.kasharing.app.jpa.Fahrzeug;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -25,9 +29,11 @@ import javax.servlet.http.HttpServletResponse;
 public class IndexServlet extends HttpServlet {
 
     public static final String URL = "/index.html";
-    
+
     @EJB
     FahrzeugBean fahrzeugBean;
+    @EJB
+    BuchungBean buchungBean;
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     @Override
@@ -35,10 +41,25 @@ public class IndexServlet extends HttpServlet {
             throws ServletException, IOException {
         // Anfrage an die index.jsp weiterleiten
         List<Fahrzeug> fahrzeuge = fahrzeugBean.findAll();
+        Date date = new Date();
+        for (Fahrzeug fahrzeug : fahrzeuge) {
+            boolean notAvailable = false;
+            List<Buchung> buchungen = buchungBean.findByFahrzeug(fahrzeug);
+            if (buchungen != null) {
+                for (Buchung buchung : buchungen) {
+                    if (!date.after(buchung.getGeliehenBis())) {
+                        if (date.after(buchung.getGeliehenAb()) && date.before(buchung.getGeliehenBis())) {
+                            notAvailable = true;
+                        }
+                    }
+                }
+            }
+            if (notAvailable) {
+                fahrzeug.setLeihStatus(FahrzeugStatus.AUSGELIEHEN);
+            }
+        }
         request.setAttribute("AlleFahrzeuge", fahrzeuge);
-        
         request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
-        
     }
 
     /**
@@ -52,7 +73,7 @@ public class IndexServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        //hier muss der Filter geprüft werden
     }
 
     /**
