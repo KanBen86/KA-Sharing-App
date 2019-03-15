@@ -145,7 +145,7 @@ public class Buchung implements Serializable {
         return "Buchung{" + "id=" + id + ", fahrzeug=" + fahrzeug + ", nutzer=" + nutzer + ", timestamp=" + timestamp + ", geliehenAb=" + geliehenAb + ", geliehenBis=" + geliehenBis + '}';
     }
 
-    private boolean checkValues() {
+    public boolean checkValues() {
 
         if (this.nutzer != null) {
             if (this.fahrzeug != null) {
