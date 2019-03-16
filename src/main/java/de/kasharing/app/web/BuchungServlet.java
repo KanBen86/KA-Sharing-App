@@ -103,11 +103,20 @@ public class BuchungServlet extends HttpServlet {
         buchung.setFahrzeug(fahrzeug);
         buchung.setNutzer(nutzer);
 
+        Date date1 = new Date();
+        Date date2 = new Date();
+
+        SimpleDateFormat ft = new SimpleDateFormat("MM/dd/yyyy");
+        ft.setLenient(false);
+        
+
         try {
-            System.out.println(request.getParameter("startDatum"));
-            buchung.setGeliehenAb(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("startDatum")));
-            System.out.println(request.getParameter("endDatum"));
-            buchung.setGeliehenBis(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("endDatum")));
+            date1 = ft.parse(request.getParameter("startDatum"));
+            date2 = ft.parse(request.getParameter("endDatum"));
+            System.out.println(date1.toString());
+            buchung.setGeliehenAb(date1);
+            System.out.println(date2.toString());
+            buchung.setGeliehenBis(date2);
         } catch (ParseException parseException) {
             log("Datum konnte nicht gesetzt werden:" + parseException.getStackTrace());
         } catch (NullPointerException ex){
