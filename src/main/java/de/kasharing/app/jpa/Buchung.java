@@ -48,7 +48,17 @@ public class Buchung implements Serializable {
 
     @Temporal(TemporalType.DATE)
     private Date geliehenBis;
+    
+    private boolean active;
 
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+    
     public Long getId() {
         return id;
     }

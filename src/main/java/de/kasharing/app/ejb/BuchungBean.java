@@ -24,6 +24,7 @@ public class BuchungBean {
     protected EntityManager em;
 
     public Buchung createBuchung(Buchung b) {
+        b.setActive(true);
         em.persist(b);
         return em.merge(b);
     }

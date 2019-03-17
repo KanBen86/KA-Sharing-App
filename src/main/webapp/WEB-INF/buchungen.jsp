@@ -32,7 +32,7 @@
                             <div class="col-md-4">
                                 <div class="card-body">
                                     <p class="card-text">Nutzer: ${buchung.nutzer.nickName}</p>
-                                    <p class="card-text">von:    ${buchung.geliehenVon}</p>
+                                    <p class="card-text">von:    ${buchung.geliehenAb}</p>
                                     <p class="card-text">von:    ${buchung.geliehenBis}</p>
                                     <a href="<c:url value="/zurueckgeben/${buchung.fahrzeug.id}/"/>">
                                         <button type="button" class="btn btn-primary btn-sm">Zurückgeben</button>

@@ -7,8 +7,6 @@ package de.kasharing.app.web;
 
 import de.kasharing.app.jpa.Buchung;
 import de.kasharing.app.jpa.Fahrzeug;
-import de.kasharing.app.jpa.Nutzer;
-import de.kasharing.app.ejb.NutzerBean;
 import de.kasharing.app.ejb.BuchungBean;
 import de.kasharing.app.ejb.FahrzeugBean;
 import javax.ejb.EJB;
@@ -19,10 +17,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.text.ParseException;
-import javax.persistence.NoResultException;
+import java.util.ArrayList;
 
 /**
  *
@@ -45,26 +41,23 @@ public class AlleBuchungenServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        List<Fahrzeug> fahrzeuge = fahrzeugBean.findAll();
         Date date = new Date();
-        for (Fahrzeug fahrzeug : fahrzeuge) {
-            boolean notAvailable = false;
-            List<Buchung> buchungen = buchungBean.findByFahrzeug(fahrzeug);
-            if (buchungen != null) {
-                for (Buchung buchung : buchungen) {
-                    if (!date.after(buchung.getGeliehenBis())) {
-                        if (date.after(buchung.getGeliehenAb()) && date.before(buchung.getGeliehenBis())) {
-                            notAvailable = true;
+        List<Buchung> aktuelleBuchungen = new ArrayList<Buchung>();
+        List<Buchung> buchungen = buchungBean.findAll();
+        if (buchungen != null) {
+            for (Buchung buchung : buchungen) {
+                if (!date.after(buchung.getGeliehenBis())) {
+                    if (date.after(buchung.getGeliehenAb()) && date.before(buchung.getGeliehenBis())) {
+                        if (buchung.isActive()) {
+                            aktuelleBuchungen.add(buchung);
                         }
                     }
                 }
             }
-            if (!notAvailable) {
-                fahrzeuge.remove(fahrzeug);
-            }
         }
-
-        request.setAttribute("AlleBuchungsFahrzeuge", fahrzeuge);
+        System.out.println(aktuelleBuchungen);
+        request.setAttribute(
+                "AlleBuchungsFahrzeuge", aktuelleBuchungen);
         request.getRequestDispatcher("/WEB-INF/buchungen.jsp").forward(request, response);
     }
 }
