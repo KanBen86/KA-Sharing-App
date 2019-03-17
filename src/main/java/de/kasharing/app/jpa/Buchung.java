@@ -48,7 +48,7 @@ public class Buchung implements Serializable {
 
     @Temporal(TemporalType.DATE)
     private Date geliehenBis;
-    
+
     private boolean active;
 
     public boolean isActive() {
@@ -58,7 +58,7 @@ public class Buchung implements Serializable {
     public void setActive(boolean active) {
         this.active = active;
     }
-    
+
     public Long getId() {
         return id;
     }
@@ -162,9 +162,11 @@ public class Buchung implements Serializable {
         if (this.nutzer != null) {
             System.out.println("Nutzer gesetzt");
             if (this.fahrzeug != null) {
+                System.out.println("Fahrzeug gesetzt");
                 if (this.geliehenAb.after(date)) {
+                    System.out.println("geliehenAb Datum ist später als heute");
                     if (this.geliehenBis.after(date)) {
-                        System.out.println("Fahrzeug gesetzt");
+                        System.out.println("geliehenBis Datum ist später als heute");
                         return true;
                     }
                 }
@@ -172,5 +174,4 @@ public class Buchung implements Serializable {
         }
         return false;
     }
-
 }
