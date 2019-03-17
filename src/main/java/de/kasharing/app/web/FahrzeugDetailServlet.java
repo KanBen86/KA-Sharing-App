@@ -87,6 +87,16 @@ public class FahrzeugDetailServlet extends HttpServlet {
 
         Fahrzeug f = new Fahrzeug();
 
+        long id = -1;
+        String pathInfo = request.getPathInfo();
+
+        if (pathInfo != null && pathInfo.length() > 2) {
+            try {
+                f.setId(Long.parseLong(pathInfo.split("/")[1]));
+            } catch (NumberFormatException ex) {
+                // URL enthält keine gültige Long-Zahl
+            }
+        }
         //Setzen der Werte für das neue Fahrzeug
         //Boolsche Variablen:
         f.setAbs(request.getParameter("abs") != null);
