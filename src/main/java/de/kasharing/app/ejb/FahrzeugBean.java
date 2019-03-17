@@ -28,15 +28,8 @@ public class FahrzeugBean {
         return em.merge(f);
     }
 
-    public Fahrzeug updateFahrzeug(Fahrzeug f) {
-
-        Fahrzeug databaseFahrzeug = findById(f.getId());
-        if (databaseFahrzeug.getLastChange() == f.getLastChange()) {
-            return em.merge(f);
-        } else {
-            databaseFahrzeug.setError("Leider wurde das Fahrzeug in der Datenbank in der Zwischenzeit geändert.");
-            return databaseFahrzeug;
-        }
+    public Fahrzeug updateFahrzeug(Fahrzeug f) {    
+        return em.merge(f);
     }
 
     public List<Fahrzeug> findAll() {
