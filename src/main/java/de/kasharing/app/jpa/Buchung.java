@@ -152,8 +152,12 @@ public class Buchung implements Serializable {
         if (this.nutzer != null) {
             System.out.println("Nutzer gesetzt");
             if (this.fahrzeug != null) {
-                System.out.println("Fahrzeug gesetzt");
-                return true;
+                if (this.geliehenAb.after(date)) {
+                    if (this.geliehenBis.after(date)) {
+                        System.out.println("Fahrzeug gesetzt");
+                        return true;
+                    }
+                }
             }
         }
         return false;

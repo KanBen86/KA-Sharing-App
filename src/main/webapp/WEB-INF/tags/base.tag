@@ -38,6 +38,10 @@
                 </a>
                     
                 <div>
+                    <!--Buchungsübersichts Button-->
+                    <a href="<c:url value="/buchungen"/>">
+                        <button type="button" class="btn btn-success btn-sm">Buchungen</button>
+                    </a>
                     <!--+ Fahrzeug Button-->
                     <a href="<c:url value="/newCar"/>">
                         <button type="button" class="btn btn-success btn-sm">+ Fahrzeug</button>
