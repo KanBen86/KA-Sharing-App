@@ -5,6 +5,7 @@
  */
 package de.kasharing.app.ejb;
 
+import de.kasharing.app.helper.Response;
 import de.kasharing.app.jpa.Buchung;
 import de.kasharing.app.jpa.Fahrzeug;
 import java.util.List;
@@ -23,38 +24,79 @@ public class BuchungBean {
     @PersistenceContext
     protected EntityManager em;
 
-    public Buchung createBuchung(Buchung b) {
+    private Query query;
+
+    public Response<Buchung> createBuchung(Buchung b) {
+        Response<Buchung> response = new Response<Buchung>();
         b.setActive(true);
-        em.persist(b);
-        return em.merge(b);
+        try {
+            em.persist(b);
+            response.setResponse(em.merge(b));
+        } catch (Exception ex) {
+            response.setException(ex.getClass().getName());
+            response.setStatus("FEHLER");
+            response.setMessage(ex.getMessage());
+        }
+        return response;
     }
 
     public Buchung updateBuchung(Buchung b) {
         return em.merge(b);
     }
 
-    public List<Buchung> findAll() {
-        return em.createQuery("SELECT b FROM Buchung b")
-                .getResultList();
+    public Response<Buchung> findAll() {
+        Response<Buchung> response = new Response<Buchung>();
+        try {
+            response.setResponseList(em.createQuery("SELECT b FROM Buchung b")
+                    .getResultList());
+        } catch (Exception ex) {
+            response.setException(ex.getClass().getName());
+            response.setStatus("FEHLER");
+            response.setMessage(ex.getMessage());
+        }
+        return response;
     }
 
-    public List<Buchung> findByFahrzeug(Fahrzeug fahrzeug) {
-        Query query;
-        query = em.createQuery("SELECT b FROM Buchung b WHERE b.fahrzeug = :FAHRZEUG")
-                .setParameter("FAHRZEUG", fahrzeug);
-        List<Buchung> buchungen = query
-                .getResultList();
-        return buchungen;
+    public Response<Buchung> findByFahrzeug(Fahrzeug fahrzeug) {
+        Response<Buchung> response = new Response<Buchung>();
+        try {
+            query = em.createQuery("SELECT b FROM Buchung b WHERE b.fahrzeug = :FAHRZEUG")
+                    .setParameter("FAHRZEUG", fahrzeug);
+            response.setResponseList(query
+                    .getResultList());
+        } catch (Exception ex) {
+            response.setException(ex.getClass().getName());
+            response.setStatus("FEHLER");
+            response.setMessage(ex.getMessage());
+        }
+        return response;
     }
-    
-    public List<Buchung> findByNutzerId(Long id) {
 
-        return em.createQuery("SELECT b FROM Buchung b WHERE b.nutzer LIKE :NID")
-                .setParameter("NID", id)
-                .getResultList();
+    public Response<Buchung> findByNutzerId(Long id) {
+        Response<Buchung> response = new Response<Buchung>();
+        try {
+            query = em.createQuery("SELECT b FROM Buchung b WHERE b.nutzer LIKE :NID")
+                    .setParameter("NID", id);
+            response.setResponseList(query
+                    .getResultList());
+        } catch (Exception ex) {
+            response.setException(ex.getClass().getName());
+            response.setStatus("FEHLER");
+            response.setMessage(ex.getMessage());
+        }
+        return response;
     }
-    
-    public void storniereBuchung(Buchung b){
-        em.remove(b);
+
+    public Response<Buchung> storniereBuchung(Buchung b) {
+        Response<Buchung> response = new Response<Buchung>();
+        try {
+            em.remove(b);
+            response.setStatus("ERFOLGREICH");
+        } catch (Exception ex) {
+            response.setStatus("FEHLER");
+            response.setException(ex.getClass().getName());
+            response.setMessage(ex.getMessage());
+        }
+        return response;
     }
 }

@@ -44,7 +44,7 @@ public class IndexServlet extends HttpServlet {
         Date date = new Date();
         for (Fahrzeug fahrzeug : fahrzeuge) {
             boolean notAvailable = false;
-            List<Buchung> buchungen = buchungBean.findByFahrzeug(fahrzeug);
+            List<Buchung> buchungen = buchungBean.findByFahrzeug(fahrzeug).getResponseList();
             if (buchungen != null) {
                 /*for (Buchung buchung : buchungen) {
                     if (!date.after(buchung.getGeliehenBis())) {
