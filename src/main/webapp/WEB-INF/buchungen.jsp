@@ -13,6 +13,9 @@
 <template:base>
     <jsp:attribute name="title">Buchungen</jsp:attribute>
     <jsp:attribute name="main">
+        <a href="<c:url value="/"/>">
+            <button type="button" class="btn btn-primary btn-sm m-3">Zurück zur Übersicht</button>
+        </a>
         <c:choose>
             <c:when test="${!empty AlleBuchungsFahrzeuge}">
                 <c:forEach items="${AlleBuchungsFahrzeuge}" var="buchung">
