@@ -108,8 +108,8 @@ public class CreateFahrzeugServlet extends HttpServlet {
             f.setAusfuehrung(request.getParameter("ausfuehrung"));
             //Datums Variablen:
             try {
-                f.setAnschaffungsDatum(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("anschaffungsDatum")));
-                f.setHauptuntersuchungBis(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("hauptuntersuchungBis")));
+                f.setAnschaffungsDatum(new SimpleDateFormat("MM/dd/yyyy").parse(request.getParameter("anschaffungsDatum")));
+                f.setHauptuntersuchungBis(new SimpleDateFormat("MM/dd/yyyy").parse(request.getParameter("hauptuntersuchungBis")));
             }
             catch (ParseException parseException) {
                 log ("Datum konnte nicht gesetzt werden:" + parseException.getStackTrace());
