@@ -8,7 +8,6 @@ package de.kasharing.app.ejb;
 import de.kasharing.app.helper.Response;
 import de.kasharing.app.jpa.Buchung;
 import de.kasharing.app.jpa.Fahrzeug;
-import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -32,6 +31,7 @@ public class BuchungBean {
         try {
             em.persist(b);
             response.setResponse(em.merge(b));
+            response.setStatus("ERFOLGREICH");
         } catch (Exception ex) {
             response.setException(ex.getClass().getName());
             response.setStatus("FEHLER");
@@ -47,8 +47,11 @@ public class BuchungBean {
     public Response<Buchung> findAll() {
         Response<Buchung> response = new Response<Buchung>();
         try {
-            response.setResponseList(em.createQuery("SELECT b FROM Buchung b")
+            Query query = em.createQuery("SELECT b FROM Buchung b");
+            response.setResponseList(query
                     .getResultList());
+            System.out.println(response.getResponseList());
+            response.setStatus("ERFOLGREICH");
         } catch (Exception ex) {
             response.setException(ex.getClass().getName());
             response.setStatus("FEHLER");

@@ -49,6 +49,7 @@ public class AlleBuchungenServlet extends HttpServlet {
             System.out.println(buchungen);
             if (buchungen != null) {
                 for (Buchung buchung : buchungen) {
+                    System.out.println(buchung);
                     if (!date.after(buchung.getGeliehenBis())) {
                         if (date.after(buchung.getGeliehenAb())) {
                             if (buchung.isActive()) {
