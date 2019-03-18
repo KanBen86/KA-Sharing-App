@@ -41,6 +41,9 @@
                                 Enddatum: <input type="text" name="endDatum" id="datepickerEnde">
                             </p>
                             <button type="submit" class="btn btn-success btn-sm m-3">Buchen</button>
+                            <a href="<c:url value="/"/>">
+                                <button type="button" class="btn btn-primary btn-sm m-3">Zurück zur Übersicht</button>
+                            </a>
                         </div>
                     </div>
                 </div>
