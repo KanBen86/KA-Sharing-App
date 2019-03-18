@@ -13,12 +13,12 @@
     <jsp:attribute name="title">Index</jsp:attribute>
     <jsp:attribute name="main">
         <c:choose>
-            <c:when test="${!empty AlleFahrzeuge}">
-                <c:forEach items="${AlleFahrzeuge}" var="fahrzeug">
+            <c:when test="${!empty AlleFahrzeuge.responseList}">
+                <c:forEach items="${AlleFahrzeuge.responseList}" var="fahrzeug">
                     <div class="card mb-3" style="max-width: 1000px;">
                         <div class="row no-gutters">
                             <div class="col-md-4">
-                                <img src="<c:url value="/pictures/TestAuto.png"/>" class="card-img" alt="...">
+                                <img src="<c:url value="${fahrzeug.bild}"/>" class="card-img" alt="...">
                             </div>
                             <div class="col-md-4">
                                 <div class="card-body">
