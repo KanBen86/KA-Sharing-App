@@ -25,6 +25,21 @@ public class BuchungBean {
 
     private Query query;
 
+    public Response<Buchung> findById(Long id) {
+        Response<Buchung> response = new Response<>();
+
+        try {
+            response.setResponse(em.find(Buchung.class, id));
+            response.setStatus("ERFOLGREICH");
+        } catch (Exception ex) {
+            response.setStatus("ERROR");
+            response.setException(ex.getClass().getName());
+            response.setMessage(ex.getMessage());
+        } finally {
+            return response;
+        }
+    }
+
     public Response<Buchung> createBuchung(Buchung b) {
         Response<Buchung> response = new Response<Buchung>();
         b.setActive(true);
@@ -40,8 +55,19 @@ public class BuchungBean {
         return response;
     }
 
-    public Buchung updateBuchung(Buchung b) {
-        return em.merge(b);
+    public Response updateBuchung(Buchung b) {
+        Response<Buchung> response = new Response<>();
+
+        try {
+            response.setResponse(em.merge(b));
+            response.setStatus("ERFOLGREICH");
+        } catch (Exception ex) {
+            response.setException(ex.getClass().getName());
+            response.setMessage(ex.getMessage());
+            response.setStatus("ERROR");
+        } finally {
+            return response;
+        }
     }
 
     public Response<Buchung> findAll() {

@@ -28,7 +28,7 @@ import java.util.ArrayList;
 
 public class AlleBuchungenServlet extends HttpServlet {
     
-    private final static String URL = "/buchungen/";
+    public final static String URL = "/buchungen";
     
     @EJB
     FahrzeugBean fahrzeugBean;
