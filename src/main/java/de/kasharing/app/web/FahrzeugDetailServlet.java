@@ -21,6 +21,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import de.kasharing.app.helper.Response;
 
 /**
  *
@@ -58,7 +59,7 @@ public class FahrzeugDetailServlet extends HttpServlet {
             }
         }
 
-        Fahrzeug detailFahrzeug = fahrzeugBean.findById(id);
+        Fahrzeug detailFahrzeug = fahrzeugBean.findById(id).getResponse();
         request.setAttribute("detailFahrzeug", detailFahrzeug);
 
         FahrzeugStatus[] statusList = fahrzeugStatus.values();

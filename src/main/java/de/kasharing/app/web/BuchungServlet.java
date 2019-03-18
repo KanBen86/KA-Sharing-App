@@ -11,6 +11,7 @@ import de.kasharing.app.jpa.Nutzer;
 import de.kasharing.app.ejb.NutzerBean;
 import de.kasharing.app.ejb.BuchungBean;
 import de.kasharing.app.ejb.FahrzeugBean;
+import de.kasharing.app.helper.Response;
 import javax.ejb.EJB;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -58,7 +59,7 @@ public class BuchungServlet extends HttpServlet {
             }
         }
 
-        Fahrzeug detailFahrzeug = fahrzeugBean.findById(id);
+        Fahrzeug detailFahrzeug = fahrzeugBean.findById(id).getResponse();
         request.setAttribute("detailFahrzeug", detailFahrzeug);
 
         request.getRequestDispatcher("/WEB-INF/book.jsp").forward(request, response);
@@ -94,7 +95,7 @@ public class BuchungServlet extends HttpServlet {
         }
 
         // Das Fahrzeug in der Datenbank suchen
-        Fahrzeug fahrzeug = fahrzeugBean.findById(id);
+        Fahrzeug fahrzeug = fahrzeugBean.findById(id).getResponse();
 
         //Erstellen der Buchung
         Buchung buchung = new Buchung();
