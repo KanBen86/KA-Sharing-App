@@ -23,3 +23,11 @@ and open the template in the editor.
 .fulldiv{
     height: 252px;
 }
+.background{
+    background-image: url("pictures/Hintergrund.jpg");
+    height: 100%;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

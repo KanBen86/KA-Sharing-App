@@ -16,6 +16,7 @@
 <%@attribute name="footer" fragment="true"%>
 
 <html>
+    
     <head>
         <meta charset="utf-8">
 
@@ -53,7 +54,7 @@
                 
             </nav>
         </header>
-        <main>
+        <main class="background">
             <div class="container">
                 <jsp:invoke fragment="main"></jsp:invoke>
             </div>
