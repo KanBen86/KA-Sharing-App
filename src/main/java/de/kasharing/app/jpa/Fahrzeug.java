@@ -43,6 +43,8 @@ public class Fahrzeug implements Serializable {
     private FahrzeugKlasse klasse;
     
     private FahrzeugTreibstoff treibstoff;
+    
+    private FahrzeugAusbuchung grund;
 
     private int plaetze;
 
@@ -308,36 +310,45 @@ public class Fahrzeug implements Serializable {
         this.deaktiviert = deaktiviert;
     }
 
+    public FahrzeugAusbuchung getGrund() {
+        return grund;
+    }
+
+    public void setGrund(FahrzeugAusbuchung grund) {
+        this.grund = grund;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 43 * hash + Objects.hashCode(this.id);
-        hash = 43 * hash + Objects.hashCode(this.hersteller);
-        hash = 43 * hash + Objects.hashCode(this.modell);
-        hash = 43 * hash + Objects.hashCode(this.typ);
-        hash = 43 * hash + Objects.hashCode(this.ausfuehrung);
-        hash = 43 * hash + Objects.hashCode(this.klasse);
-        hash = 43 * hash + Objects.hashCode(this.treibstoff);
-        hash = 43 * hash + this.plaetze;
-        hash = 43 * hash + this.raeder;
-        hash = 43 * hash + this.tueren;
-        hash = 43 * hash + (this.klimaanlage ? 1 : 0);
-        hash = 43 * hash + (this.elektrischeFensterheber ? 1 : 0);
-        hash = 43 * hash + (this.servolenkung ? 1 : 0);
-        hash = 43 * hash + (this.abs ? 1 : 0);
-        hash = 43 * hash + (this.esp ? 1 : 0);
-        hash = 43 * hash + (this.cd ? 1 : 0);
-        hash = 43 * hash + (this.navigation ? 1 : 0);
-        hash = 43 * hash + (this.fahrassiSystem ? 1 : 0);
-        hash = 43 * hash + (this.deaktiviert ? 1 : 0);
-        hash = 43 * hash + Float.floatToIntBits(this.preisProTag);
-        hash = 43 * hash + Objects.hashCode(this.leihStatus);
-        hash = 43 * hash + Objects.hashCode(this.anschaffungsDatum);
-        hash = 43 * hash + Objects.hashCode(this.hauptuntersuchungBis);
-        hash = 43 * hash + Objects.hashCode(this.lastChange);
-        hash = 43 * hash + Float.floatToIntBits(this.anschaffungsPreis);
-        hash = 43 * hash + Objects.hashCode(this.getriebeart);
-        hash = 43 * hash + Objects.hashCode(this.bild);
+        hash = 53 * hash + Objects.hashCode(this.id);
+        hash = 53 * hash + Objects.hashCode(this.hersteller);
+        hash = 53 * hash + Objects.hashCode(this.modell);
+        hash = 53 * hash + Objects.hashCode(this.typ);
+        hash = 53 * hash + Objects.hashCode(this.ausfuehrung);
+        hash = 53 * hash + Objects.hashCode(this.klasse);
+        hash = 53 * hash + Objects.hashCode(this.treibstoff);
+        hash = 53 * hash + Objects.hashCode(this.grund);
+        hash = 53 * hash + this.plaetze;
+        hash = 53 * hash + this.raeder;
+        hash = 53 * hash + this.tueren;
+        hash = 53 * hash + (this.klimaanlage ? 1 : 0);
+        hash = 53 * hash + (this.elektrischeFensterheber ? 1 : 0);
+        hash = 53 * hash + (this.servolenkung ? 1 : 0);
+        hash = 53 * hash + (this.abs ? 1 : 0);
+        hash = 53 * hash + (this.esp ? 1 : 0);
+        hash = 53 * hash + (this.cd ? 1 : 0);
+        hash = 53 * hash + (this.navigation ? 1 : 0);
+        hash = 53 * hash + (this.fahrassiSystem ? 1 : 0);
+        hash = 53 * hash + (this.deaktiviert ? 1 : 0);
+        hash = 53 * hash + Float.floatToIntBits(this.preisProTag);
+        hash = 53 * hash + Objects.hashCode(this.leihStatus);
+        hash = 53 * hash + Objects.hashCode(this.anschaffungsDatum);
+        hash = 53 * hash + Objects.hashCode(this.hauptuntersuchungBis);
+        hash = 53 * hash + Objects.hashCode(this.lastChange);
+        hash = 53 * hash + Float.floatToIntBits(this.anschaffungsPreis);
+        hash = 53 * hash + Objects.hashCode(this.getriebeart);
+        hash = 53 * hash + Objects.hashCode(this.bild);
         return hash;
     }
 
@@ -416,6 +427,9 @@ public class Fahrzeug implements Serializable {
         if (this.treibstoff != other.treibstoff) {
             return false;
         }
+        if (this.grund != other.grund) {
+            return false;
+        }
         if (this.leihStatus != other.leihStatus) {
             return false;
         }
@@ -439,7 +453,6 @@ public class Fahrzeug implements Serializable {
 
     @Override
     public String toString() {
-        return "Fahrzeug{" + "id=" + id + ", hersteller=" + hersteller + ", modell=" + modell + ", typ=" + typ + ", ausfuehrung=" + ausfuehrung + ", klasse=" + klasse + ", treibstoff=" + treibstoff + ", plaetze=" + plaetze + ", raeder=" + raeder + ", tueren=" + tueren + ", klimaanlage=" + klimaanlage + ", elektrischeFensterheber=" + elektrischeFensterheber + ", servolenkung=" + servolenkung + ", abs=" + abs + ", esp=" + esp + ", cd=" + cd + ", navigation=" + navigation + ", fahrassiSystem=" + fahrassiSystem + ", deaktiviert=" + deaktiviert + ", preisProTag=" + preisProTag + ", leihStatus=" + leihStatus + ", anschaffungsDatum=" + anschaffungsDatum + ", hauptuntersuchungBis=" + hauptuntersuchungBis + ", lastChange=" + lastChange + ", anschaffungsPreis=" + anschaffungsPreis + ", getriebeart=" + getriebeart + ", bild=" + bild + '}';
+        return "Fahrzeug{" + "id=" + id + ", hersteller=" + hersteller + ", modell=" + modell + ", typ=" + typ + ", ausfuehrung=" + ausfuehrung + ", klasse=" + klasse + ", treibstoff=" + treibstoff + ", grund=" + grund + ", plaetze=" + plaetze + ", raeder=" + raeder + ", tueren=" + tueren + ", klimaanlage=" + klimaanlage + ", elektrischeFensterheber=" + elektrischeFensterheber + ", servolenkung=" + servolenkung + ", abs=" + abs + ", esp=" + esp + ", cd=" + cd + ", navigation=" + navigation + ", fahrassiSystem=" + fahrassiSystem + ", deaktiviert=" + deaktiviert + ", preisProTag=" + preisProTag + ", leihStatus=" + leihStatus + ", anschaffungsDatum=" + anschaffungsDatum + ", hauptuntersuchungBis=" + hauptuntersuchungBis + ", lastChange=" + lastChange + ", anschaffungsPreis=" + anschaffungsPreis + ", getriebeart=" + getriebeart + ", bild=" + bild + '}';
     }
-    
 }
