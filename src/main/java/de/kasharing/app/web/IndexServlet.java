@@ -8,6 +8,7 @@ package de.kasharing.app.web;
 import de.kasharing.app.ejb.BuchungBean;
 import de.kasharing.app.ejb.FahrzeugBean;
 import de.kasharing.app.enums.FahrzeugStatus;
+import de.kasharing.app.helper.Response;
 import de.kasharing.app.jpa.Buchung;
 import de.kasharing.app.jpa.Fahrzeug;
 import java.io.IOException;
@@ -40,9 +41,9 @@ public class IndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Anfrage an die index.jsp weiterleiten
-        List<Fahrzeug> fahrzeuge = fahrzeugBean.findAll();
+        Response<Fahrzeug> fahrzeugResponse = fahrzeugBean.findAll();
         Date date = new Date();
-        for (Fahrzeug fahrzeug : fahrzeuge) {
+        for (Fahrzeug fahrzeug : fahrzeugResponse.getResponseList()) {
             boolean notAvailable = false;
             List<Buchung> buchungen = buchungBean.findByFahrzeug(fahrzeug).getResponseList();
             if (buchungen != null) {
@@ -58,7 +59,7 @@ public class IndexServlet extends HttpServlet {
                 fahrzeug.setLeihStatus(FahrzeugStatus.AUSGELIEHEN);
             }
         }
-        request.setAttribute("AlleFahrzeuge", fahrzeuge);
+        request.setAttribute("AlleFahrzeuge", fahrzeugResponse);
         request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
     }
 
