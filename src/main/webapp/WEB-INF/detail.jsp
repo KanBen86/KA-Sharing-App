@@ -202,6 +202,18 @@
                                     <c:if test="${detailFahrzeug.fahrassiSystem}">checked="true"</c:if>
                                     ></input>
                         </div>
+                        <div class="form-group col-md-4">
+                            <label for="treibstoff">Treibstoffart: </label>
+                            <select name="treibstoff" class="form-control form-control-sm" >
+                                <option value="null" var=""></option>
+                                <c:forEach items="${treibstoffList}" var="treibstoffValue">
+                                    <option value="${treibstoffValue}"
+                                            ${treibstoffValue == detailFahrzeug.treibstoff ? 'selected' : ''}>
+                                        ${treibstoffValue}
+                                    </option>
+                                </c:forEach>
+                            </select>
+                        </div>
                     </div>
                     
                     <div class="form-row">
