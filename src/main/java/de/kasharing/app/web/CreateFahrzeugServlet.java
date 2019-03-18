@@ -13,7 +13,6 @@ import de.kasharing.app.enums.FahrzeugStatus;
 import de.kasharing.app.enums.FahrzeugTyp;
 import de.kasharing.app.jpa.Fahrzeug;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,9 +20,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.text.ParseException;
-import java.awt.Image;
 
 /**
  *
@@ -149,7 +146,7 @@ public class CreateFahrzeugServlet extends HttpServlet {
         //f.setBild(request.getAttribute("bild"));
         //Kontrolle, ab Fahrzeug korrekt erstellt wurde
         //if (f.checkValues()) {
-        f = fahrzeugBean.createFahrzeug(f);
+        f = fahrzeugBean.createFahrzeug(f).getResponse();
         response.sendRedirect(request.getContextPath() + FahrzeugDetailServlet.URL + "/" + f.getId());
         /*}
             else {
