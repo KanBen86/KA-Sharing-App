@@ -60,7 +60,7 @@ public class ZurueckgebenServlet extends HttpServlet {
             }
         }
 
-        Fahrzeug detailFahrzeug = fahrzeugBean.findById(id);
+        Response<Fahrzeug> detailFahrzeug = fahrzeugBean.findById(id);
         request.setAttribute("detailFahrzeug", detailFahrzeug);
 
         FahrzeugStatus[] statusList = fahrzeugStatus.values();
