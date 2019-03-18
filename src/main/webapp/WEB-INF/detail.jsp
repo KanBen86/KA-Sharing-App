@@ -238,9 +238,11 @@
                 <button type="button" class="btn btn-primary  btn-sm m-3">Zurück</button>
             </a>
             
-            <a href="<c:url value="/ausbuchen/${detailFahrzeug.id}"/>">
-                <button type="button" class="btn btn-danger btn-sm m-3">Fahrzeug ausbuchen</button>
-            </a>
+            <c:if test="${detailFahrzeug.id != null}">
+                <a href="<c:url value="/ausbuchen/${detailFahrzeug.id}"/>">
+                    <button type="button" class="btn btn-danger btn-sm m-3">Fahrzeug ausbuchen</button>
+                </a>
+            </c:if>
             
             <button type="submit" class="btn btn-success btn-sm m-3">Speichern</button>
             
