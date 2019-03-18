@@ -30,7 +30,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class FahrzeugDetailServlet extends HttpServlet {
 
-    private final static String URL = "/detail";
+    public final static String URL = "/detail";
 
     @EJB
     FahrzeugBean fahrzeugBean;
