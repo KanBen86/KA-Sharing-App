@@ -46,10 +46,11 @@ public class AlleBuchungenServlet extends HttpServlet {
         Response<Buchung> buchungResponse = buchungBean.findAll();
         if (buchungResponse.getStatus() == "ERFOLGREICH") {
             List<Buchung> buchungen = buchungResponse.getResponseList();
+            System.out.println(buchungen);
             if (buchungen != null) {
                 for (Buchung buchung : buchungen) {
                     if (!date.after(buchung.getGeliehenBis())) {
-                        if (date.after(buchung.getGeliehenAb()) && date.before(buchung.getGeliehenBis())) {
+                        if (date.after(buchung.getGeliehenAb())) {
                             if (buchung.isActive()) {
                                 aktuelleBuchungen.add(buchung);
                             }
