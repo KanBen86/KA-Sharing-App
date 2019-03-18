@@ -115,6 +115,7 @@ public class CreateFahrzeugServlet extends HttpServlet {
         f.setPlaetze(Integer.parseInt(request.getParameter("plaetze")));
         f.setPreisProTag(Float.parseFloat(request.getParameter("preisProTag")));
         f.setRaeder(Integer.parseInt(request.getParameter("raeder")));
+        f.setDeaktiviert(false);
         //Enums:
         try {
             f.setGetriebeart(Enum.valueOf(FahrzeugGetriebeArt.class, request.getParameter("getriebeart")));
