@@ -235,9 +235,12 @@
             </div>
         
             <a href="<c:url value="/"/>">
-                <button type="button" class="btn btn-primary btn-sm m-3">Zurück</button>
+                <button type="button" class="btn btn-primary  btn-sm m-3">Zurück</button>
             </a>
             
+            <a href="<c:url value="/ausbuchen/${detailFahrzeug.id}"/>">
+                <button type="button" class="btn btn-danger btn-sm m-3">Fahrzeug ausbuchen</button>
+            </a>
             
             <button type="submit" class="btn btn-success btn-sm m-3">Speichern</button>
             
