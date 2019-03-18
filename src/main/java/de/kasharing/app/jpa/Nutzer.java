@@ -12,6 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -32,7 +34,31 @@ public class Nutzer implements Serializable {
     private String passwort;
 
     private NutzerRolle rolle;
+    
+    @OneToOne()
+    @JoinColumn(name ="bank_id", referencedColumnName = "id")
+    private Bankverbindung bank;
 
+    @OneToOne()
+    @JoinColumn(name ="adresse_id", referencedColumnName = "id")
+    private Adresse adresse;
+
+    public Bankverbindung getBank() {
+        return bank;
+    }
+
+    public void setBank(Bankverbindung bank) {
+        this.bank = bank;
+    }
+
+    public Adresse getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(Adresse adresse) {
+        this.adresse = adresse;
+    }
+    
     public NutzerRolle getRolle() {
         return rolle;
     }
@@ -116,7 +142,7 @@ public class Nutzer implements Serializable {
 
     @Override
     public String toString() {
-        return "Nutzer{" + "id=" + id + ", nickName=" + nickName + ", email=" + email + ", passwort=" + passwort + ", rolle=" + rolle + '}';
+        return "Nutzer{" + "id=" + id + ", nickName=" + nickName + ", email=" + email + ", passwort=" + passwort + ", rolle=" + rolle + ", bank=" + bank + ", adresse=" + adresse + '}';
     }
     
 }
