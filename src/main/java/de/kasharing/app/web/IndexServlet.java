@@ -43,20 +43,24 @@ public class IndexServlet extends HttpServlet {
         // Anfrage an die index.jsp weiterleiten
         Response<Fahrzeug> fahrzeugResponse = fahrzeugBean.findAll();
         Date date = new Date();
-        for (Fahrzeug fahrzeug : fahrzeugResponse.getResponseList()) {
-            boolean notAvailable = false;
-            List<Buchung> buchungen = buchungBean.findByFahrzeug(fahrzeug).getResponseList();
-            if (buchungen != null) {
-                /*for (Buchung buchung : buchungen) {
-                    if (!date.after(buchung.getGeliehenBis())) {
-                        if (date.after(buchung.getGeliehenAb()) && date.before(buchung.getGeliehenBis())) {
-                            notAvailable = true;
+        if (fahrzeugResponse.getStatus().equals("ERFOLGREICH")) {
+            if (!fahrzeugResponse.getResponseList().isEmpty()) {
+                for (Fahrzeug fahrzeug : fahrzeugResponse.getResponseList()) {
+                    boolean notAvailable = false;
+                    List<Buchung> buchungen = buchungBean.findByFahrzeug(fahrzeug).getResponseList();
+                    if (buchungen != null) {
+                        for (Buchung buchung : buchungen) {
+                            if (!date.after(buchung.getGeliehenBis())) {
+                                if (date.after(buchung.getGeliehenAb()) && date.before(buchung.getGeliehenBis())) {
+                                    notAvailable = true;
+                                }
+                            }
                         }
                     }
-                }*/
-            }
-            if (notAvailable) {
-                fahrzeug.setLeihStatus(FahrzeugStatus.AUSGELIEHEN);
+                    if (notAvailable) {
+                        fahrzeug.setLeihStatus(FahrzeugStatus.AUSGELIEHEN);
+                    }
+                }
             }
         }
         request.setAttribute("AlleFahrzeuge", fahrzeugResponse);
