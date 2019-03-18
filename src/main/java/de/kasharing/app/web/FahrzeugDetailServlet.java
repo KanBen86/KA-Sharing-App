@@ -134,8 +134,8 @@ public class FahrzeugDetailServlet extends HttpServlet {
 
         //Kontrolle, ab Fahrzeug korrekt erstellt wurde
         //if (f.checkValues()) {
-        f = fahrzeugBean.updateFahrzeug(f);
-        log("Fahrzeug sollte persistiert sein: " + f);
+        Response<Fahrzeug> fResp = fahrzeugBean.updateFahrzeug(f);
+        log("Fahrzeug sollte persistiert sein: " + fResp.getResponse());
         response.sendRedirect(request.getContextPath() + IndexServlet.URL);
         /*}
             else {
