@@ -7,7 +7,6 @@ package de.kasharing.app.web;
 
 import javax.ejb.EJB;        
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import de.kasharing.app.ejb.FahrzeugBean;
 import de.kasharing.app.enums.FahrzeugAusbuchung;
-import de.kasharing.app.enums.FahrzeugStatus;
+import de.kasharing.app.helper.Response;
 import de.kasharing.app.jpa.Fahrzeug;
 
 /**
@@ -46,7 +45,7 @@ public class AusbuchenServlet extends HttpServlet {
             }
         }
         
-        Fahrzeug detailFahrzeug = fahrzeugBean.findById(id);
+        Response<Fahrzeug> detailFahrzeug = fahrzeugBean.findById(id);
         request.setAttribute("detailFahrzeug", detailFahrzeug);
         
         FahrzeugAusbuchung[] statusList = fahrzeugAusbuchung.values();
@@ -72,16 +71,17 @@ public class AusbuchenServlet extends HttpServlet {
             }
         }
         
-        Fahrzeug detailFahrzeug = fahrzeugBean.findById(id);
+        Response<Fahrzeug> detailFahrzeug = fahrzeugBean.findById(id);
+        log(request.getParameter("grund"));
         
         try {
-            detailFahrzeug.setGrund(Enum.valueOf(FahrzeugAusbuchung.class, request.getParameter("grund")));
+            detailFahrzeug.getResponse().setGrund(Enum.valueOf(FahrzeugAusbuchung.class, request.getParameter("grund")));
         } catch (IllegalArgumentException ex) {
             System.out.println("Das Enum FahrzeugAusbung ist noch nicht gefüllt");
         }
         
-        detailFahrzeug.setDeaktiviert(true);        
-        detailFahrzeug = fahrzeugBean.updateFahrzeug(detailFahrzeug);
+        detailFahrzeug.getResponse().setDeaktiviert(true);        
+        detailFahrzeug = fahrzeugBean.updateFahrzeug(detailFahrzeug.getResponse());
         
         response.sendRedirect(request.getContextPath() + "/index.html");
     }

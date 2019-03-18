@@ -13,7 +13,7 @@
 
 
 <template:base>
-    <jsp:attribute name="title">Buchen</jsp:attribute>
+    <jsp:attribute name="title">Ausbuchen</jsp:attribute>
     <jsp:attribute name="main">
         <form method="POST">
             <div class="card mb-3" style="max-width: 1000px;">
@@ -34,7 +34,7 @@
                                 <option value="null" var=""></option>
                                 <c:forEach items="${statusList}" var="statusValue">
                                     <option value="${statusValue}"
-                                            ${statusValue == detailFahrzeug.leihStatus ? 'selected' : ''}>
+                                            ${statusValue == detailFahrzeug.grund ? 'selected' : ''}>
                                         ${statusValue}
                                     </option>
                                 </c:forEach>
