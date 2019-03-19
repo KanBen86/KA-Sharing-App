@@ -16,6 +16,13 @@
         <a href="<c:url value="/"/>">
             <button type="button" class="btn btn-primary btn-sm m-3">Zurück zur Übersicht</button>
         </a>
+            
+        <c:if test="${AlleBuchungsFahrzeuge.message != null}">
+            <div class="alert alert-danger" role="alert">
+                <p>${AlleBuchungsFahrzeuge.message}</p>
+            </div>
+        </c:if>    
+            
         <c:choose>
             <c:when test="${!empty AlleBuchungsFahrzeuge.responseList}">
                 <c:forEach items="${AlleBuchungsFahrzeuge.responseList}" var="buchung">
@@ -48,7 +55,7 @@
             </c:when> 
             <c:otherwise>
                 <%-- Hinweis, dass es noch keine Fahrzeuge gibt --%>
-                <div class="message">
+                <div class="alert alert-warning" role="alert">
                     Es sind gerade keine Fahrzeuge ausgeliehen.
                 </div>
             </c:otherwise>

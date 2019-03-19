@@ -13,11 +13,9 @@
     <jsp:attribute name="title">Index</jsp:attribute>
     <jsp:attribute name="main">
         
-        <c:if test="${detailFahrzeug.status != null}">
+        <c:if test="${detailFahrzeug.message != null}">
             <div class="alert alert-danger" role="alert">
                 <p>${detailFahrzeug.message}</p>
-                <p>${detailFahrzeug.status}</p>
-                <p>${detailFahrzeug.exception}</p>
             </div>
         </c:if>
         
@@ -55,7 +53,7 @@
             </c:when> 
             <c:otherwise>
                 <%-- Hinweis, dass es noch keine Fahrzeuge gibt --%>
-                <div class="message">
+                <div class="alert alert-danger" role="alert">
                     Es sind noch keine Fahrzeuge vorhanden.
                 </div>
             </c:otherwise>

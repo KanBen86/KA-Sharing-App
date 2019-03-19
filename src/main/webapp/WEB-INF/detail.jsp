@@ -33,8 +33,11 @@
                                         </div>
                                         <br />
                                         <div class="d-flex justify-content-center">
-                                            <input type="file" name="file" value="${detailFahrzeug.response.bild}"/>
-                                        </div>  
+                                            <input id="bild" type="file" name="file" value="${detailFahrzeug.response.bild}"/>
+                                        </div>
+                                        <div class="alert alert-danger p-0 m-2" role="alert">
+                                            Es ist noch keine Bild gespeichert.
+                                        </div>
                                     </div>                                   
                                 </c:otherwise>
                             </c:choose>
