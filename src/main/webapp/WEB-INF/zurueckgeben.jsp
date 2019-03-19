@@ -13,7 +13,7 @@
 
 
 <template:base>
-    <jsp:attribute name="title">Buchen</jsp:attribute>
+    <jsp:attribute name="title">Zurückgeben</jsp:attribute>
     <jsp:attribute name="main">
         <form method="POST">
             <div class="card mb-3" style="max-width: 1000px;">
@@ -23,9 +23,9 @@
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
-                            <h5 class="card-title">Ausgewähltes Fahrzeug: ${detailFahrzeug.modell}</h5>
+                            <h5 class="card-title">Ausgewähltes Fahrzeug: ${detailFahrzeug.response.modell}</h5>
                             <br>
-                            <p class="card-text">Fahrzeug ID: ${detailFahrzeug.id}</p>
+                            <p class="card-text">Fahrzeug ID: ${detailFahrzeug.response.id}</p>
                             <br>
                             <p>
                                 Wählen Sie ihr den Status:
@@ -34,7 +34,7 @@
                                 <option value="null" var=""></option>
                                 <c:forEach items="${statusList}" var="statusValue">
                                     <option value="${statusValue}"
-                                            ${statusValue == detailFahrzeug.leihStatus ? 'selected' : ''}>
+                                            ${statusValue == detailFahrzeug.response.leihStatus ? 'selected' : ''}>
                                         ${statusValue}
                                     </option>
                                 </c:forEach>

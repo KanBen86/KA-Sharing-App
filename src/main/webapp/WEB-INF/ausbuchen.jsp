@@ -23,9 +23,9 @@
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
-                            <h5 class="card-title">Ausgewähltes Fahrzeug: ${detailFahrzeug.modell}</h5>
+                            <h5 class="card-title">Ausgewähltes Fahrzeug: ${detailFahrzeug.response.modell}</h5>
                             <br>
-                            <p class="card-text">Fahrzeug ID: ${detailFahrzeug.id}</p>
+                            <p class="card-text">Fahrzeug ID: ${detailFahrzeug.response.id}</p>
                             <br>
                             <p>
                                 Wählen Sie ihr den Status:
@@ -34,7 +34,7 @@
                                 <option value="null" var=""></option>
                                 <c:forEach items="${statusList}" var="statusValue">
                                     <option value="${statusValue}"
-                                            ${statusValue == detailFahrzeug.grund ? 'selected' : ''}>
+                                            ${statusValue == detailFahrzeug.response.grund ? 'selected' : ''}>
                                         ${statusValue}
                                     </option>
                                 </c:forEach>

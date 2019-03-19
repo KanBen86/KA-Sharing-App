@@ -17,8 +17,8 @@
             <button type="button" class="btn btn-primary btn-sm m-3">Zurück zur Übersicht</button>
         </a>
         <c:choose>
-            <c:when test="${!empty AlleBuchungsFahrzeuge}">
-                <c:forEach items="${AlleBuchungsFahrzeuge}" var="buchung">
+            <c:when test="${!empty AlleBuchungsFahrzeuge.responseList}">
+                <c:forEach items="${AlleBuchungsFahrzeuge.responseList}" var="buchung">
                     <div class="card mb-3" style="max-width: 1000px;">
                         <div class="row no-gutters">
                             <div class="col-md-4">
