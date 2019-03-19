@@ -10,7 +10,9 @@ import de.kasharing.app.enums.FahrzeugGetriebeArt;
 import de.kasharing.app.enums.FahrzeugHersteller;
 import de.kasharing.app.enums.FahrzeugKlasse;
 import de.kasharing.app.enums.FahrzeugStatus;
+import de.kasharing.app.enums.FahrzeugTreibstoff;
 import de.kasharing.app.enums.FahrzeugTyp;
+import de.kasharing.app.helper.Response;
 import de.kasharing.app.jpa.Fahrzeug;
 import java.io.IOException;
 import javax.ejb.EJB;
@@ -39,6 +41,7 @@ public class CreateFahrzeugServlet extends HttpServlet {
     FahrzeugHersteller fahrzeugHersteller;
     FahrzeugKlasse fahrzeugKlasse;
     FahrzeugTyp fahrzeugTyp;
+    FahrzeugTreibstoff fahrzeugTreibstoff;
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -53,7 +56,7 @@ public class CreateFahrzeugServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        Fahrzeug neuesFahrzeug = new Fahrzeug();
+        Response<Fahrzeug> neuesFahrzeug = new Response<>();
         request.setAttribute("detailFahrzeug", neuesFahrzeug);
 
         FahrzeugStatus[] statusList = fahrzeugStatus.values();
@@ -70,6 +73,9 @@ public class CreateFahrzeugServlet extends HttpServlet {
 
         FahrzeugTyp[] typList = fahrzeugTyp.values();
         request.setAttribute("typList", typList);
+        
+        FahrzeugTreibstoff[] treibstoffList = fahrzeugTreibstoff.values();
+        request.setAttribute("treibstoffList", treibstoffList);
 
         request.getRequestDispatcher("/WEB-INF/detail.jsp").forward(request, response);
     }

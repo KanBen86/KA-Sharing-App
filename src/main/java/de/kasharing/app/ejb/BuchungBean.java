@@ -9,7 +9,7 @@ import de.kasharing.app.enums.ResponseStatus;
 import de.kasharing.app.helper.Response;
 import de.kasharing.app.jpa.Buchung;
 import de.kasharing.app.jpa.Fahrzeug;
-import javax.ejb.EJB;
+import java.util.Date;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -45,6 +45,7 @@ public class BuchungBean {
     public Response<Buchung> createBuchung(Buchung b) {
         Response<Buchung> response = new Response<Buchung>();
         b.setActive(true);
+        b.setTimestamp(new Date());
         try {
             Response<Buchung> checkList = this.findByFahrzeug(b.getFahrzeug());
             Boolean successful = true;
