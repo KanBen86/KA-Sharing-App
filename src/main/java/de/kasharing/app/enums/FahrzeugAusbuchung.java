@@ -12,11 +12,11 @@ package de.kasharing.app.enums;
  * @author Benjamin Kanzler
  */
 public enum FahrzeugAusbuchung {
-
+    
     TOTALSCHADEN("Totalschaden"),
     UNRENTABEL("Unrentabel"),
     ABGESCHRIEBEN("Abgeschrieben");
-
+    
     private String bezeichnung;
 
     private FahrzeugAusbuchung(String bez) {
