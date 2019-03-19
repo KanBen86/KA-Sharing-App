@@ -10,7 +10,7 @@ package de.kasharing.app.enums;
  * @author Benjamin Kanzler
  */
 public enum FahrzeugStatus {
-    AUSGELIEHEN("Ausgeliehen"),
+    NICHTVERFUEGBAR("Nicht Verfügbar"),
     WARTUNG("Wartung"), 
     REPERATUR("Reperatur"),
     VERFUEGBAR("Verfügbar");
