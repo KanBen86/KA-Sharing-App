@@ -12,6 +12,15 @@
 <template:base>
     <jsp:attribute name="title">Index</jsp:attribute>
     <jsp:attribute name="main">
+        
+        <c:if test="${detailFahrzeug.status != null}">
+            <div class="alert alert-danger" role="alert">
+                <p>${detailFahrzeug.message}</p>
+                <p>${detailFahrzeug.status}</p>
+                <p>${detailFahrzeug.exception}</p>
+            </div>
+        </c:if>
+        
         <c:choose>
             <c:when test="${!empty AlleFahrzeuge.responseList}">
                 <c:forEach items="${AlleFahrzeuge.responseList}" var="fahrzeug">

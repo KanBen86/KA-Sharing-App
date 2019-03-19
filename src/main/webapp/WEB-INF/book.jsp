@@ -31,7 +31,7 @@
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
-                            <h5 class="card-title">Ausgewähltes Fahrzeug: ${detailFahrzeug.modell}</h5>
+                            <h5 class="card-title">Ausgewähltes Fahrzeug: ${detailFahrzeug.response.modell}</h5>
                             <br>
                             <p>
                                 Wählen Sie ihr:
