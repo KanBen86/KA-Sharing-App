@@ -63,6 +63,12 @@ public class IndexServlet extends HttpServlet {
                 }
             }
         }
+        System.out.println(fahrzeugResponse.getStatus() + ": " + fahrzeugResponse.getException() + ": " + fahrzeugResponse.getMessage());
+        if (fahrzeugResponse.getStackTrace() != null) {
+            for (StackTraceElement e : fahrzeugResponse.getStackTrace()) {
+                System.out.println(e);
+            }
+        }
         request.setAttribute("AlleFahrzeuge", fahrzeugResponse);
         request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
     }

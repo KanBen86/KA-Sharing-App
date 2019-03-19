@@ -10,9 +10,11 @@ import de.kasharing.app.enums.FahrzeugTyp;
 import de.kasharing.app.helper.Response;
 import de.kasharing.app.jpa.Fahrzeug;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -57,13 +59,23 @@ public class FahrzeugBean {
     public Response<Fahrzeug> findAll() {
         Response<Fahrzeug> response = new Response<>();
         try {
-            response.setResponseList(em.createQuery("SELECT f FROM Fahrzeug f WHERE f.deaktiviert = 0")
-                    .getResultList());
+            System.out.println("Lese die Daten aus der Datenbank aus: ");
+            Query query = em.createQuery("SELECT f FROM Fahrzeug f");
+            List<Fahrzeug> fahrzeuge = query.getResultList();
+            System.out.println("Die ausgelesenen Fahrzeuge sind: " + fahrzeuge);
+            response.setResponseList(fahrzeuge);
+            for (Fahrzeug f : response.getResponseList()) {
+                System.out.println("Fahrzeug: " + f);
+                if (f.isDeaktiviert()) {
+                    response.getResponseList().remove(f);
+                }
+            }
             response.setStatus("ERFOLGREICH");
         } catch (Exception ex) {
             response.setStatus("ERROR");
             response.setException(ex.getClass().getName());
             response.setMessage(ex.getMessage());
+            response.setStackTrace(ex.getStackTrace());
         } finally {
             return response;
         }
