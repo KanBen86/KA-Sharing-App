@@ -86,9 +86,9 @@ public class BuchungServlet extends HttpServlet {
         Nutzer nutzer = new Nutzer();
 
         nutzer.setNickName("Dieter");
-        Nutzer tempNutzer = nutzerBean.findByNick(nutzer.getNickName());
-        if (tempNutzer != null) {
-            nutzer = tempNutzer;
+        Response<Nutzer> tempNutzer = nutzerBean.findByNick(nutzer.getNickName());
+        if (tempNutzer.getResponse() != null) {
+            nutzer = tempNutzer.getResponse();
         } else {
             log("Es konnte kein Datenbankeintrag gefunden werden");
             nutzer = nutzerBean.createNutzer(nutzer);

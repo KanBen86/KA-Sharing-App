@@ -5,6 +5,8 @@
  */
 package de.kasharing.app.ejb;
 
+import de.kasharing.app.enums.ResponseStatus;
+import de.kasharing.app.helper.Response;
 import de.kasharing.app.jpa.Nutzer;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -35,14 +37,18 @@ public class NutzerBean {
         return em.find(Nutzer.class, id);
     }
 
-    public Nutzer findByNick(String nick) {
-        Nutzer nutzer;
+    public Response<Nutzer> findByNick(String nick) {
+        Response<Nutzer> nutzer = new Response<>();
         try {
-            nutzer = (Nutzer) em.createQuery("SELECT n FROM Nutzer n WHERE n.nickName LIKE :NICK")
+            nutzer.setResponse((Nutzer)(em.createQuery("SELECT n FROM Nutzer n WHERE n.nickName LIKE :NICK")
                     .setParameter("NICK", nick)
-                    .getSingleResult();
+                    .getSingleResult()));
+            nutzer.setStatus(ResponseStatus.ERFOLGREICH);
         } catch (NoResultException ex) {
-            nutzer = null;
+            nutzer.setStatus(ResponseStatus.ERROR);
+            nutzer.setException(ex.getClass().getName());
+            nutzer.setMessage(ex.getMessage());
+            nutzer.setStackTrace(ex.getStackTrace());
         }
         return nutzer;
     }
