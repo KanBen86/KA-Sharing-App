@@ -9,6 +9,7 @@ import de.kasharing.app.ejb.FahrzeugBean;
 import de.kasharing.app.enums.FahrzeugGetriebeArt;
 import de.kasharing.app.enums.FahrzeugHersteller;
 import de.kasharing.app.enums.FahrzeugKlasse;
+import de.kasharing.app.enums.FahrzeugTreibstoff;
 import de.kasharing.app.enums.FahrzeugTyp;
 import de.kasharing.app.jpa.Fahrzeug;
 import de.kasharing.app.enums.FahrzeugStatus;
@@ -41,6 +42,7 @@ public class FahrzeugDetailServlet extends HttpServlet {
     FahrzeugHersteller fahrzeugHersteller;
     FahrzeugKlasse fahrzeugKlasse;
     FahrzeugTyp fahrzeugTyp;
+    FahrzeugTreibstoff fahrzeugTreibstoff;
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     @Override
@@ -59,7 +61,7 @@ public class FahrzeugDetailServlet extends HttpServlet {
             }
         }
 
-        Fahrzeug detailFahrzeug = fahrzeugBean.findById(id).getResponse();
+        Response<Fahrzeug> detailFahrzeug = fahrzeugBean.findById(id);
         request.setAttribute("detailFahrzeug", detailFahrzeug);
 
         FahrzeugStatus[] statusList = fahrzeugStatus.values();
@@ -76,6 +78,9 @@ public class FahrzeugDetailServlet extends HttpServlet {
 
         FahrzeugTyp[] typList = fahrzeugTyp.values();
         request.setAttribute("typList", typList);
+        
+        FahrzeugTreibstoff [] treibstoffList = fahrzeugTreibstoff.values();
+        request.setAttribute("treibstoffList", treibstoffList);
 
         request.getRequestDispatcher("/WEB-INF/detail.jsp").forward(request, response);
     }
