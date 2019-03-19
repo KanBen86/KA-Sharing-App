@@ -10,6 +10,7 @@ import de.kasharing.app.enums.FahrzeugTyp;
 import de.kasharing.app.enums.ResponseStatus;
 import de.kasharing.app.helper.Response;
 import de.kasharing.app.jpa.Fahrzeug;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -63,12 +64,12 @@ public class FahrzeugBean {
             System.out.println("Lese die Daten aus der Datenbank aus: ");
             Query query = em.createQuery("SELECT f FROM Fahrzeug f");
             List<Fahrzeug> fahrzeuge = query.getResultList();
-            System.out.println("Die ausgelesenen Fahrzeuge sind: " + fahrzeuge);
-            response.setResponseList(fahrzeuge);
-            for (Fahrzeug f : response.getResponseList()) {
+            response.setResponseList(new ArrayList<Fahrzeug>());
+            
+            for (Fahrzeug f : fahrzeuge) {
                 System.out.println("Fahrzeug: " + f);
-                if (f.isDeaktiviert()) {
-                    response.getResponseList().remove(f);
+                if (!f.isDeaktiviert()) {
+                    response.getResponseList().add(f);
                 }
             }
             response.setStatus(ResponseStatus.ERFOLGREICH);

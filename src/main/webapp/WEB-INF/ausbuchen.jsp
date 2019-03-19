@@ -30,9 +30,9 @@
                             <p>
                                 Wählen Sie ihr den Status:
                             </p>
-                            <select name="grund" class="form-control form-control-sm" >
+                            <select name="ausbuchungsGrund" class="form-control form-control-sm" >
                                 <option value="null" var=""></option>
-                                <c:forEach items="${statusList}" var="statusValue">
+                                <c:forEach items="${ausbuchungList}" var="statusValue">
                                     <option value="${statusValue}"
                                             ${statusValue == detailFahrzeug.response.grund ? 'selected' : ''}>
                                         ${statusValue}

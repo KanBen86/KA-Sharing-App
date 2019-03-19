@@ -37,7 +37,6 @@ public class IndexServlet extends HttpServlet {
     @EJB
     BuchungBean buchungBean;
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -47,7 +46,7 @@ public class IndexServlet extends HttpServlet {
         if (fahrzeugResponse.getStatus() == ResponseStatus.ERFOLGREICH) {
             if (!fahrzeugResponse.getResponseList().isEmpty()) {
                 for (Fahrzeug fahrzeug : fahrzeugResponse.getResponseList()) {
-                    boolean notAvailable = false;
+                    boolean notAvailable = fahrzeug.isDeaktiviert();
                     List<Buchung> buchungen = buchungBean.findByFahrzeug(fahrzeug).getResponseList();
                     if (buchungen != null) {
                         for (Buchung buchung : buchungen) {
@@ -60,11 +59,11 @@ public class IndexServlet extends HttpServlet {
                     }
                     if (notAvailable) {
                         fahrzeug.setLeihStatus(FahrzeugStatus.NICHTVERFUEGBAR);
+                        fahrzeugResponse.getResponseList().remove(fahrzeug);
                     }
                 }
             }
         }
-        System.out.println(fahrzeugResponse.getStatus() + ": " + fahrzeugResponse.getException() + ": " + fahrzeugResponse.getMessage());
         if (fahrzeugResponse.getStackTrace() != null) {
             for (StackTraceElement e : fahrzeugResponse.getStackTrace()) {
                 System.out.println(e);
