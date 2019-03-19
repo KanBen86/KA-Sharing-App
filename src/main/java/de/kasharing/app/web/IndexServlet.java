@@ -8,6 +8,7 @@ package de.kasharing.app.web;
 import de.kasharing.app.ejb.BuchungBean;
 import de.kasharing.app.ejb.FahrzeugBean;
 import de.kasharing.app.enums.FahrzeugStatus;
+import de.kasharing.app.enums.ResponseStatus;
 import de.kasharing.app.helper.Response;
 import de.kasharing.app.jpa.Buchung;
 import de.kasharing.app.jpa.Fahrzeug;
@@ -43,7 +44,7 @@ public class IndexServlet extends HttpServlet {
         // Anfrage an die index.jsp weiterleiten
         Response<Fahrzeug> fahrzeugResponse = fahrzeugBean.findAll();
         Date date = new Date();
-        if (fahrzeugResponse.getStatus().equals("ERFOLGREICH")) {
+        if (fahrzeugResponse.getStatus() == ResponseStatus.ERFOLGREICH) {
             if (!fahrzeugResponse.getResponseList().isEmpty()) {
                 for (Fahrzeug fahrzeug : fahrzeugResponse.getResponseList()) {
                     boolean notAvailable = false;
@@ -58,7 +59,7 @@ public class IndexServlet extends HttpServlet {
                         }
                     }
                     if (notAvailable) {
-                        fahrzeug.setLeihStatus(FahrzeugStatus.AUSGELIEHEN);
+                        fahrzeug.setLeihStatus(FahrzeugStatus.NICHTVERFUEGBAR);
                     }
                 }
             }

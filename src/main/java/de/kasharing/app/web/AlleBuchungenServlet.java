@@ -8,6 +8,7 @@ package de.kasharing.app.web;
 import de.kasharing.app.jpa.Buchung;
 import de.kasharing.app.ejb.BuchungBean;
 import de.kasharing.app.ejb.FahrzeugBean;
+import de.kasharing.app.enums.ResponseStatus;
 import de.kasharing.app.helper.Response;
 import javax.ejb.EJB;
 import java.io.IOException;
@@ -44,7 +45,7 @@ public class AlleBuchungenServlet extends HttpServlet {
         Date date = new Date();
         List<Buchung> aktuelleBuchungen = new ArrayList<Buchung>();
         Response<Buchung> buchungResponse = buchungBean.findAll();
-        if (buchungResponse.getStatus() == "ERFOLGREICH") {
+        if (buchungResponse.getStatus() == ResponseStatus.ERFOLGREICH) {
             List<Buchung> buchungen = buchungResponse.getResponseList();
             System.out.println(buchungen);
             if (buchungen != null) {

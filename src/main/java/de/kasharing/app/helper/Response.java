@@ -5,6 +5,7 @@
  */
 package de.kasharing.app.helper;
 
+import de.kasharing.app.enums.ResponseStatus;
 import java.util.List;
 
 /**
@@ -21,7 +22,7 @@ public class Response<E> {
 
     private String message;
 
-    private String status;
+    private ResponseStatus status;
 
     private String exception;
     
@@ -59,19 +60,19 @@ public class Response<E> {
         this.message = message;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public String getException() {
         return exception;
     }
 
     public void setException(String exception) {
         this.exception = exception;
+    }
+
+    public ResponseStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(ResponseStatus status) {
+        this.status = status;
     }
 }

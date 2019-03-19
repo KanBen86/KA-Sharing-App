@@ -5,6 +5,7 @@
  */
 package de.kasharing.app.ejb;
 
+import de.kasharing.app.enums.ResponseStatus;
 import de.kasharing.app.helper.Response;
 import de.kasharing.app.jpa.Buchung;
 import de.kasharing.app.jpa.Fahrzeug;
@@ -30,9 +31,9 @@ public class BuchungBean {
 
         try {
             response.setResponse(em.find(Buchung.class, id));
-            response.setStatus("ERFOLGREICH");
+            response.setStatus(ResponseStatus.ERFOLGREICH);
         } catch (Exception ex) {
-            response.setStatus("ERROR");
+            response.setStatus(ResponseStatus.ERROR);
             response.setException(ex.getClass().getName());
             response.setMessage(ex.getMessage());
         } finally {
@@ -46,10 +47,10 @@ public class BuchungBean {
         try {
             em.persist(b);
             response.setResponse(em.merge(b));
-            response.setStatus("ERFOLGREICH");
+            response.setStatus(ResponseStatus.ERFOLGREICH);
         } catch (Exception ex) {
             response.setException(ex.getClass().getName());
-            response.setStatus("FEHLER");
+            response.setStatus(ResponseStatus.ERROR);
             response.setMessage(ex.getMessage());
         }
         return response;
@@ -60,11 +61,11 @@ public class BuchungBean {
 
         try {
             response.setResponse(em.merge(b));
-            response.setStatus("ERFOLGREICH");
+            response.setStatus(ResponseStatus.ERFOLGREICH);
         } catch (Exception ex) {
             response.setException(ex.getClass().getName());
             response.setMessage(ex.getMessage());
-            response.setStatus("ERROR");
+            response.setStatus(ResponseStatus.ERROR);
         } finally {
             return response;
         }
@@ -77,10 +78,10 @@ public class BuchungBean {
             response.setResponseList(query
                     .getResultList());
             System.out.println(response.getResponseList());
-            response.setStatus("ERFOLGREICH");
+            response.setStatus(ResponseStatus.ERFOLGREICH);
         } catch (Exception ex) {
             response.setException(ex.getClass().getName());
-            response.setStatus("FEHLER");
+            response.setStatus(ResponseStatus.ERROR);
             response.setMessage(ex.getMessage());
         }
         return response;
@@ -93,9 +94,10 @@ public class BuchungBean {
                     .setParameter("FAHRZEUG", fahrzeug);
             response.setResponseList(query
                     .getResultList());
+            response.setStatus(ResponseStatus.ERFOLGREICH);
         } catch (Exception ex) {
             response.setException(ex.getClass().getName());
-            response.setStatus("FEHLER");
+            response.setStatus(ResponseStatus.ERROR);
             response.setMessage(ex.getMessage());
         }
         return response;
@@ -108,9 +110,10 @@ public class BuchungBean {
                     .setParameter("NID", id);
             response.setResponseList(query
                     .getResultList());
+            response.setStatus(ResponseStatus.ERFOLGREICH);
         } catch (Exception ex) {
             response.setException(ex.getClass().getName());
-            response.setStatus("FEHLER");
+            response.setStatus(ResponseStatus.ERROR);
             response.setMessage(ex.getMessage());
         }
         return response;
@@ -120,9 +123,9 @@ public class BuchungBean {
         Response<Buchung> response = new Response<Buchung>();
         try {
             em.remove(b);
-            response.setStatus("ERFOLGREICH");
+            response.setStatus(ResponseStatus.ERFOLGREICH);
         } catch (Exception ex) {
-            response.setStatus("FEHLER");
+            response.setStatus(ResponseStatus.ERROR);
             response.setException(ex.getClass().getName());
             response.setMessage(ex.getMessage());
         }

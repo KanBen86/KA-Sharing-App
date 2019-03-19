@@ -7,6 +7,7 @@ package de.kasharing.app.ejb;
 
 import de.kasharing.app.enums.FahrzeugKlasse;
 import de.kasharing.app.enums.FahrzeugTyp;
+import de.kasharing.app.enums.ResponseStatus;
 import de.kasharing.app.helper.Response;
 import de.kasharing.app.jpa.Fahrzeug;
 import java.util.Date;
@@ -31,9 +32,9 @@ public class FahrzeugBean {
         try {
             em.persist(f);
             response.setResponse(em.merge(f));
-            response.setStatus("ERFOLGREICH");
+            response.setStatus(ResponseStatus.ERFOLGREICH);
         } catch (Exception ex) {
-            response.setStatus("ERROR");
+            response.setStatus(ResponseStatus.ERROR);
             response.setException(ex.getClass().getName());
             response.setMessage(ex.getMessage());
         } finally {
@@ -46,9 +47,9 @@ public class FahrzeugBean {
         try {
             f.setLastChange(new Date());
             response.setResponse(em.merge(f));
-            response.setStatus("ERFOLGREICH");
+            response.setStatus(ResponseStatus.ERFOLGREICH);
         } catch (Exception ex) {
-            response.setStatus("ERROR");
+            response.setStatus(ResponseStatus.ERROR);
             response.setException(ex.getClass().getName());
             response.setMessage(ex.getMessage());
         } finally {
@@ -70,9 +71,9 @@ public class FahrzeugBean {
                     response.getResponseList().remove(f);
                 }
             }
-            response.setStatus("ERFOLGREICH");
+            response.setStatus(ResponseStatus.ERFOLGREICH);
         } catch (Exception ex) {
-            response.setStatus("ERROR");
+            response.setStatus(ResponseStatus.ERROR);
             response.setException(ex.getClass().getName());
             response.setMessage(ex.getMessage());
             response.setStackTrace(ex.getStackTrace());
@@ -90,9 +91,9 @@ public class FahrzeugBean {
             response.setResponseList(em.createQuery("SELECT f FROM Fahrzeug f WHERE f.modell LIKE :MODELL")
                     .setParameter("MODELL", modell)
                     .getResultList());
-            response.setStatus("ERFOLGREICH");
+            response.setStatus(ResponseStatus.ERFOLGREICH);
         } catch (Exception ex) {
-            response.setStatus("ERROR");
+            response.setStatus(ResponseStatus.ERROR);
             response.setException(ex.getClass().getName());
             response.setMessage(ex.getMessage());
         } finally {
@@ -108,9 +109,9 @@ public class FahrzeugBean {
             response.setResponseList(em.createQuery("SELECT f FROM Fahrzeug f WHERE f.hersteller LIKE :HERSTELLER")
                     .setParameter("HERSTELLER", hersteller)
                     .getResultList());
-            response.setStatus("ERFOLGREICH");
+            response.setStatus(ResponseStatus.ERFOLGREICH);
         } catch (Exception ex) {
-            response.setStatus("ERROR");
+            response.setStatus(ResponseStatus.ERROR);
             response.setException(ex.getClass().getName());
             response.setMessage(ex.getMessage());
         } finally {
@@ -124,9 +125,9 @@ public class FahrzeugBean {
             response.setResponseList(em.createQuery("SELECT f FROM Fahrzeug f WHERE f.typ LIKE :TYP")
                     .setParameter("TYP", typ)
                     .getResultList());
-            response.setStatus("ERFOLGREICH");
+            response.setStatus(ResponseStatus.ERFOLGREICH);
         } catch (Exception ex) {
-            response.setStatus("ERROR");
+            response.setStatus(ResponseStatus.ERROR);
             response.setException(ex.getClass().getName());
             response.setMessage(ex.getMessage());
         } finally {
@@ -140,9 +141,9 @@ public class FahrzeugBean {
             response.setResponseList(em.createQuery("SELECT f FROM Fahrzeug f WHERE f.klasse LIKE :KLASSE")
                     .setParameter("KLASSE", klasse)
                     .getResultList());
-            response.setStatus("ERFOLGREICH");
+            response.setStatus(ResponseStatus.ERFOLGREICH);
         } catch (Exception ex) {
-            response.setStatus("ERROR");
+            response.setStatus(ResponseStatus.ERROR);
             response.setException(ex.getClass().getName());
             response.setMessage(ex.getMessage());
         } finally {
@@ -155,9 +156,9 @@ public class FahrzeugBean {
         try {
             response.setResponse(em.find(Fahrzeug.class,
                     id));
-            response.setStatus("ERFOLGREICH");
+            response.setStatus(ResponseStatus.ERFOLGREICH);
         } catch (Exception ex) {
-            response.setStatus("ERROR");
+            response.setStatus(ResponseStatus.ERROR);
             response.setException(ex.getClass().getName());
             response.setMessage(ex.getMessage());
         } finally {
@@ -174,10 +175,10 @@ public class FahrzeugBean {
             }
             response.setResponse(em.find(Fahrzeug.class,
                     id));
-            response.setStatus("GELÖSCHT");
+            response.setStatus(ResponseStatus.GELOESCHT);
             response.setMessage("Das Fahrzeug mit der ID " + f.getResponse().getId() + " wurde gelöscht.");
         } catch (Exception ex) {
-            response.setStatus("ERROR");
+            response.setStatus(ResponseStatus.ERROR);
             response.setException(ex.getClass().getName());
             response.setMessage(ex.getMessage());
         } finally {
