@@ -6,12 +6,15 @@
 package de.kasharing.app.enums;
 
 /**
+ * Dieses ENUM stellt die Auswahlmöglichkeiten beim Ausbuchen eines Fahzeuges
+ * aus dem geschäftlichen Betrieb zur Verfügung.
  *
  * @author Benjamin Kanzler
  */
 public enum FahrzeugAusbuchung {
 
     TOTALSCHADEN("Totalschaden"),
+    UNRENTABEL("Unrentabel"),
     ABGESCHRIEBEN("Abgeschrieben");
 
     private String bezeichnung;
