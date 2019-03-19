@@ -9,6 +9,7 @@ import de.kasharing.app.enums.ResponseStatus;
 import de.kasharing.app.helper.Response;
 import de.kasharing.app.jpa.Buchung;
 import de.kasharing.app.jpa.Fahrzeug;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -45,9 +46,26 @@ public class BuchungBean {
         Response<Buchung> response = new Response<Buchung>();
         b.setActive(true);
         try {
-            em.persist(b);
-            response.setResponse(em.merge(b));
-            response.setStatus(ResponseStatus.ERFOLGREICH);
+            Response<Buchung> checkList = this.findByFahrzeug(b.getFahrzeug());
+            Boolean successful = true;
+            for (Buchung checkBuchung : checkList.getResponseList()) {
+                if (b.getGeliehenAb().getTime() >= checkBuchung.getGeliehenAb().getTime()
+                        && b.getGeliehenAb().getTime() <= checkBuchung.getGeliehenBis().getTime()) {
+                    successful = false;
+                }
+                if (b.getGeliehenBis().getTime() >= checkBuchung.getGeliehenAb().getTime()
+                        && b.getGeliehenBis().getTime() <= checkBuchung.getGeliehenBis().getTime()){
+                    successful = false;
+                }
+            }
+            if (successful) {
+                em.persist(b);
+                response.setResponse(em.merge(b));
+                response.setStatus(ResponseStatus.ERFOLGREICH);
+            } else {
+                response.setStatus(ResponseStatus.WARNUNG);
+                response.setMessage("Das Fahzeug ist in diesem Zeitraum leider schon gebucht.");
+            }
         } catch (Exception ex) {
             response.setException(ex.getClass().getName());
             response.setStatus(ResponseStatus.ERROR);
