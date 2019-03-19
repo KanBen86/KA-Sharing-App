@@ -47,7 +47,6 @@ public class AlleBuchungenServlet extends HttpServlet {
         Response<Buchung> buchungResponse = buchungBean.findAll();
         if (buchungResponse.getStatus() == ResponseStatus.ERFOLGREICH) {
             List<Buchung> buchungen = buchungResponse.getResponseList();
-            System.out.println(buchungen);
             if (buchungen != null) {
                 for (Buchung buchung : buchungen) {
                     System.out.println(buchung);

@@ -11,6 +11,7 @@ import de.kasharing.app.jpa.Nutzer;
 import de.kasharing.app.ejb.NutzerBean;
 import de.kasharing.app.ejb.BuchungBean;
 import de.kasharing.app.ejb.FahrzeugBean;
+import de.kasharing.app.enums.ResponseStatus;
 import de.kasharing.app.helper.Response;
 import javax.ejb.EJB;
 import java.io.IOException;
@@ -22,7 +23,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.text.ParseException;
-import javax.persistence.NoResultException;
 
 /**
  *
@@ -59,7 +59,7 @@ public class BuchungServlet extends HttpServlet {
             }
         }
 
-        Fahrzeug detailFahrzeug = fahrzeugBean.findById(id).getResponse();
+        Response<Fahrzeug> detailFahrzeug = fahrzeugBean.findById(id);
         request.setAttribute("detailFahrzeug", detailFahrzeug);
 
         request.getRequestDispatcher("/WEB-INF/book.jsp").forward(request, response);
@@ -109,7 +109,6 @@ public class BuchungServlet extends HttpServlet {
 
         SimpleDateFormat ft = new SimpleDateFormat("MM/dd/yyyy");
         ft.setLenient(false);
-        
 
         try {
             date1 = ft.parse(request.getParameter("startDatum"));
@@ -120,14 +119,18 @@ public class BuchungServlet extends HttpServlet {
             buchung.setGeliehenBis(date2);
         } catch (ParseException parseException) {
             log("Datum konnte nicht gesetzt werden:" + parseException.getStackTrace());
-        } catch (NullPointerException ex){
-            log("Das Datum konnte nicht gesetzt werden: "+ ex.getMessage());
+        } catch (NullPointerException ex) {
+            log("Das Datum konnte nicht gesetzt werden: " + ex.getMessage());
         }
 
         //Kontrolle, ab Buchung korrekt erstellt wurde
         if (buchung.checkValues()) {
-            buchungBean.createBuchung(buchung);
-            response.sendRedirect(request.getContextPath() + IndexServlet.URL);
+            Response<Buchung> buchungResponse = buchungBean.createBuchung(buchung);
+            if (buchungResponse.getStatus() == ResponseStatus.ERFOLGREICH) {
+                response.sendRedirect(request.getContextPath() + IndexServlet.URL);
+            } else {
+                response.sendRedirect(request.getContextPath() + BuchungServlet.URL + id);
+            }
         } else {
             log("Buchung konnte nicht erstellt werden.");
             System.out.println("Buchung konnte nicht erstellt werden.");
