@@ -64,9 +64,10 @@ public class AlleBuchungenServlet extends HttpServlet {
             log(buchungResponse.getException() + ": " + buchungResponse.getMessage());
             request.setAttribute("message", buchungResponse.getMessage());
         }
+        buchungResponse.setResponseList(aktuelleBuchungen);
         System.out.println(aktuelleBuchungen);
         request.setAttribute(
-                "AlleBuchungsFahrzeuge", aktuelleBuchungen);
+                "AlleBuchungsFahrzeuge", buchungResponse);
         request.getRequestDispatcher("/WEB-INF/buchungen.jsp").forward(request, response);
     }
 }
