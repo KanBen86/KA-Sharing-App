@@ -22,24 +22,24 @@
                         <div class="form-group col-md-6">
                             <label for="id">Kundennummer: </label>
                             <input name="id" type="number" class="form-control form-control-sm"
-                                    value="${nutzer.response.id}" readonly></input>
+                                    value="${benutzer.response.id}" readonly></input>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="nickName">Nick Name: </label>
                             <input name="nickName" type="text" class="form-control form-control-sm"
-                                    value="${nutzer.response.nickName}" readonly></input>
+                                    value="${benutzer.response.nickName}" readonly></input>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="email">E-Mail: </label>
                             <input name="email" type="text" class="form-control form-control-sm"
-                                    value="${nutzer.response.email}" readonly></input>
+                                    value="${benutzer.response.email}" readonly></input>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="rolle">Rolle: </label>
                             <input name="rolle" type="text" class="form-control form-control-sm"
-                                    value="${nutzer.response.rolle}" readonly></input>
+                                    value="${benutzer.response.rolle}" readonly></input>
                         </div>
                     </div>
                 </div>
@@ -51,36 +51,36 @@
                         <div class="col-md-6">
                             <label for="vorname">Vorname: </label>
                             <input name="vorname" type="text" class="form-control form-control-sm"
-                                    value="${nutzer.response.vorname}" required></input>
+                                    value="${benutzer.response.adresse.vorname}" required></input>
                         </div>
                         <div class="col-md-6">
                             <label for="name">Name: </label>
                             <input name="name" type="text" class="form-control form-control-sm"
-                                    value="${nutzer.response.name}" required></input>
+                                    value="${benutzer.response.adresse.name}" required></input>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col-md-6">
                             <label for="strasse">Straße: </label>
                             <input name="strasse" type="text" class="form-control form-control-sm"
-                                    value="${nutzer.response.strasse}" required></input>
+                                    value="${benutzer.response.adresse.strasse}" required></input>
                         </div>
                         <div class="col-md-6">
                             <label for="hausnummer">Hausnummer: </label>
                             <input name="hausnummer" type="text" class="form-control form-control-sm"
-                                    value="${nutzer.response.hausnummer}" required></input>
+                                    value="${benutzer.response.adresse.hausnummer}" required></input>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col-md-6">
                             <label for="hausnummer">Hausnummer: </label>
                             <input name="hausnummer" type="text" class="form-control form-control-sm"
-                                    value="${nutzer.response.hausnummer}" required></input>
+                                    value="${benutzer.response.adresse.hausnummer}" required></input>
                         </div>
                         <div class="col-md-6">
                             <label for="ort">Ort: </label>
                             <input name="ort" type="text" class="form-control form-control-sm"
-                                    value="${nutzer.response.ort}" required></input>
+                                    value="${benutzer.response.adresse.ort}" required></input>
                         </div>
                     </div>
                 </div>
@@ -92,19 +92,19 @@
                         <div class="col-md-6">
                             <label for="institut">Bankinstitut: </label>
                             <input name="institut" type="text" class="form-control form-control-sm"
-                                    value="${nutzer.response.institut}" required></input>
+                                    value="${benutzer.response.bank.institut}" required></input>
                         </div>
                         <div class="col-md-6">
                             <label for="bic">BIC: </label>
                             <input name="bic" type="text" class="form-control form-control-sm"
-                                    value="${nutzer.response.bic}" required></input>
+                                    value="${benutzer.response.bank.bic}" required></input>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col-md-12">
                             <label for="iban">IBAN: </label>
                             <input name="iban" type="text" class="form-control form-control-sm"
-                                    value="${nutzer.response.iban}" required></input>
+                                    value="${benutzer.response.bank.iban}" required></input>
                         </div>
                     </div>
                 </div>
