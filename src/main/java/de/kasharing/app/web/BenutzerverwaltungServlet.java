@@ -27,28 +27,45 @@ import de.kasharing.app.helper.Response;
  *
  * @author Orlando Jähde
  */
-@WebServlet(name = "RegistrierungServlet", urlPatterns = {"/register"})
-public class RegistrierungServlet extends HttpServlet {
-    
-    private final static String URL = "/register/";
+
+@WebServlet(urlPatterns = {"/editProfile/*"})
+public class BenutzerverwaltungServlet extends HttpServlet {
     
     @EJB
     NutzerBean nutzerBean;
     
     @EJB
-    BankverbindungBean bankverbindungBean;    
-    
-    @EJB
     AdresseBean adresseBean;
     
+    @EJB
+    BankverbindungBean bankverbindungBean;
+    
     NutzerRolle nutzerRolle;
+
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+                
+        long id = -1;
+        String pathInfo = request.getPathInfo();
+
+        if (pathInfo != null && pathInfo.length() > 2) {
+            try {
+                id = Long.parseLong(pathInfo.split("/")[1]);
+            } catch (NumberFormatException ex) {
+                // URL enthält keine gültige Long-Zahl
+            }
+        }
         
-        NutzerRolle [] rollenList = nutzerRolle.values();
-        request.setAttribute("rollenList", rollenList);
+        Nutzer n = nutzerBean.findById(id);
+        request.setAttribute("benutzer", n);
+        
+        Adresse a = n.getAdresse();
+        request.setAttribute("Adresse", a);
+        
+        Bankverbindung bv = n.getBank();
+        request.setAttribute("bankverbindung", bv);
         
         request.getRequestDispatcher("/WEB-INF/detail.jsp").forward(request, response);
     }
@@ -58,11 +75,20 @@ public class RegistrierungServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        request.setCharacterEncoding("utf-8");
+        long id = -1;
+        String pathInfo = request.getPathInfo();
+
+        if (pathInfo != null && pathInfo.length() > 2) {
+            try {
+                id = Long.parseLong(pathInfo.split("/")[1]);
+            } catch (NumberFormatException ex) {
+                // URL enthält keine gültige Long-Zahl
+            }
+        }
         
-        Nutzer n = new Nutzer();
-        Adresse a = new Adresse();
-        Bankverbindung bv = new Bankverbindung();
+        Nutzer n = nutzerBean.findById(id);
+        Adresse a = n.getAdresse();
+        Bankverbindung bv = n.getBank();
         
         //Bankverbindungsdaten einlesen
         bv.setBic(request.getParameter("bic"));
@@ -90,11 +116,13 @@ public class RegistrierungServlet extends HttpServlet {
             System.out.println("Nutzerrolle wurde nicht ausgefüllt:" + ex);
         }
         
-        a = adresseBean.createNewAdresse(a).getResponse();
-        bv = bankverbindungBean.createNewBankverbindung(bv).getResponse();
-        n = nutzerBean.createNutzer(n);
+        a = adresseBean.updateAdresse(a).getResponse();
+        bv = bankverbindungBean.updateBankverbindung(bv).getResponse();
+        n = nutzerBean.updateNutzer(n);
         
-        response.sendRedirect(request.getContextPath() + "/index.html");
+        response.sendRedirect(request.getContextPath() + "editProfile/" + id);
+        
     }
+
 
 }

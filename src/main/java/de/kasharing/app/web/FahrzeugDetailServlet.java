@@ -48,8 +48,7 @@ public class FahrzeugDetailServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        // Anfrage an die index.jsp weiterleiten
+        
         long id = -1;
         String pathInfo = request.getPathInfo();
 
