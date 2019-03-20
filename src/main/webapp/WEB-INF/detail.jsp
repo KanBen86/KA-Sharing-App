@@ -103,7 +103,7 @@
                         
                             <label for="hauptuntersuchung">Hauptuntersuchung bis: </label>
                             <br/>
-                            <input name="hauptuntersuchung" type="date" lass="form-control form-control-sm" required
+                            <input name="hauptuntersuchung" type="date" class="form-control form-control-sm" required
                                        value="${detailFahrzeug.response.hauptuntersuchungBis}"></input>
                         </div>
                     </div>
@@ -235,13 +235,12 @@
                         <div class="form-group col-md-4">
                             <label for="anschaffungsDatum">Anschaffungsdatum: </label>
                             <br/>
-                            <input name="anschaffungsDatum" type="date" lass="form-control form-control-sm"
+                            <input name="anschaffungsDatum" type="date" class="form-control form-control-sm"
                                    value="${detailFahrzeug.response.anschaffungsDatum}" required></input>
                         </div>
                        <div class="form-group col-md-4">
                             <label for="anschaffungsPreis">Anschaffungspreis in €: </label>
-                            <br/>
-                            <input name="anschaffungsPreis" type="number" lass="form-control form-control-sm"
+                            <input name="anschaffungsPreis" type="number" class="form-control form-control-sm"
                                    value="${detailFahrzeug.response.anschaffungsPreis}" required></input>
                         </div>
                     </div>
