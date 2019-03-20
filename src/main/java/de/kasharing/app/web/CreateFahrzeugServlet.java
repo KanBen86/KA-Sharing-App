@@ -148,6 +148,11 @@ public class CreateFahrzeugServlet extends HttpServlet {
         } catch (IllegalArgumentException ex) {
             System.out.println("Das Enum FahrzeugTyp sind noch nicht gefüllt");
         }
+        try{
+            f.setTreibstoff(Enum.valueOf(FahrzeugTreibstoff.class, request.getParameter("treibstoff")));
+        } catch (IllegalArgumentException ex){
+            System.out.println("Das Enmu FahrzeugTreibstoff sind noch nicht gefüllt");
+        }
 
         //Fahrzeugbild: (to-do)
         //f.setBild(request.getAttribute("bild"));

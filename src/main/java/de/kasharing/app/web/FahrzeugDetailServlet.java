@@ -128,12 +128,14 @@ public class FahrzeugDetailServlet extends HttpServlet {
         f.setPlaetze(Integer.parseInt(request.getParameter("plaetze")));
         f.setPreisProTag(Float.parseFloat(request.getParameter("preisProTag")));
         f.setRaeder(Integer.parseInt(request.getParameter("raeder")));
+        
         //Enums:
         f.setGetriebeart(Enum.valueOf(FahrzeugGetriebeArt.class, request.getParameter("getriebeart")));
         f.setHersteller(Enum.valueOf(FahrzeugHersteller.class, request.getParameter("hersteller")));
         f.setKlasse(Enum.valueOf(FahrzeugKlasse.class, request.getParameter("klasse")));
         f.setLeihStatus(Enum.valueOf(FahrzeugStatus.class, request.getParameter("leihstatus")));
         f.setTyp(Enum.valueOf(FahrzeugTyp.class, request.getParameter("typ")));
+        f.setTreibstoff(Enum.valueOf(FahrzeugTreibstoff.class, request.getParameter("treibstoff")));
         //Fahrzeugbild: (to-do)
         //f.setBild(request.getAttribute("bild"));
 
