@@ -39,10 +39,14 @@
                                     </option>
                                 </c:forEach>
                             </select>
+                            <p>
+                                Kommentar:
+                            </p>
+                            <textarea name='kommentar'>Hier Kommentar einfügen</textarea>
                             <br>
                             <button type="submit" class="btn btn-success btn-sm m-3">Speichern</button>
-                            <a href="<c:url value="/"/>">
-                                <button type="button" class="btn btn-primary btn-sm m-3">Zurück zur Detailseite</button>
+                            <a href="<c:url value="/detail"/>">
+                                <button type="button" class="btn btn-primary btn-sm m-3">Zurück zu Detail</button>
                             </a>
                         </div>
                     </div>

@@ -41,7 +41,7 @@
                             </select>
                             <br>
                             <button type="submit" class="btn btn-success btn-sm m-3">Speichern</button>
-                            <a href="<c:url value="/"/>">
+                            <a href="<c:url value="/buchungen"/>">
                                 <button type="button" class="btn btn-primary btn-sm m-3">Zurück zu Buchungen</button>
                             </a>
                         </div>
