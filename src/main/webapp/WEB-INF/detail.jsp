@@ -44,8 +44,8 @@
                         </div>
                         <div class="col-md-4">
                             <label for="hersteller">Hersteller: </label>
-                            <select name="hersteller" class="form-control form-control-sm" >
-                                <option value="null" var=""></option>
+                            <select name="hersteller" class="form-control form-control-sm" required>
+                                <option value="" disabled selected style="display: none;">Bitte Hersteller wählen</option>
                                 <c:forEach items="${herstellerList}" var="herstellerValue">
                                     <option value="${herstellerValue}"
                                             ${herstellerValue == detailFahrzeug.response.hersteller ? 'selected' : ''}>
@@ -56,11 +56,11 @@
                         
                             <label for="modell">Modell: </label>
                             <input name="modell" type="text" class="form-control form-control-sm"
-                                value="${detailFahrzeug.response.modell}"></input>
+                                value="${detailFahrzeug.response.modell}" required></input>
                                
                             <label for="klasse">Klasse: </label>
-                            <select name="klasse" class="form-control form-control-sm" >
-                                <option value="null" var=""></option>
+                            <select name="klasse" class="form-control form-control-sm" required>
+                                <option value="" disabled selected style="display: none;">Bitte Klasse wählen</option>
                                 <c:forEach items="${klassenList}" var="klasseValue">
                                     <option value="${klasseValue}"
                                             ${klasseValue == detailFahrzeug.response.klasse ? 'selected' : ''}>
@@ -70,8 +70,8 @@
                             </select>
                         
                             <label for="getriebeart">Getriebeart: </label>
-                            <select name="getriebeart" class="form-control form-control-sm" >
-                                <option value="null" var=""></option>
+                            <select name="getriebeart" class="form-control form-control-sm" required>
+                                <option value="" disabled selected style="display: none;">Bitte Getriebeart wählen</option>
                                 <c:forEach items="${getriebeList}" var="getriebeValue">
                                     <option value="${getriebeValue}"
                                             ${getriebeValue == detailFahrzeug.response.getriebeart ? 'selected' : ''}>
@@ -83,8 +83,8 @@
                         </div>
                         <div class="col-md-4">
                             <label for="typ">Typ: </label>
-                            <select name="typ" class="form-control form-control-sm" >
-                                <option value="null" var=""></option>
+                            <select name="typ" class="form-control form-control-sm" required>
+                                <option value="" disabled selected style="display: none;">Bitte Typ wählen</option>
                                 <c:forEach items="${typList}" var="typValue">
                                     <option value="${typValue}"
                                             ${typValue == detailFahrzeug.response.typ ? 'selected' : ''}>
@@ -94,16 +94,16 @@
                             </select>
                         
                             <label for="ausfuehrung">Ausführung: </label>
-                            <input name="ausfuehrung" type="text" class="form-control form-control-sm"
+                            <input name="ausfuehrung" type="text" class="form-control form-control-sm" required
                                    value="${detailFahrzeug.response.ausfuehrung}"></input>
                         
                             <label for="preisProTag">Preis pro Tag: </label>
-                            <input name="preisProTag" type="number" class="form-control form-control-sm"
+                            <input name="preisProTag" type="number" class="form-control form-control-sm" required
                                    value="${detailFahrzeug.response.preisProTag}"></input>
                         
                             <label for="hauptuntersuchung">Hauptuntersuchung bis: </label>
                             <br/>
-                            <input name="hauptuntersuchung" type="date" lass="form-control form-control-sm"
+                            <input name="hauptuntersuchung" type="date" lass="form-control form-control-sm" required
                                        value="${detailFahrzeug.response.hauptuntersuchungBis}"></input>
                         </div>
                     </div>
@@ -120,17 +120,17 @@
                         <div class="form-group col-md-4">
                             <label for="plaetze">Plätze: </label>
                             <input name="plaetze" type="number" class="form-control form-control-sm"
-                                   value="${detailFahrzeug.response.plaetze}"></input>
+                                   value="${detailFahrzeug.response.plaetze}" required></input>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="raeder">Räder: </label>
                             <input name="raeder" type="number" class="form-control form-control-sm"
-                                   value="${detailFahrzeug.response.raeder}"></input>
+                                   value="${detailFahrzeug.response.raeder}" required></input>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="tueren">Türen: </label>
                             <input name="tueren" type="number" class="form-control form-control-sm"
-                                    value="${detailFahrzeug.response.tueren}"></input>
+                                    value="${detailFahrzeug.response.tueren}" required></input>
                         </div>
                     </div>
                     
@@ -201,14 +201,14 @@
                             <label for="fahrassistent">Fahrassistent: </label>
                             <br/>
                             <input name="fahrassistent" type="checkbox"
-                                   value="${detailFahrzeug.response.fahrassiSystem}"
+                                   value="${detailFahrzeug.response.fahrassiSystem}" 
                                     <c:if test="${detailFahrzeug.response.fahrassiSystem}">checked="true"</c:if>
                                     ></input>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="treibstoff">Treibstoffart: </label>
-                            <select name="treibstoff" class="form-control form-control-sm" >
-                                <option value="null" var=""></option>
+                            <select name="treibstoff" class="form-control form-control-sm" requried>
+                                <option value="" disabled selected style="display: none;">Bitte Treibstoffart wählen</option>
                                 <c:forEach items="${treibstoffList}" var="treibstoffValue">
                                     <option value="${treibstoffValue}"
                                             ${treibstoffValue == detailFahrzeug.response.treibstoff ? 'selected' : ''}>
@@ -222,8 +222,8 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="leihstatus">Verfügbarkeit: </label>
-                            <select name="leihstatus" class="form-control form-control-sm" >
-                                <option value="null" var=""></option>
+                            <select name="leihstatus" class="form-control form-control-sm" required >
+                                <option value="" disabled selected style="display: none;">Bitte Verfügbarkeit wählen</option>
                                 <c:forEach items="${statusList}" var="statusValue">
                                     <option value="${statusValue}"
                                             ${statusValue == detailFahrzeug.response.leihStatus ? 'selected' : ''}>
@@ -236,13 +236,13 @@
                             <label for="anschaffungsDatum">Anschaffungsdatum: </label>
                             <br/>
                             <input name="anschaffungsDatum" type="date" lass="form-control form-control-sm"
-                                   value="${detailFahrzeug.response.anschaffungsDatum}"></input>
+                                   value="${detailFahrzeug.response.anschaffungsDatum}" required></input>
                         </div>
                        <div class="form-group col-md-4">
                             <label for="anschaffungsPreis">Anschaffungspreis in €: </label>
                             <br/>
                             <input name="anschaffungsPreis" type="number" lass="form-control form-control-sm"
-                                   value="${detailFahrzeug.response.anschaffungsPreis}"></input>
+                                   value="${detailFahrzeug.response.anschaffungsPreis}" required></input>
                         </div>
                     </div>
                 
