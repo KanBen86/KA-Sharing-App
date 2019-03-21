@@ -22,6 +22,7 @@ import de.kasharing.app.ejb.AdresseBean;
 import de.kasharing.app.enums.ResponseStatus;
 import de.kasharing.app.enums.NutzerRolle;
 import de.kasharing.app.helper.Response;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -58,6 +59,8 @@ public class RegistrierungServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        HttpSession s = request.getSession();
+        
         request.setCharacterEncoding("utf-8");
         
         Nutzer n = new Nutzer();
@@ -93,6 +96,8 @@ public class RegistrierungServlet extends HttpServlet {
         a = adresseBean.createNewAdresse(a).getResponse();
         bv = bankverbindungBean.createNewBankverbindung(bv).getResponse();
         n = nutzerBean.createNutzer(n);
+        
+        s.setAttribute("nutzer", n);
         
         response.sendRedirect(request.getContextPath() + "/index.html");
     }

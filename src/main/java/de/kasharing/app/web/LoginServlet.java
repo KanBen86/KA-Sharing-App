@@ -6,7 +6,6 @@
 package de.kasharing.app.web;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,6 +15,7 @@ import de.kasharing.app.jpa.Nutzer;
 import javax.ejb.EJB;
 import de.kasharing.app.ejb.NutzerBean;
 import de.kasharing.app.helper.Response;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -39,6 +39,8 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        HttpSession session = request.getSession();
+        
         String nickName = request.getParameter("nickName");
         String passwort = request.getParameter("passwort");
         
@@ -48,7 +50,8 @@ public class LoginServlet extends HttpServlet {
         }
         
         if (n.getResponse().getPasswort().equals(passwort)) {
-            request.setAttribute("nutzer", n);
+            session.setAttribute("nutzer", n);
+            //request.setAttribute("nutzer", n);
             request.getRequestDispatcher("/WEB-INF/detail.jsp").forward(request, response);
             response.sendRedirect(request.getContextPath() + "/index.html");
         }

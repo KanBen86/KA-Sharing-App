@@ -22,13 +22,14 @@ import de.kasharing.app.ejb.AdresseBean;
 import de.kasharing.app.enums.ResponseStatus;
 import de.kasharing.app.enums.NutzerRolle;
 import de.kasharing.app.helper.Response;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Orlando Jähde
  */
 
-@WebServlet(urlPatterns = {"/editProfile/*"})
+@WebServlet(urlPatterns = {"/editProfile/"})
 public class BenutzerverwaltungServlet extends HttpServlet {
     
     @EJB
@@ -47,18 +48,13 @@ public class BenutzerverwaltungServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
                 
-        long id = -1;
-        String pathInfo = request.getPathInfo();
-
-        if (pathInfo != null && pathInfo.length() > 2) {
-            try {
-                id = Long.parseLong(pathInfo.split("/")[1]);
-            } catch (NumberFormatException ex) {
-                // URL enthält keine gültige Long-Zahl
-            }
-        }
+        HttpSession s = request.getSession();
         
-        Nutzer n = nutzerBean.findById(id);
+        if (s.getAttribute("nutzer") == null) {
+            log("Kein Nutzer angemeldet");
+            response.sendRedirect(request.getContextPath() + "login");
+        }
+        Nutzer n = (Nutzer) s.getAttribute("nutzer");
         request.setAttribute("benutzer", n);
         
         Adresse a = n.getAdresse();
@@ -75,18 +71,15 @@ public class BenutzerverwaltungServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        long id = -1;
-        String pathInfo = request.getPathInfo();
-
-        if (pathInfo != null && pathInfo.length() > 2) {
-            try {
-                id = Long.parseLong(pathInfo.split("/")[1]);
-            } catch (NumberFormatException ex) {
-                // URL enthält keine gültige Long-Zahl
-            }
+        HttpSession s = request.getSession();
+        
+        if (s.getAttribute("nutzer") == null) {
+            log("Kein Nutzer angemeldet");
+            response.sendRedirect(request.getContextPath() + "login");
         }
         
-        Nutzer n = nutzerBean.findById(id);
+        Nutzer n = (Nutzer) s.getAttribute("nutzer");
+        
         Adresse a = n.getAdresse();
         Bankverbindung bv = n.getBank();
         
@@ -120,7 +113,9 @@ public class BenutzerverwaltungServlet extends HttpServlet {
         bv = bankverbindungBean.updateBankverbindung(bv).getResponse();
         n = nutzerBean.updateNutzer(n);
         
-        response.sendRedirect(request.getContextPath() + "editProfile/" + id);
+        s.setAttribute("nutzer", n);
+        
+        response.sendRedirect(request.getContextPath() + "editProfile/");
         
     }
 
