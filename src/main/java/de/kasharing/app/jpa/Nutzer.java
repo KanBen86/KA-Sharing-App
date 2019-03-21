@@ -36,7 +36,6 @@ public class Nutzer implements Serializable {
     private NutzerRolle rolle;
     
     @OneToOne()
-    @JoinColumn(name ="bank_id", referencedColumnName = "id")
     private Bankverbindung bank;
 
     @OneToOne()
