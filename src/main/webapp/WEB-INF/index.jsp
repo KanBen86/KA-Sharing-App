@@ -19,6 +19,33 @@
             </div>
         </c:if>
         
+        <c:if test="${!empty AlleFahrzeuge.responseList}">
+            <form>
+                <div class="card mb-3 mt-3 p-3" style="max-width: 1000px;">
+                    <div class="row">
+                        <div class="col-md-1">
+                            <label for="geliehenAb">Von: </label>
+                        </div>
+                        <div class="col-md-4">
+                            <input name="filterDatumAb" type="date" class="form-control form-control-sm"
+                                    value="${filter.response.filterDatumAb}"></input>
+                        </div>
+                        <div class="col-md-1">
+                            <label for="geliehenBis">Bis: </label>
+                        </div>
+                        <div class="col-md-4">
+                            <input name="filterDatumBis" type="date" class="form-control form-control-sm"
+                                value="${filter.response.filterDatumBis}"></input>  
+                        </div>
+                        <div class="col-md-2 text-right">
+                            <button type="submit" class="btn btn-primary btn-sm">Filtern</button>
+                        </div>
+                    
+                    </div>
+                </div>
+            </form>
+        </c:if>
+        
         <c:choose>
             <c:when test="${!empty AlleFahrzeuge.responseList}">
                 <c:forEach items="${AlleFahrzeuge.responseList}" var="fahrzeug">
