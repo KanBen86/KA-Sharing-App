@@ -58,7 +58,7 @@ public class AusbuchenServlet extends HttpServlet {
         }
         request.setAttribute("ausbuchungList", ausbuchungList);
 
-        request.getRequestDispatcher("/WEB-INF/zurueckgeben.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/ausbuchen.jsp").forward(request, response);
 
     }
 
