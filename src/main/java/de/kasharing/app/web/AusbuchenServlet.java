@@ -25,7 +25,7 @@ import de.kasharing.app.jpa.Fahrzeug;
 @WebServlet(urlPatterns = {"/ausbuchen/*"})
 public class AusbuchenServlet extends HttpServlet {
 
-    public final static String URL = "/ausbuchen/";
+    public final static String URL = "/ausbuchen";
     
     @EJB
     FahrzeugBean fahrzeugBean;
@@ -52,14 +52,10 @@ public class AusbuchenServlet extends HttpServlet {
         request.setAttribute("detailFahrzeug", detailFahrzeug);
 
         FahrzeugAusbuchung[] ausbuchungList = fahrzeugAusbuchung.values();
-        for (FahrzeugAusbuchung a : ausbuchungList){
-            
-        System.out.println(a);
-        }
+      
         request.setAttribute("ausbuchungList", ausbuchungList);
 
         request.getRequestDispatcher("/WEB-INF/ausbuchen.jsp").forward(request, response);
-
     }
 
     @Override
@@ -69,8 +65,9 @@ public class AusbuchenServlet extends HttpServlet {
         // Anfrage an die index.jsp weiterleiten
         long id = -1;
         String pathInfo = request.getPathInfo();
-
-        if (pathInfo != null && pathInfo.length() > 2) {
+        
+        if (pathInfo != null && pathInfo.length() >= 2) {
+            
             try {
                 id = Long.parseLong(pathInfo.split("/")[1]);
             } catch (NumberFormatException ex) {
@@ -79,7 +76,6 @@ public class AusbuchenServlet extends HttpServlet {
         }
 
         Response<Fahrzeug> detailFahrzeug = fahrzeugBean.findById(id);
-        log(request.getParameter("grund"));
 
         try {
             detailFahrzeug.getResponse().setGrund(Enum.valueOf(FahrzeugAusbuchung.class, request.getParameter("ausbuchungsGrund")));
