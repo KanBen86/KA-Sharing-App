@@ -28,14 +28,14 @@
                         </div>
                         <div class="col-md-4">
                             <input name="filterDatumAb" type="date" class="form-control form-control-sm"
-                                    value="${filter.response.filterDatumAb}"></input>
+                                    value="${filterDatumAb}"></input>
                         </div>
                         <div class="col-md-1">
                             <label for="geliehenBis">Bis: </label>
                         </div>
                         <div class="col-md-4">
                             <input name="filterDatumBis" type="date" class="form-control form-control-sm"
-                                value="${filter.response.filterDatumBis}"></input>  
+                                value="${filterDatumBis}"></input>  
                         </div>
                         <div class="col-md-2 text-right">
                             <button type="submit" class="btn btn-primary btn-sm">Filtern</button>
