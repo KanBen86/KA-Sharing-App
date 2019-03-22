@@ -29,10 +29,10 @@ import javax.servlet.http.HttpSession;
  *
  * @author Orlando Jähde
  */
-@WebServlet(name = "RegistrierungServlet", urlPatterns = {"/register"})
+@WebServlet(name = "RegistrierungServlet", urlPatterns = {"/registrieren"})
 public class RegistrierungServlet extends HttpServlet {
 
-    private final static String URL = "/register/";
+    private final static String URL = "/registrieren/";
 
     @EJB
     protected MitarbeiterBean mitarbeiterBean;
@@ -55,7 +55,7 @@ public class RegistrierungServlet extends HttpServlet {
         NutzerRolle[] rollenList = nutzerRolle.values();
         request.setAttribute("rollenList", rollenList);
 
-        request.getRequestDispatcher("/WEB-INF/detail.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/registrieren.jsp").forward(request, response);
     }
 
     @Override
