@@ -40,7 +40,7 @@
 
                 <div>
                     <!--Buchungsübersichts Button-->
-                    <c:if test="${kunde.response != null}">
+                    <c:if test="${mitarbeiter.response != null}">
                         <a href="<c:url value="/buchungen"/>">
                             <button type="button" class="btn btn-success btn-sm">Buchungen</button>
                         </a>

@@ -18,12 +18,16 @@
         <form method="POST">
             <div class="card" style="width:400px">
                 <div class="card-body">
-                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                        <label class="btn btn-secondary">
-                            <input type="radio" name="nutzer" value="1" id="kunde" autocomplete="off"> Kunde
+                    <div class="form-check-inline">
+                        <label class="form-check-label" for="kunde">
+                            <input type="radio" name="nutzer" class="form-check-input"
+                                   value="1" id="kunde" checked> Kunde
                         </label>
-                        <label class="btn btn-secondary">
-                            <input type="radio" name="nutzer" value="2" id="mitarbeiter" autocomplete="off"> Mitarbeiter
+                    </div>
+                    <div class="form-check-inline">
+                        <label class="form-check-label" for="mitarbeiter">
+                            <input type="radio" name="nutzer" class="form-check-input"
+                                   value="2" id="mitarbeiter"> Mitarbeiter
                         </label>
                     </div>
                     <br>
