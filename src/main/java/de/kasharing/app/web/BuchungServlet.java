@@ -8,11 +8,13 @@ package de.kasharing.app.web;
 import de.kasharing.app.jpa.Buchung;
 import de.kasharing.app.jpa.Fahrzeug;
 import de.kasharing.app.jpa.Nutzer;
-import de.kasharing.app.ejb.NutzerBean;
+import de.kasharing.app.ejb.KundeBean;
+import de.kasharing.app.ejb.MitarbeiterBean;
 import de.kasharing.app.ejb.BuchungBean;
 import de.kasharing.app.ejb.FahrzeugBean;
 import de.kasharing.app.enums.ResponseStatus;
 import de.kasharing.app.helper.Response;
+import de.kasharing.app.jpa.Kunde;
 import javax.ejb.EJB;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -23,6 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.text.ParseException;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -41,7 +44,7 @@ public class BuchungServlet extends HttpServlet {
     BuchungBean buchungBean;
 
     @EJB
-    NutzerBean nutzerBean;
+    KundeBean kundeBean;
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code."
     @Override
@@ -83,7 +86,7 @@ public class BuchungServlet extends HttpServlet {
 
         // Erstellen eines Nutzer zu Testzwecken
         // an dieser Stelle wird später der Nutzer aus der Session ausgelesen
-        Nutzer nutzer = new Nutzer();
+        /*Nutzer nutzer = new Nutzer();
 
         nutzer.setNickName("Dieter");
         Response<Nutzer> tempNutzer = nutzerBean.findByNick(nutzer.getNickName());
@@ -92,17 +95,31 @@ public class BuchungServlet extends HttpServlet {
         } else {
             log("Es konnte kein Datenbankeintrag gefunden werden");
             nutzer = nutzerBean.createNutzer(nutzer);
-        }
-
+        }*/
+        
         // Das Fahrzeug in der Datenbank suchen
         Fahrzeug fahrzeug = fahrzeugBean.findById(id).getResponse();
-
+        
         //Erstellen der Buchung
         Buchung buchung = new Buchung();
 
         //Füllen der Buchung mit nötigen Informationen
-        buchung.setFahrzeug(fahrzeug);
-        buchung.setNutzer(nutzer);
+        buchung.setFahrzeug(fahrzeug);        
+        
+        HttpSession session = request.getSession();
+        
+        if (session.getAttribute("kunde") != null) {       
+            Kunde k = (Kunde) session.getAttribute("kunde");
+            buchung.setNutzer(k);
+        }
+        else if (session.getAttribute("mitarbeiter") != null) {
+            log ("Sie sind als Mitarbeiter eingeloggt!");
+            response.sendRedirect(request.getContextPath() + "/index");
+        }
+        else {
+            log ("Bitte loggen Sie sich erst ein!");
+            response.sendRedirect(request.getContextPath() + "/login");
+        }        
 
         Date date1 = new Date();
         Date date2 = new Date();
