@@ -107,8 +107,8 @@ public class BuchungServlet extends HttpServlet {
         HttpSession session = request.getSession();
         
         if (session.getAttribute("kunde") != null) {       
-            Kunde k = (Kunde) session.getAttribute("kunde");
-            buchung.setNutzer(k);
+           Response<Kunde> k = (Response<Kunde>) session.getAttribute("kunde");
+            buchung.setNutzer(k.getResponse());
         }
         else if (session.getAttribute("mitarbeiter") != null) {
             log ("Sie sind als Mitarbeiter eingeloggt!");
