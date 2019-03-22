@@ -53,7 +53,7 @@ public class LoginServlet extends HttpServlet {
         
 
         if (Integer.parseInt(request.getParameter("nutzer")) == 1) {
-            System.out.println(nickName);
+            
             Response<Kunde> responseK = kundeBean.findByNick(nickName);
             if (responseK.getStatus() == ResponseStatus.ERFOLGREICH) {
                 if (responseK.getResponse().getPasswort() == passwort) {
@@ -67,8 +67,10 @@ public class LoginServlet extends HttpServlet {
             }
             session.setAttribute("kunde", responseK);
             session.setAttribute("mitarbeiter", null);
+            response.sendRedirect(request.getContextPath() + IndexServlet.URL);
 
         } else if (Integer.parseInt(request.getParameter("nutzer")) == 2) {
+            System.out.println(nickName);
             Response<Mitarbeiter> responseM = mitarbeiterBean.findByNick(nickName);
             if (responseM.getStatus() == ResponseStatus.ERFOLGREICH) {
                 if (responseM.getResponse().getPasswort() == passwort) {
@@ -82,8 +84,8 @@ public class LoginServlet extends HttpServlet {
             }
             session.setAttribute("mitarbeiter", responseM);
             session.setAttribute("kunde", null);
-    
+            response.sendRedirect(request.getContextPath() + IndexServlet.URL);
         }
-        response.sendRedirect(request.getContextPath() + IndexServlet.URL);
+        
     }
 }
