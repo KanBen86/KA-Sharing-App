@@ -33,7 +33,7 @@
             <!--Navigationsbar-->
             <nav class="navbar sticky-top navbar-light bg-light p-0">
                 <!--Logo und Name-->
-                <a class="navbar-brand p-0">
+                <a href="<c:url value="/"/>" class="navbar-brand p-0">
                     <img class="logo p-0" src="<c:url value="/pictures/LogoWithout.png"/>" alt="KA-SHARING Logo" />
                     <span class="brand h3">KA-SHARING</span>
                 </a>
@@ -48,9 +48,16 @@
                         <button type="button" class="btn btn-success btn-sm">+ Fahrzeug</button>
                     </a>
                     <!--An-Abmeldebutton-->
-                    <a href="<c:url value="/login"/>">
-                        <button type="button" class="btn btn-primary btn-sm mr-2">Anmelden</button>
-                    </a>
+                    <c:if test="${kunde.response == null}">
+                        <a href="<c:url value="/login"/>">
+                            <button type="button" class="btn btn-primary btn-sm mr-2">Anmelden</button>
+                        </a>
+                    </c:if>
+                    <c:if test="${kunde.response != null}">
+                        <a href="<c:url value="/logout"/>">
+                            <button type="button" class="btn btn-primary btn-sm mr-2">Abmelden</button>
+                        </a>
+                    </c:if>
                 </div>
                 
             </nav>
