@@ -45,7 +45,7 @@
                             <textarea name='kommentar'>Hier Kommentar einfügen</textarea>
                             <br>
                             <button type="submit" class="btn btn-success btn-sm m-3">Speichern</button>
-                            <a href="<c:url value="/detail"/>">
+                            <a href="<c:url value="/detail/${detailFahrzeug.response.id}"/>">
                                 <button type="button" class="btn btn-primary btn-sm m-3">Zurück zu Detail</button>
                             </a>
                         </div>
