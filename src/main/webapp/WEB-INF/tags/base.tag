@@ -16,7 +16,7 @@
 <%@attribute name="footer" fragment="true"%>
 
 <html>
-    
+
     <head>
         <meta charset="utf-8">
 
@@ -25,7 +25,7 @@
         <script src="<c:url value="/js/bootstrap.min.js"/>"></script>  
         <link rel="stylesheet" href="<c:url value="/style.css"/>" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-        
+
         <jsp:invoke fragment="head"/>
     </head>
     <body>
@@ -37,18 +37,22 @@
                     <img class="logo p-0" src="<c:url value="/pictures/LogoWithout.png"/>" alt="KA-SHARING Logo" />
                     <span class="brand h3">KA-SHARING</span>
                 </a>
-                    
+
                 <div>
                     <!--Buchungsübersichts Button-->
-                    <a href="<c:url value="/buchungen"/>">
-                        <button type="button" class="btn btn-success btn-sm">Buchungen</button>
-                    </a>
+                    <c:if test="${kunde.response != null}">
+                        <a href="<c:url value="/buchungen"/>">
+                            <button type="button" class="btn btn-success btn-sm">Buchungen</button>
+                        </a>
+                    </c:if>
                     <!--+ Fahrzeug Button-->
-                    <a href="<c:url value="/newCar"/>">
-                        <button type="button" class="btn btn-success btn-sm">+ Fahrzeug</button>
-                    </a>
+                    <c:if test="${mitarbeiter.response != null}">
+                        <a href="<c:url value="/newCar"/>">
+                            <button type="button" class="btn btn-success btn-sm">+ Fahrzeug</button>
+                        </a>
+                    </c:if>
                     <!--An-Abmeldebutton-->
-                    <c:if test="${kunde.response == null}">
+                    <c:if test="${kunde.response == null && mitarbeiter.response == null}">
                         <a href="<c:url value="/login"/>">
                             <button type="button" class="btn btn-primary btn-sm mr-2">Anmelden</button>
                         </a>
@@ -59,15 +63,15 @@
                         </a>
                     </c:if>
                 </div>
-                
+
             </nav>
         </header>
         <main class="background">
             <div class="container p-3">
                 <jsp:invoke fragment="main"></jsp:invoke>
-            </div>
-        </main>
-        <footer>
+                </div>
+            </main>
+            <footer>
             <jsp:invoke fragment="footer"></jsp:invoke>
         </footer>
     </body>
