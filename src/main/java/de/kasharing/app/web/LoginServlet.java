@@ -15,7 +15,10 @@ import de.kasharing.app.jpa.Nutzer;
 import javax.ejb.EJB;
 import de.kasharing.app.ejb.KundeBean;
 import de.kasharing.app.ejb.MitarbeiterBean;
+import de.kasharing.app.enums.ResponseStatus;
 import de.kasharing.app.helper.Response;
+import de.kasharing.app.jpa.Kunde;
+import de.kasharing.app.jpa.Mitarbeiter;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -23,51 +26,58 @@ import javax.servlet.http.HttpSession;
  * @author Orlando Jähde
  */
 @WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
-public class LoginServlet extends HttpServlet { 
-    
+public class LoginServlet extends HttpServlet {
+
     private final static String URL = "/login/";
 
     @EJB
     KundeBean kundeBean;
-    
+
     @EJB
     MitarbeiterBean mitarbeiterBean;
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         HttpSession session = request.getSession();
-        
+
         String nickName = request.getParameter("nickName");
         String passwort = request.getParameter("passwort");
 
-        //Hier fehlt Überprüfung, welcher Kundentyp
-        
-        if (n.getStatus().equals("Error")) {
-            //n = nutzerBean.findByEmail(nickName);
-        }
-        
-        if (n.getResponse().getPasswort().equals(passwort)) {
-            session.setAttribute("nutzer", n);
-            //request.setAttribute("nutzer", n);
-            request.getRequestDispatcher("/WEB-INF/detail.jsp").forward(request, response);
-            response.sendRedirect(request.getContextPath() + "/index.html");
-        }
-        else {
-            boolean datenFalsch = true;
-            request.setAttribute("datenFalsch", datenFalsch);
-            request.getRequestDispatcher("/WEB-INF/detail.jsp").forward(request, response);
-            response.sendRedirect(request.getContextPath() + "/login/");
-        }
-        
-        
-    }
+        if (Integer.parseInt(request.getParameter("nutzer")) == 1) {
+            Response<Kunde> responseK = kundeBean.findByNick(nickName);
+            if (responseK.getStatus() == ResponseStatus.ERFOLGREICH) {
+                if (responseK.getResponse().getPasswort() == passwort) {
+                    responseK.setMessage("Passworteingabe Erfolgreich!");
+                }
+            } else {
+                    responseK.setStatus(ResponseStatus.ERROR);
+                    responseK.setMessage("Falsches Passwort!");
+                    request.setAttribute("nickName", nickName);
+                    request.getRequestDispatcher("/WEB-INF/einloggen.jsp").forward(request, response);
+            }
+            session.setAttribute("kunde", responseK);
 
+        } else if (Integer.parseInt(request.getParameter("nutzer")) == 2) {
+            Response<Mitarbeiter> responseM = mitarbeiterBean.findByNick(nickName);
+            if (responseM.getStatus() == ResponseStatus.ERFOLGREICH) {
+                if (responseM.getResponse().getPasswort() == passwort) {
+                    responseM.setMessage("Passworteingabe Erfolgreich!");
+                } else {
+                    responseM.setStatus(ResponseStatus.ERROR);
+                    responseM.setMessage("Falsches Passwort!");
+                    request.setAttribute("nickName", nickName);
+                    request.getRequestDispatcher("/WEB-INF/einloggen.jsp").forward(request, response);
+                }
+            }
+            session.setAttribute("Mitarbeiter", responseM);
+        }
+    }
 }

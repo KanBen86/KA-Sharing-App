@@ -7,9 +7,7 @@ package de.kasharing.app.web;
 
 import de.kasharing.app.jpa.Buchung;
 import de.kasharing.app.jpa.Fahrzeug;
-import de.kasharing.app.jpa.Nutzer;
 import de.kasharing.app.ejb.KundeBean;
-import de.kasharing.app.ejb.MitarbeiterBean;
 import de.kasharing.app.ejb.BuchungBean;
 import de.kasharing.app.ejb.FahrzeugBean;
 import de.kasharing.app.enums.ResponseStatus;
