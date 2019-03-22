@@ -14,7 +14,8 @@ public enum ResponseStatus {
     WARNUNG("Warnung"),
     FATALERROR("fataler Error"),
     ERFOLGREICH("Erfolgreich"),
-    GELOESCHT("Gelöscht");
+    GELOESCHT("Gelöscht"),
+    NULL("null");
     
     
     private String bezeichnung;

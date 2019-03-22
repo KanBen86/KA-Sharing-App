@@ -8,6 +8,7 @@ package de.kasharing.app.ejb;
 import de.kasharing.app.enums.ResponseStatus;
 import de.kasharing.app.helper.Response;
 import de.kasharing.app.jpa.Bankverbindung;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -52,8 +53,8 @@ public class BankverbindungBean {
             return response;
         }
     }
-    
-    public Response<Bankverbindung> findAll(){
+
+    public Response<Bankverbindung> findAll() {
         Response<Bankverbindung> response = new Response<>();
         try {
             response.setResponseList(em.createQuery("SELECT b FROM Bankverbindung b").getResultList());
@@ -67,8 +68,34 @@ public class BankverbindungBean {
             return response;
         }
     }
-    
-    public Response<Bankverbindung> findById(Long id){
+
+    public Response<Bankverbindung> findByBic(String bic) {
+        Response<Bankverbindung> response = new Response<>();
+        try {
+            List<Bankverbindung> bankverbindungen = em.createQuery("SELECT b FROM Bankverbindung b WHERE b.bic LIKE :BIC")
+                    .setParameter("BIC", bic)
+                    .getResultList();
+            if (bankverbindungen != null) {
+                if (bankverbindungen.size() == 1) {
+                    response.setResponse(bankverbindungen.get(0));
+                } else {
+                    response.setResponseList(bankverbindungen);
+                }
+                response.setStatus(ResponseStatus.ERFOLGREICH);
+            } else {
+                response.setStatus(ResponseStatus.NULL);
+            }
+        } catch (Exception ex) {
+            response.setStatus(ResponseStatus.ERROR);
+            response.setException(ex.getClass().getName());
+            response.setMessage(ex.getMessage());
+            response.setStackTrace(ex.getStackTrace());
+        } finally {
+            return response;
+        }
+    }
+
+    public Response<Bankverbindung> findById(Long id) {
         Response<Bankverbindung> response = new Response<>();
         try {
             response.setResponse(em.find(Bankverbindung.class, id));
@@ -82,8 +109,8 @@ public class BankverbindungBean {
             return response;
         }
     }
-    
-    public Response<Bankverbindung> deleteBankverbingung(Bankverbindung b){
+
+    public Response<Bankverbindung> deleteBankverbingung(Bankverbindung b) {
         Response<Bankverbindung> response = new Response<>();
         try {
             em.remove(b);
@@ -99,6 +126,5 @@ public class BankverbindungBean {
             return response;
         }
     }
-    
-    
+
 }
