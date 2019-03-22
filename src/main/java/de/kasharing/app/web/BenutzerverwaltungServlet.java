@@ -83,7 +83,7 @@ public class BenutzerverwaltungServlet extends HttpServlet {
             request.setAttribute("bankverbindung", bv);
         }
         
-        request.getRequestDispatcher("/WEB-INF/detail.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/nutzerprofil.jsp").forward(request, response);
     }
 
     
