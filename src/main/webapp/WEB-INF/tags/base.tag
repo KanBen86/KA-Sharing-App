@@ -56,7 +56,7 @@
             </nav>
         </header>
         <main class="background">
-            <div class="container">
+            <div class="container p-3">
                 <jsp:invoke fragment="main"></jsp:invoke>
             </div>
         </main>

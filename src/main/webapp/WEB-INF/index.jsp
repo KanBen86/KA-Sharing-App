@@ -21,7 +21,7 @@
         
         <c:if test="${!empty AlleFahrzeuge.responseList}">
             <form method="POST">
-                <div class="card mb-3 mt-3 p-3" style="max-width: 1000px;">
+                <div class="card mb-3 p-3" style="max-width: 1000px;">
                     <div class="row">
                         <div class="col-md-1">
                             <label for="geliehenAb">Von: </label>
