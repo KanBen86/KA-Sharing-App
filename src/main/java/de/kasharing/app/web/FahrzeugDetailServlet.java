@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import de.kasharing.app.helper.Response;
+import java.awt.Image;
 
 /**
  *
@@ -135,19 +136,12 @@ public class FahrzeugDetailServlet extends HttpServlet {
         f.setLeihStatus(Enum.valueOf(FahrzeugStatus.class, request.getParameter("leihstatus")));
         f.setTyp(Enum.valueOf(FahrzeugTyp.class, request.getParameter("typ")));
         f.setTreibstoff(Enum.valueOf(FahrzeugTreibstoff.class, request.getParameter("treibstoff")));
-        //Fahrzeugbild: (to-do)
-        //f.setBild(request.getAttribute("bild"));
+        //Fahrzeugbild:
+        f.setBild((Image) request.getAttribute("bild"));
 
-        //Kontrolle, ab Fahrzeug korrekt erstellt wurde
-        //if (f.checkValues()) {
         Response<Fahrzeug> fResp = fahrzeugBean.updateFahrzeug(f);
         log("Fahrzeug sollte persistiert sein: " + fResp.getResponse());
         response.sendRedirect(request.getContextPath() + IndexServlet.URL);
-        /*}
-            else {
-                System.out.println("Fahrzeug konnte nicht erstellt werden.");
-                response.sendRedirect(request.getContextPath() + CreateFahrzeugServlet.URL);
-            }*/
     }
 
 }
