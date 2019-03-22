@@ -39,6 +39,12 @@
                 </a>
 
                 <div>
+                    <!--MeineBuchungen Button-->
+                    <c:if test="${kunde.response != null}">
+                        <a href="<c:url value="/meineBuchungen"/>">
+                            <button type="button" class="btn btn-primary btn-sm">Meine Buchungen</button>
+                        </a>
+                    </c:if>
                     <!--Buchungsübersichts Button-->
                     <c:if test="${mitarbeiter.response != null}">
                         <a href="<c:url value="/buchungen"/>">
@@ -67,7 +73,7 @@
             </nav>
         </header>
         <main class="background">
-            <div class="container p-3">
+            <div class="container p-3" style="min-height: 100%">
                 <jsp:invoke fragment="main"></jsp:invoke>
                 </div>
             </main>
