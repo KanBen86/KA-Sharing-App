@@ -64,6 +64,7 @@ public class LoginServlet extends HttpServlet {
                     request.getRequestDispatcher("/WEB-INF/einloggen.jsp").forward(request, response);
             }
             session.setAttribute("kunde", responseK);
+            session.setAttribute("mitarbeiter", null);
 
         } else if (Integer.parseInt(request.getParameter("nutzer")) == 2) {
             Response<Mitarbeiter> responseM = mitarbeiterBean.findByNick(nickName);
@@ -77,7 +78,8 @@ public class LoginServlet extends HttpServlet {
                     request.getRequestDispatcher("/WEB-INF/einloggen.jsp").forward(request, response);
                 }
             }
-            session.setAttribute("Mitarbeiter", responseM);
+            session.setAttribute("mitarbeiter", responseM);
+            session.setAttribute("kunde", null);
         }
     }
 }
