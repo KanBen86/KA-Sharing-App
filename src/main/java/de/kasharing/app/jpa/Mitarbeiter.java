@@ -27,6 +27,6 @@ public class Mitarbeiter extends Nutzer {
 
     @Override
     public String toString() {
-        return "Mitarbeiter{" + "rolle=" + rolle + '}';
+        return super.toString() + "Mitarbeiter{" + "rolle=" + rolle + '}';
     }
 }
