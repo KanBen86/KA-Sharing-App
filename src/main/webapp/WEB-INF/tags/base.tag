@@ -41,8 +41,14 @@
                 <div>
                     <!--MeineBuchungen Button-->
                     <c:if test="${kunde.response != null}">
-                        <a href="<c:url value="/meineBuchungen"/>">
+                        <a href="<c:url value="/meinebuchungen"/>">
                             <button type="button" class="btn btn-primary btn-sm">Meine Buchungen</button>
+                        </a>
+                    </c:if>
+                    <!--MeineProfil Button-->
+                    <c:if test="${kunde.response != null}">
+                        <a href="<c:url value="/editProfile"/>">
+                            <button type="button" class="btn btn-primary btn-sm">Mein Profil</button>
                         </a>
                     </c:if>
                     <!--Buchungsübersichts Button-->
