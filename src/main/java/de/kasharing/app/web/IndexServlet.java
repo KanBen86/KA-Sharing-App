@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Benjamin Kanzler
+ * @author Dominik Kunzmann
  */
 @WebServlet(urlPatterns = {"/index.html"})
 

@@ -16,7 +16,8 @@ import de.kasharing.app.jpa.Nutzer;
 import de.kasharing.app.jpa.Adresse;
 import de.kasharing.app.jpa.Bankverbindung;
 import javax.ejb.EJB;
-import de.kasharing.app.ejb.NutzerBean;
+import de.kasharing.app.ejb.MitarbeiterBean;
+import de.kasharing.app.ejb.KundeBean;
 import de.kasharing.app.ejb.BankverbindungBean;
 import de.kasharing.app.ejb.AdresseBean;
 import de.kasharing.app.enums.ResponseStatus;
@@ -34,15 +35,16 @@ public class RegistrierungServlet extends HttpServlet {
     private final static String URL = "/register/";
     
     @EJB
-    NutzerBean nutzerBean;
+    MitarbeiterBean mitarbeiterBean;
+
+    @EJB
+    KundeBean kundeBean;
     
     @EJB
     BankverbindungBean bankverbindungBean;    
     
     @EJB
     AdresseBean adresseBean;
-    
-    NutzerRolle nutzerRolle;
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -63,41 +65,51 @@ public class RegistrierungServlet extends HttpServlet {
         
         request.setCharacterEncoding("utf-8");
         
-        Nutzer n = new Nutzer();
         Adresse a = new Adresse();
         Bankverbindung bv = new Bankverbindung();
-        
+
+   
         //Bankverbindungsdaten einlesen
-        bv.setBic(request.getParameter("bic"));
-        bv.setIban(request.getParameter("iban"));
-        bv.setInsitut(request.getParameter("institut"));
+//        bv.setBic(request.getParameter("bic"));
+//        bv.setIban(request.getParameter("iban"));
+//        bv.setInsitut(request.getParameter("institut"));
         
         //Adressdaten einlesen
-        a.setHausnummer(request.getParameter("hausnummer"));
-        a.setName(request.getParameter("name"));
-        a.setVorname(request.getParameter("vorname"));
-        a.setOrt(request.getParameter("ort"));
-        a.setPlz(request.getParameter("plz"));
-        a.setStrasse(request.getParameter("strasse"));
+//        a.setHausnummer(request.getParameter("hausnummer"));
+//        a.setName(request.getParameter("name"));
+//        a.setVorname(request.getParameter("vorname"));
+//        a.setOrt(request.getParameter("ort"));
+//        a.setPlz(request.getParameter("plz"));
+//        a.setStrasse(request.getParameter("strasse"));
         
         //Nutzerdaten einlesen und um Adresse und Bankverbindung ergänzen
-        n.setAdresse(a);
-        n.setBank(bv);
-        n.setEmail(request.getParameter("email"));
-        n.setNickName(request.getParameter("nickName"));
-        n.setPasswort(request.getParameter("passwort"));
-        try {
-            n.setRolle(Enum.valueOf(NutzerRolle.class, request.getParameter("nutzerRolle")));
+//        n.setAdresse(a);
+//        n.setBank(bv);
+
+        if((request.getParameter("nutzer")) == 1){
+            Kunde k = new Kunde();
+            k.setEmail(request.getParameter("email"));
+            k.setNickName(request.getParameter("nickName"));
+            k.setPasswort(request.getParameter("passwort"));
+            k = kundeBean.createNutzer(k);
+            
         }
-        catch (IllegalArgumentException ex) {
-            System.out.println("Nutzerrolle wurde nicht ausgefüllt:" + ex);
+        if else((request.getParameter("nutzer")) == 2){
+            Mitarbeiter m = new Mitarbeiter();
+            m.setEmail(request.getParameter("email"));
+            m.setNickName(request.getParameter("nickName"));
+            m.setPasswort(request.getParameter("passwort"));
+            m = mitarbeiterBean.createNutzer(m);
+        }
+        else{
+            System.out.println("Nutzerrolle wurde nicht ausgefüllt!");
         }
         
-        a = adresseBean.createNewAdresse(a).getResponse();
-        bv = bankverbindungBean.createNewBankverbindung(bv).getResponse();
-        n = nutzerBean.createNutzer(n);
         
-        s.setAttribute("nutzer", n);
+//        a = adresseBean.createNewAdresse(a).getResponse();
+//        bv = bankverbindungBean.createNewBankverbindung(bv).getResponse();
+//        n = nutzerBean.createNutzer(n);
+       
         
         response.sendRedirect(request.getContextPath() + "/index.html");
     }
