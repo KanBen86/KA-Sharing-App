@@ -18,6 +18,14 @@
         <form method="POST">
             <div class="card" style="width:400px">
                 <div class="card-body">
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-secondary">
+                            <input type="radio" name="nutzer" value="1" id="kunde" autocomplete="off"> Kunde
+                        </label>
+                        <label class="btn btn-secondary">
+                            <input type="radio" name="nutzer" value="2" id="mitarbeiter" autocomplete="off"> Mitarbeiter
+                        </label>
+                    </div>
                     <h4 class="card-title">Benutzername:</h4>
                     <input name="nickName" type="text" class="form-control form-control-sm"</input>
                     <br>
