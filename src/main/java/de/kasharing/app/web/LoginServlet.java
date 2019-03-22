@@ -50,8 +50,10 @@ public class LoginServlet extends HttpServlet {
 
         String nickName = request.getParameter("nickName");
         String passwort = request.getParameter("passwort");
+        
 
         if (Integer.parseInt(request.getParameter("nutzer")) == 1) {
+            System.out.println(nickName);
             Response<Kunde> responseK = kundeBean.findByNick(nickName);
             if (responseK.getStatus() == ResponseStatus.ERFOLGREICH) {
                 if (responseK.getResponse().getPasswort() == passwort) {
@@ -80,6 +82,8 @@ public class LoginServlet extends HttpServlet {
             }
             session.setAttribute("mitarbeiter", responseM);
             session.setAttribute("kunde", null);
+    
         }
+        response.sendRedirect(request.getContextPath() + IndexServlet.URL);
     }
 }

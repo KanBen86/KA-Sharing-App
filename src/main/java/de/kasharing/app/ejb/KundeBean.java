@@ -71,8 +71,8 @@ public class KundeBean {
     public Response<Kunde> findByNick(String nick) {
         Response<Kunde> nutzer = new Response<>();
         try {
-            nutzer.setResponse((Kunde) (em.createQuery("SELECT k FROM Kunde m WHERE k.nickName LIKE :NICK")
-                    .setParameter("NICK", nick)
+            nutzer.setResponse((Kunde) (em.createQuery("SELECT k FROM Kunde k WHERE k.nickName LIKE :NICK")
+                    .setParameter("NICK", "%"+nick+"%")
                     .getSingleResult()));
             nutzer.setStatus(ResponseStatus.ERFOLGREICH);
         } catch (NoResultException ex) {
