@@ -20,10 +20,10 @@
                 <div class="card-body">
                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
                         <label class="btn btn-secondary">
-                            <input type="radio" name="nutzer" id="kunde" autocomplete="off"> Kunde
+                            <input type="radio" name="nutzer" value="1" id="kunde" autocomplete="off"> Kunde
                         </label>
                         <label class="btn btn-secondary">
-                            <input type="radio" name="nutzer" id="mitarbeiter" autocomplete="off"> Mitarbeiter
+                            <input type="radio" name="nutzer" value="2" id="mitarbeiter" autocomplete="off"> Mitarbeiter
                         </label>
                     </div>
                     <br>

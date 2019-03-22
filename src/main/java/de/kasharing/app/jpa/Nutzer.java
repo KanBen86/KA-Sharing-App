@@ -20,7 +20,7 @@ import javax.persistence.OneToOne;
  * @author Benjamin Kanzler
  */
 @Entity
-public class Nutzer implements Serializable {
+public abstract class Nutzer implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -32,8 +32,6 @@ public class Nutzer implements Serializable {
     private String email;
     
     private String passwort;
-
-    private NutzerRolle rolle;
     
     @OneToOne()
     private Bankverbindung bank;
@@ -56,14 +54,6 @@ public class Nutzer implements Serializable {
 
     public void setAdresse(Adresse adresse) {
         this.adresse = adresse;
-    }
-    
-    public NutzerRolle getRolle() {
-        return rolle;
-    }
-
-    public void setRolle(NutzerRolle rolle) {
-        this.rolle = rolle;
     }
     
     public String getEmail() {
@@ -105,7 +95,6 @@ public class Nutzer implements Serializable {
         hash = 41 * hash + Objects.hashCode(this.nickName);
         hash = 41 * hash + Objects.hashCode(this.email);
         hash = 41 * hash + Objects.hashCode(this.passwort);
-        hash = 41 * hash + Objects.hashCode(this.rolle);
         return hash;
     }
 
@@ -133,15 +122,12 @@ public class Nutzer implements Serializable {
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
-        if (this.rolle != other.rolle) {
-            return false;
-        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Nutzer{" + "id=" + id + ", nickName=" + nickName + ", email=" + email + ", passwort=" + passwort + ", rolle=" + rolle + ", bank=" + bank + ", adresse=" + adresse + '}';
+        return "Nutzer{" + "id=" + id + ", nickName=" + nickName + ", email=" + email + ", passwort=" + passwort + ", bank=" + bank + ", adresse=" + adresse + '}';
     }
     
 }
