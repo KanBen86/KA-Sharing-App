@@ -57,7 +57,7 @@
                             <button type="button" class="btn btn-primary btn-sm mr-2">Anmelden</button>
                         </a>
                     </c:if>
-                    <c:if test="${kunde.response != null}">
+                    <c:if test="${kunde.response != null || mitarbeiter.response != null}">
                         <a href="<c:url value="/logout"/>">
                             <button type="button" class="btn btn-primary btn-sm mr-2">Abmelden</button>
                         </a>
