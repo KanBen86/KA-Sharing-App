@@ -33,7 +33,7 @@
                                         </div>
                                         <br />
                                         <div class="d-flex justify-content-center">
-                                            <input id="bild" type="file" name="file" value="${detailFahrzeug.response.bild}"/>
+                                            <input id="bild" type="file" name="bild" value="${detailFahrzeug.response.bild}"/>
                                         </div>
                                         <div class="alert alert-danger p-0 m-2" role="alert">
                                             Es ist noch keine Bild gespeichert.
@@ -103,7 +103,7 @@
                         
                             <label for="hauptuntersuchung">Hauptuntersuchung bis: </label>
                             <br/>
-                            <input name="hauptuntersuchung" type="date" class="form-control form-control-sm" required
+                            <input name="hauptuntersuchungBis" type="date" class="form-control form-control-sm" required
                                        value="${detailFahrzeug.response.hauptuntersuchungBis}"></input>
                         </div>
                     </div>
