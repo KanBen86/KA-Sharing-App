@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Orlando Jähde
  */
-@WebServlet(name = "LogoutServlet", urlPatterns = {"/LogoutServlet"})
+@WebServlet(name = "LogoutServlet", urlPatterns = {"/logout"})
 public class LogoutServlet extends HttpServlet {
 
     @Override
@@ -29,7 +29,7 @@ public class LogoutServlet extends HttpServlet {
         
         s.invalidate();
         
-        response.sendRedirect(request.getContextPath() + "/index");
+        response.sendRedirect(request.getContextPath() + IndexServlet.URL);
     }
 
 }
