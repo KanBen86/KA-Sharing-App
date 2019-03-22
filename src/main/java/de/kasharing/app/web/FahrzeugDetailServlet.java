@@ -24,6 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import de.kasharing.app.helper.Response;
 import java.awt.Image;
+import java.util.Date;
 
 /**
  *
