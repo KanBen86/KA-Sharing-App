@@ -48,7 +48,7 @@
                         <button type="button" class="btn btn-success btn-sm">+ Fahrzeug</button>
                     </a>
                     <!--An-Abmeldebutton-->
-                    <a href="<c:url value="/einloggen"/>">
+                    <a href="<c:url value="/login"/>">
                         <button type="button" class="btn btn-primary btn-sm mr-2">Anmelden</button>
                     </a>
                 </div>
