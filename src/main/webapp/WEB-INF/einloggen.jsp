@@ -13,7 +13,7 @@
 
 
 <template:base>
-    <jsp:attribute name="title">Zurückgeben</jsp:attribute>
+    <jsp:attribute name="title">Login</jsp:attribute>
     <jsp:attribute name="main">
         <form method="POST">
             <div class="card" style="width:400px">
