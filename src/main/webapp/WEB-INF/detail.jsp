@@ -9,6 +9,18 @@
 <%@taglib tagdir="/WEB-INF/tags/" prefix="template"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script>
+    $(function () {
+        $("#datepickerAnschaffungsdatum").datepicker();
+    });
+    $(function () {
+        $("#datepickerHauptuntersuchungBis").datepicker();
+    });
+</script>
 
 <template:base>
     <jsp:attribute name="title">Detailansicht</jsp:attribute>
@@ -101,9 +113,9 @@
                             <input name="preisProTag" type="number" class="form-control form-control-sm" required
                                    value="${detailFahrzeug.response.preisProTag}"></input>
                         
-                            <label for="hauptuntersuchung">Hauptuntersuchung bis: </label>
+                            <label for="hauptuntersuchungBis">Hauptuntersuchung bis: </label>
                             <br/>
-                            <input name="hauptuntersuchungBis" type="date" class="form-control form-control-sm" required
+                            <input id="datepickerHauptuntersuchungBis" name="hauptuntersuchungBis" type="text" class="form-control form-control-sm" required
                                        value="${detailFahrzeug.response.hauptuntersuchungBis}"></input>
                         </div>
                     </div>
@@ -235,8 +247,9 @@
                         <div class="form-group col-md-4">
                             <label for="anschaffungsDatum">Anschaffungsdatum: </label>
                             <br/>
-                            <input name="anschaffungsDatum" type="date" class="form-control form-control-sm"
-                                   value="${detailFahrzeug.response.anschaffungsDatum}" required></input>
+                            <input id="datepickerAnschaffungsdatum" name="anschaffungsDatum" type="text" class="form-control form-control-sm"
+                                    value="${detailFahrzeug.response.anschaffungsDatum}" required
+                                   ></input>
                         </div>
                        <div class="form-group col-md-4">
                             <label for="anschaffungsPreis">Anschaffungspreis in €: </label>
