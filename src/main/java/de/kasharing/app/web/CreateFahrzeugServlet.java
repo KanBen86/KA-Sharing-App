@@ -14,6 +14,7 @@ import de.kasharing.app.enums.FahrzeugTreibstoff;
 import de.kasharing.app.enums.FahrzeugTyp;
 import de.kasharing.app.helper.Response;
 import de.kasharing.app.jpa.Fahrzeug;
+import java.awt.Image;
 import java.io.IOException;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -154,17 +155,12 @@ public class CreateFahrzeugServlet extends HttpServlet {
             System.out.println("Das Enmu FahrzeugTreibstoff sind noch nicht gefüllt");
         }
 
-        //Fahrzeugbild: (to-do)
-        //f.setBild(request.getAttribute("bild"));
-        //Kontrolle, ab Fahrzeug korrekt erstellt wurde
-        //if (f.checkValues()) {
+        //Fahrzeugbild:
+        f.setBild((Image) request.getAttribute("bild"));
+        
         f = fahrzeugBean.createFahrzeug(f).getResponse();
         response.sendRedirect(request.getContextPath() + FahrzeugDetailServlet.URL + "/" + f.getId());
-        /*}
-            else {
-                System.out.println("Fahrzeug konnte nicht erstellt werden.");
-                response.sendRedirect(request.getContextPath() + CreateFahrzeugServlet.URL);
-            }*/
+        
     }
 
 }
