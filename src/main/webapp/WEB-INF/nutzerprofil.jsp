@@ -13,111 +13,228 @@
 <template:base>
     <jsp:attribute name="title">Nutzerprofil</jsp:attribute>
     <jsp:attribute name="main">
-        
-        <form method="POST">
-            
-            <div class="card">
-                <div class="card-body mb-3 mt-3">
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="id">Kundennummer: </label>
-                            <input name="id" type="number" class="form-control form-control-sm"
-                                    value="${benutzer.response.id}" readonly></input>
+
+        <c:if test="${kunde.response != null}">
+            <form method="POST">
+
+                <div class="card m-0 p-0 mt-3 p-2">
+                    <div class="card-body m-0 p-0">
+                        <div class="form-row">
+                            <div class="form-group col-md-3">
+                                <p>Kundennummer: </p>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <c:out value="${kunde.response.id}"></c:out>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <p>Nick Name: </p>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <c:out value="${kunde.response.nickName}"></c:out>
+                            </div>
                         </div>
-                        <div class="form-group col-md-6">
-                            <label for="nickName">Nick Name: </label>
-                            <input name="nickName" type="text" class="form-control form-control-sm"
-                                    value="${benutzer.response.nickName}" readonly></input>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="email">E-Mail: </label>
-                            <input name="email" type="text" class="form-control form-control-sm"
-                                    value="${benutzer.response.email}" readonly></input>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="rolle">Rolle: </label>
-                            <input name="rolle" type="text" class="form-control form-control-sm"
-                                    value="${benutzer.response.rolle}" readonly></input>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="card">
-                <div class="card-body mb-3 mt-3">
-                    <div class="form-row">
-                        <div class="col-md-6">
-                            <label for="vorname">Vorname: </label>
-                            <input name="vorname" type="text" class="form-control form-control-sm"
-                                    value="${benutzer.response.adresse.vorname}" required></input>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="name">Name: </label>
-                            <input name="name" type="text" class="form-control form-control-sm"
-                                    value="${benutzer.response.adresse.name}" required></input>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col-md-6">
-                            <label for="strasse">Straße: </label>
-                            <input name="strasse" type="text" class="form-control form-control-sm"
-                                    value="${benutzer.response.adresse.strasse}" required></input>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="hausnummer">Hausnummer: </label>
-                            <input name="hausnummer" type="text" class="form-control form-control-sm"
-                                    value="${benutzer.response.adresse.hausnummer}" required></input>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col-md-6">
-                            <label for="hausnummer">Hausnummer: </label>
-                            <input name="hausnummer" type="text" class="form-control form-control-sm"
-                                    value="${benutzer.response.adresse.hausnummer}" required></input>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="ort">Ort: </label>
-                            <input name="ort" type="text" class="form-control form-control-sm"
-                                    value="${benutzer.response.adresse.ort}" required></input>
+                        <div class="form-row">
+                            <div class="form-group col-md-3">
+                                <p>E-Mail: </p>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <c:out value="${kunde.response.email}"></c:out>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <p>Rolle: </p>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <p>Kunde</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="card">
-                <div class="card-body mb-3 mt-3">
-                    <div class="form-row">
-                        <div class="col-md-6">
-                            <label for="institut">Bankinstitut: </label>
-                            <input name="institut" type="text" class="form-control form-control-sm"
-                                    value="${benutzer.response.bank.institut}" required></input>
+
+                <div class="card m-0 p-0 mt-3 p-2 pb-4">
+                    <div class="card-body m-0 p-0">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label for="vorname">Vorname: </label>
+                                <input name="vorname" type="text" class="form-control form-control-sm"
+                                       value="${Adresse.vorname}" required></input>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="name">Name: </label>
+                                <input name="name" type="text" class="form-control form-control-sm"
+                                       value="${Adresse.name}" required></input>
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <label for="bic">BIC: </label>
-                            <input name="bic" type="text" class="form-control form-control-sm"
-                                    value="${benutzer.response.bank.bic}" required></input>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label for="strasse">Straße: </label>
+                                <input name="strasse" type="text" class="form-control form-control-sm"
+                                       value="${Adresse.strasse}" required></input>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="hausnummer">Hausnummer: </label>
+                                <input name="hausnummer" type="text" class="form-control form-control-sm"
+                                       value="${Adresse.hausnummer}" required></input>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col-md-12">
-                            <label for="iban">IBAN: </label>
-                            <input name="iban" type="text" class="form-control form-control-sm"
-                                    value="${benutzer.response.bank.iban}" required></input>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label for="plz">PLZ: </label>
+                                <input name="plz" type="text" class="form-control form-control-sm"
+                                       value="${Adresse.plz}" required></input>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="ort">Ort: </label>
+                                <input name="ort" type="text" class="form-control form-control-sm"
+                                       value="${Adresse.ort}" required></input>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-                        
-                        
-            <a href="<c:url value="/"/>">
-                <button type="button" class="btn btn-primary  btn-sm m-3">Zurück</button>
-            </a>
-            
-            <button type="submit" class="btn btn-success btn-sm m-3">Speichern</button>
-            
-        </form>
-         
+
+                <div class="card m-0 p-0 mt-3 p-2 pb-4">
+                    <div class="card-body m-0 p-0">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label for="institut">Bankinstitut: </label>
+                                <input name="institut" type="text" class="form-control form-control-sm"
+                                       value="${bankverbindung.insitut}" required></input>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="bic">BIC: </label>
+                                <input name="bic" type="text" class="form-control form-control-sm"
+                                       value="${bankverbindung.bic}" required></input>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-12">
+                                <label for="iban">IBAN: </label>
+                                <input name="iban" type="text" class="form-control form-control-sm"
+                                       value="${bankverbindung.iban}" required></input>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <a href="<c:url value="/"/>">
+                    <button type="button" class="btn btn-primary  btn-sm m-3">Zurück</button>
+                </a>
+
+                <button type="submit" class="btn btn-success btn-sm m-3">Speichern</button>
+
+            </form>
+        </c:if>
+
+        <c:if test="${mitarbeiter.response != null}">
+            <form method="POST">
+
+                <div class="card m-0 p-0 mt-3 p-2">
+                    <div class="card-body m-0 p-0">
+                        <div class="form-row">
+                            <div class="form-group col-md-3">
+                                <p>Mitarbeiternummer: </p>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <c:out value="${mitarbeiter.response.id}"></c:out>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <p>Nick Name: </p>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <c:out value="${mitarbeiter.response.nickName}"></c:out>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-3">
+                                <p>E-Mail: </p>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <c:out value="${mitarbeiter.response.email}"></c:out>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <p>Rolle: </p>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <p>Mitarbeiter</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card m-0 p-0 mt-3 p-2 pb-4">
+                    <div class="card-body m-0 p-0">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label for="vorname">Vorname: </label>
+                                <input name="vorname" type="text" class="form-control form-control-sm"
+                                       value="${Adresse.vorname}" required></input>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="name">Name: </label>
+                                <input name="name" type="text" class="form-control form-control-sm"
+                                       value="${Adresse.name}" required></input>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label for="strasse">Straße: </label>
+                                <input name="strasse" type="text" class="form-control form-control-sm"
+                                       value="${Adresse.strasse}" required></input>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="hausnummer">Hausnummer: </label>
+                                <input name="hausnummer" type="text" class="form-control form-control-sm"
+                                       value="${Adresse.hausnummer}" required></input>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label for="plz">PLZ: </label>
+                                <input name="plz" type="text" class="form-control form-control-sm"
+                                       value="${Adresse.plz}" required></input>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="ort">Ort: </label>
+                                <input name="ort" type="text" class="form-control form-control-sm"
+                                       value="${Adresse.ort}" required></input>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card m-0 p-0 mt-3 p-2 pb-4">
+                    <div class="card-body p-0 m-0">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label for="institut">Bankinstitut: </label>
+                                <input name="institut" type="text" class="form-control form-control-sm"
+                                       value="${bankverbindung.insitut}" required></input>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="bic">BIC: </label>
+                                <input name="bic" type="text" class="form-control form-control-sm"
+                                       value="${bankverbindung.bic}" required></input>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-12">
+                                <label for="iban">IBAN: </label>
+                                <input name="iban" type="text" class="form-control form-control-sm"
+                                       value="${bankverbindung.iban}" required></input>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <a href="<c:url value="/"/>">
+                    <button type="button" class="btn btn-primary  btn-sm m-3">Zurück</button>
+                </a>
+
+                <button type="submit" class="btn btn-success btn-sm m-3">Speichern</button>
+
+            </form>
+        </c:if>
+
     </jsp:attribute>
 </template:base>

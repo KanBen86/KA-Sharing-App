@@ -46,7 +46,7 @@
                         </a>
                     </c:if>
                     <!--MeineProfil Button-->
-                    <c:if test="${kunde.response != null}">
+                    <c:if test="${kunde.response != null || mitarbeiter.response != null}">
                         <a href="<c:url value="/editProfile/"/>">
                             <button type="button" class="btn btn-primary btn-sm">Mein Profil</button>
                         </a>
