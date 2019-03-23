@@ -47,11 +47,11 @@ public class MeineBuchungenServlet extends HttpServlet {
         Date date = new Date();
         HttpSession session = request.getSession();
         
-        Kunde k = (Kunde) session.getAttribute("kunde");
+        Response<Kunde> k = (Response<Kunde>) session.getAttribute("kunde");
                 
         List<Buchung> aktuelleBuchungen = new ArrayList<Buchung>();
         //Hier wird anstatt von findAll() die Methode "findByKunde(kunde) eingesetzt wenn Benjamin diese fertig hat
-        Response<Buchung> buchungResponse = buchungBean.findAll();
+        Response<Buchung> buchungResponse = buchungBean.findByNutzer(k.getResponse());
         if (buchungResponse.getStatus() == ResponseStatus.ERFOLGREICH) {
             List<Buchung> buchungen = buchungResponse.getResponseList();
             if (buchungen != null) {

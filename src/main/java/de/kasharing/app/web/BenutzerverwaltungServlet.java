@@ -143,11 +143,6 @@ public class BenutzerverwaltungServlet extends HttpServlet {
         a.setOrt(request.getParameter("ort"));
         a.setPlz(request.getParameter("plz"));
         a.setStrasse(request.getParameter("strasse"));
-
-        //Nutzerdaten einlesen und um Adresse und Bankverbindung ergänzen
-        n.setEmail(request.getParameter("email"));
-        n.setNickName(request.getParameter("nickName"));
-        n.setPasswort(request.getParameter("passwort"));
         /*try {
                 n.setRolle(Enum.valueOf(NutzerRolle.class, request.getParameter("nutzerRolle")));
             }
@@ -158,5 +153,4 @@ public class BenutzerverwaltungServlet extends HttpServlet {
         n.setBank(bankverbindungBean.updateBankverbindung(bv).getResponse());
         return n;
     }
-
 }
