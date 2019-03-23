@@ -25,19 +25,17 @@
                                      style="min-height: 110px; max-height: 110px; width:auto;" alt="Herstellerbild">
                             </c:when>
                             <c:otherwise>
-                                <img src="<c:url value='${detailFahrzeug.response.bild}'/>" class="card-img" alt="Fahrzeugbild"
+                                <img src="<c:url value='${detailFahrzeug.response.bild}'/>" class="card-img" alt="Fahrzeugbild">
                             </c:otherwise>
-                         </c:choose>
+                        </c:choose>
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
-                            <h5 class="card-title">Ausgewähltes Fahrzeug: ${detailFahrzeug.response.modell}</h5>
+                            <h5 class="card-title">Ausgewähltes Fahrzeug: <c:out value="${detailFahrzeug.response.modell}"></c:out></h5>
                             <br>
-                            <p class="card-text">Fahrzeug ID: ${detailFahrzeug.response.id}</p>
+                            <p class="card-text">Fahrzeug ID: <c:out value="${detailFahrzeug.response.id}"></c:out></p>
                             <br>
-                            <p>
-                                Wählen Sie ihr den Status:
-                            </p>
+                            <p>Wählen Sie ihr den Status:</p>
                             <select name="leihstatus" class="form-control form-control-sm" >
                                 <option value="null" var=""></option>
                                 <c:forEach items="${statusList}" var="statusValue">

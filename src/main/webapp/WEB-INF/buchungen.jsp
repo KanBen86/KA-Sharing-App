@@ -35,7 +35,7 @@
                                              style="min-height: 110px; max-height: 110px; width:auto;" alt="Herstellerbild">
                                     </c:when>
                                     <c:otherwise>
-                                        <img src="<c:url value='${buchung.fahrzeug.bild}'/>" class="card-img" alt="Fahrzeugbild"
+                                        <img src="<c:url value='${buchung.fahrzeug.bild}'/>" class="card-img" alt="Fahrzeugbild">
                                     </c:otherwise>
                                 </c:choose>
                             </div>
