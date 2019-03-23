@@ -94,9 +94,10 @@ public class BenutzerverwaltungServlet extends HttpServlet {
 
             k = kundeBean.updateNutzer(befuelleNutzer(k.getResponse(), request));
             s.setAttribute("kunde", k);
-        } else if (s.getAttribute("mitarbeiter") == null) {
+        } else if (s.getAttribute("kunde") == null) {
+            System.out.println("Der Mitarbeiter sendet Informationen aus seinem Konto");
             Response<Mitarbeiter> m = (Response<Mitarbeiter>) s.getAttribute("mitarbeiter");
-
+            System.out.println("Der ausgelesene Mitarbeiter: " + m.getResponse());
             /*try {
                 n.setRolle(Enum.valueOf(NutzerRolle.class, request.getParameter("nutzerRolle")));
             }
@@ -104,7 +105,7 @@ public class BenutzerverwaltungServlet extends HttpServlet {
                 System.out.println("Nutzerrolle wurde nicht ausgefüllt:" + ex);
             }*/
             m = mitarbeiterBean.updateNutzer(befuelleNutzer(m.getResponse(), request));
-
+            System.out.println("Der upgedatete Mitarbeiter hat folgende Werte: " + m.getResponse());
             s.setAttribute("mitarbeiter", m);
         }
 
