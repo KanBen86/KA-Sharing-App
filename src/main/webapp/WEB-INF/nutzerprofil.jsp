@@ -14,7 +14,7 @@
     <jsp:attribute name="title">Nutzerprofil</jsp:attribute>
     <jsp:attribute name="main">
 
-        <c:if test="${kunde.response != null}">
+        <c:if test="${kunde != null}">
             <form method="POST">
 
                 <div class="card m-0 p-0 mt-3 p-2">
@@ -56,36 +56,36 @@
                             <div class="col-md-6">
                                 <label for="vorname">Vorname: </label>
                                 <input name="vorname" type="text" class="form-control form-control-sm"
-                                       value="${Adresse.vorname}" required></input>
+                                       value="${kunde.response.adresse.vorname}" required></input>
                             </div>
                             <div class="col-md-6">
                                 <label for="name">Name: </label>
                                 <input name="name" type="text" class="form-control form-control-sm"
-                                       value="${Adresse.name}" required></input>
+                                       value="${kunde.response.adresse.name}" required></input>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="col-md-6">
                                 <label for="strasse">Straße: </label>
                                 <input name="strasse" type="text" class="form-control form-control-sm"
-                                       value="${Adresse.strasse}" required></input>
+                                       value="${kunde.response.adresse.strasse}" required></input>
                             </div>
                             <div class="col-md-6">
                                 <label for="hausnummer">Hausnummer: </label>
                                 <input name="hausnummer" type="text" class="form-control form-control-sm"
-                                       value="${Adresse.hausnummer}" required></input>
+                                       value="${kunde.response.adresse.hausnummer}" required></input>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="col-md-6">
                                 <label for="plz">PLZ: </label>
                                 <input name="plz" type="text" class="form-control form-control-sm"
-                                       value="${Adresse.plz}" required></input>
+                                       value="${kunde.response.adresse.plz}" required></input>
                             </div>
                             <div class="col-md-6">
                                 <label for="ort">Ort: </label>
                                 <input name="ort" type="text" class="form-control form-control-sm"
-                                       value="${Adresse.ort}" required></input>
+                                       value="${kunde.response.adresse.ort}" required></input>
                             </div>
                         </div>
                     </div>
@@ -97,19 +97,19 @@
                             <div class="col-md-6">
                                 <label for="institut">Bankinstitut: </label>
                                 <input name="institut" type="text" class="form-control form-control-sm"
-                                       value="${bankverbindung.insitut}" required></input>
+                                       value="${kunde.response.bank.insitut}" required></input>
                             </div>
                             <div class="col-md-6">
                                 <label for="bic">BIC: </label>
                                 <input name="bic" type="text" class="form-control form-control-sm"
-                                       value="${bankverbindung.bic}" required></input>
+                                       value="${kunde.response.bank.bic}" required></input>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="col-md-12">
                                 <label for="iban">IBAN: </label>
                                 <input name="iban" type="text" class="form-control form-control-sm"
-                                       value="${bankverbindung.iban}" required></input>
+                                       value="${kunde.response.bank.iban}" required></input>
                             </div>
                         </div>
                     </div>
@@ -125,7 +125,7 @@
             </form>
         </c:if>
 
-        <c:if test="${mitarbeiter.response != null}">
+        <c:if test="${mitarbeiter != null}">
             <form method="POST">
 
                 <div class="card m-0 p-0 mt-3 p-2">
@@ -167,36 +167,36 @@
                             <div class="col-md-6">
                                 <label for="vorname">Vorname: </label>
                                 <input name="vorname" type="text" class="form-control form-control-sm"
-                                       value="${Adresse.vorname}" required></input>
+                                       value="${mitarbeiter.response.adresse.vorname}" required></input>
                             </div>
                             <div class="col-md-6">
                                 <label for="name">Name: </label>
                                 <input name="name" type="text" class="form-control form-control-sm"
-                                       value="${Adresse.name}" required></input>
+                                       value="${mitarbeiter.response.adresse.name}" required></input>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="col-md-6">
                                 <label for="strasse">Straße: </label>
                                 <input name="strasse" type="text" class="form-control form-control-sm"
-                                       value="${Adresse.strasse}" required></input>
+                                       value="${mitarbeiter.response.adresse.strasse}" required></input>
                             </div>
                             <div class="col-md-6">
                                 <label for="hausnummer">Hausnummer: </label>
                                 <input name="hausnummer" type="text" class="form-control form-control-sm"
-                                       value="${Adresse.hausnummer}" required></input>
+                                       value="${mitarbeiter.response.adresse.hausnummer}" required></input>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="col-md-6">
                                 <label for="plz">PLZ: </label>
                                 <input name="plz" type="text" class="form-control form-control-sm"
-                                       value="${Adresse.plz}" required></input>
+                                       value="${mitarbeiter.response.adresse.plz}" required></input>
                             </div>
                             <div class="col-md-6">
                                 <label for="ort">Ort: </label>
                                 <input name="ort" type="text" class="form-control form-control-sm"
-                                       value="${Adresse.ort}" required></input>
+                                       value="${mitarbeiter.response.adresse.ort}" required></input>
                             </div>
                         </div>
                     </div>
@@ -208,19 +208,19 @@
                             <div class="col-md-6">
                                 <label for="institut">Bankinstitut: </label>
                                 <input name="institut" type="text" class="form-control form-control-sm"
-                                       value="${bankverbindung.insitut}" required></input>
+                                       value="${mitarbeiter.response.bank.insitut}" required></input>
                             </div>
                             <div class="col-md-6">
                                 <label for="bic">BIC: </label>
                                 <input name="bic" type="text" class="form-control form-control-sm"
-                                       value="${bankverbindung.bic}" required></input>
+                                       value="${mitarbeiter.response.bank.bic}" required></input>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="col-md-12">
                                 <label for="iban">IBAN: </label>
                                 <input name="iban" type="text" class="form-control form-control-sm"
-                                       value="${bankverbindung.iban}" required></input>
+                                       value="${mitarbeiter.response.bank.iban}" required></input>
                             </div>
                         </div>
                     </div>
