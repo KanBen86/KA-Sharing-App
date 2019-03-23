@@ -23,6 +23,7 @@ import de.kasharing.app.enums.ResponseStatus;
 import de.kasharing.app.helper.Response;
 import de.kasharing.app.jpa.Kunde;
 import de.kasharing.app.jpa.Mitarbeiter;
+import de.kasharing.app.jpa.Nutzer;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -65,57 +66,31 @@ public class RegistrierungServlet extends HttpServlet {
         HttpSession s = request.getSession();
 
         request.setCharacterEncoding("utf-8");
-
-        Adresse a = new Adresse();
-        Bankverbindung bv = new Bankverbindung();
-
-        //Bankverbindungsdaten einlesen
-        bv.setBic(request.getParameter("bic"));
-        bv.setIban(request.getParameter("iban"));
-        bv.setInsitut(request.getParameter("institut"));
-        // Persistieren der Bankverbindung
-        Response<Bankverbindung> responseBank = bankverbindungBean.findByBic(bv.getBic());
-        if (responseBank.getStatus()==ResponseStatus.NULL) {
-            responseBank = bankverbindungBean.createNewBankverbindung(bv);
-        }
-        //Adressdaten einlesen
-        a.setHausnummer(request.getParameter("hausnummer"));
-        a.setName(request.getParameter("name"));
-        a.setVorname(request.getParameter("vorname"));
-        a.setOrt(request.getParameter("ort"));
-        a.setPlz(request.getParameter("plz"));
-        a.setStrasse(request.getParameter("strasse"));
-        
-        Response<Adresse> responseAdresse = adresseBean.createNewAdresse(a);
-        
         //Nutzerdaten einlesen und um Adresse und Bankverbindung ergänzen
 //        n.setAdresse(a);
 //        n.setBank(bv);
         if (Integer.parseInt(request.getParameter("nutzer")) == 1) {
             Kunde k = new Kunde();
-            k.setEmail(request.getParameter("email"));
-            k.setNickName(request.getParameter("nickName"));
-            k.setPasswort(request.getParameter("passwort"));
-            Response<Kunde> responseK = new Response<>();
-            responseK = kundeBean.createNutzer(k);
+            befuelleNutzer(k, request);
+            Response<Kunde> responseK = kundeBean.createNutzer(k);
 
         } else if (Integer.parseInt(request.getParameter("nutzer")) == 2) {
             Mitarbeiter m = new Mitarbeiter();
-            m.setEmail(request.getParameter("email"));
-            m.setNickName(request.getParameter("nickName"));
-            m.setPasswort(request.getParameter("passwort"));
-            m.setAdresse(responseAdresse.getResponse());
-            
-            Response<Mitarbeiter> responseM = new Response<>();
-            responseM = mitarbeiterBean.createNutzer(m);
+            befuelleNutzer(m, request);
+            Response<Mitarbeiter> responseM = mitarbeiterBean.createNutzer(m);
         } else {
             System.out.println("Nutzerrolle wurde nicht ausgefüllt!");
         }
-
-//        a = adresseBean.createNewAdresse(a).getResponse();
-//        bv = bankverbindungBean.createNewBankverbindung(bv).getResponse();
-//        n = nutzerBean.createNutzer(n);
         response.sendRedirect(request.getContextPath() + "/index.html");
     }
 
+    private <E extends Nutzer> void befuelleNutzer(E n, HttpServletRequest request) {
+        Adresse a = new Adresse();
+        Bankverbindung bv = new Bankverbindung();
+        n.setEmail(request.getParameter("email"));
+        n.setNickName(request.getParameter("nickName"));
+        n.setPasswort(request.getParameter("passwort"));
+        n.setBank(bankverbindungBean.createNewBankverbindung(bv).getResponse());
+        n.setAdresse(adresseBean.createNewAdresse(a).getResponse());
+    }
 }
