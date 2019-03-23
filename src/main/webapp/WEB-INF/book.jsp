@@ -26,8 +26,16 @@
         <form method="POST">
             <div class="card mb-3" style="max-width: 1000px;">
                 <div class="row no-gutters">
-                    <div class="col-md-4">
-                        <img src="<c:url value="/pictures/TestAuto.png"/>" class="card-img" alt="...">
+                    <div class="col-md-4 herstellerLogo">
+                        <c:choose>
+                            <c:when test="${detailFahrzeug.response.bild == null}">
+                                <img src="<c:url value="/pictures/hersteller/${detailFahrzeug.response.hersteller}.png"/>" class="card-img mx-auto"
+                                     style="min-height: 110px; max-height: 110px; width:auto;" alt="Herstellerbild">
+                            </c:when>
+                            <c:otherwise>
+                                <img src="<c:url value='${detailFahrzeug.response.bild}'/>" class="card-img" alt="Fahrzeugbild"
+                            </c:otherwise>
+                         </c:choose>
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">

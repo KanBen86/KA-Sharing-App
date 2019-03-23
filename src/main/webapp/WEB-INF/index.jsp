@@ -54,7 +54,8 @@
                             <div class="col-md-4 herstellerLogo">
                                 <c:choose>
                                     <c:when test="${fahrzeug.bild == null}">
-                                        <img src="<c:url value="/pictures/hersteller/${fahrzeug.hersteller}.png"/>" class="card-img" alt="Herstellerbild">
+                                        <img src="<c:url value="/pictures/hersteller/${fahrzeug.hersteller}.png"/>" class="card-img mx-auto"
+                                             style="min-height: 110px; max-height: 110px; width:auto;" alt="Herstellerbild">
                                     </c:when>
                                     <c:otherwise>
                                         <img src="<c:url value='${fahrzeug.bild}'/>" class="card-img" alt="Fahrzeugbild"
