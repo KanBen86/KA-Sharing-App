@@ -34,7 +34,7 @@
                     <input name="nickName" type="text" class="form-control form-control-sm"</input>
                     <br>
                     <h4 class="card-title">Passwort:</h4>
-                    <input name="passwort" type="text" class="form-control form-control-sm"</input>
+                    <input name="passwort" type="password" class="form-control form-control-sm"</input>
                     <br>
                     <button type="submit" class="btn btn-success btn-sm m-3">Einloggen</button>
                     <br>
