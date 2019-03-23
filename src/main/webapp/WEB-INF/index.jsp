@@ -51,12 +51,19 @@
                 <c:forEach items="${AlleFahrzeuge.responseList}" var="fahrzeug">
                     <div class="card mb-3" style="max-width: 1000px;">
                         <div class="row no-gutters">
-                            <div class="col-md-4">
-                                <img src="<c:url value="${fahrzeug.bild}"/>" class="card-img" alt="...">
+                            <div class="col-md-4 herstellerLogo">
+                                <c:choose>
+                                    <c:when test="${fahrzeug.bild == null}">
+                                        <img src="<c:url value="/pictures/hersteller/${fahrzeug.hersteller}.png"/>" class="card-img" alt="Herstellerbild">
+                                    </c:when>
+                                    <c:otherwise>
+                                        <img src="<c:url value='${fahrzeug.bild}'/>" class="card-img" alt="Fahrzeugbild"
+                                    </c:otherwise>
+                                </c:choose>
                             </div>
                             <div class="col-md-4">
                                 <div class="card-body">
-                                    <h5 class="card-title">${fahrzeug.modell}</h5>
+                                    <h5 class="card-title">${fahrzeug.hersteller} ${fahrzeug.modell}</h5>
                                     <p class="card-text">Getriebe: ${fahrzeug.getriebeart}</p>
                                     <a href="<c:url value="/detail/${fahrzeug.id}/"/>">
                                         <button class="btn btn-primary btn-sm">
