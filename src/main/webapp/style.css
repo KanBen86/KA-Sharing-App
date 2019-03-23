@@ -28,3 +28,10 @@ and open the template in the editor.
     background-image: url("pictures/Hintergrund.jpg");
 
 }
+
+.detailKunde p {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    margin-top: 1em;
+}
+
