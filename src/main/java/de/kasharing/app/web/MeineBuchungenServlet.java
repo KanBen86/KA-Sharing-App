@@ -30,12 +30,12 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "MeineBuchungenServlet", urlPatterns = {"/meinebuchungen"})
 
 public class MeineBuchungenServlet extends HttpServlet {
-    
+
     public final static String URL = "/meinbuchungen";
-    
+
     @EJB
     FahrzeugBean fahrzeugBean;
-    
+
     @EJB
     BuchungBean buchungBean;
 
@@ -44,36 +44,15 @@ public class MeineBuchungenServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        Date date = new Date();
         HttpSession session = request.getSession();
-        
+
         Response<Kunde> k = (Response<Kunde>) session.getAttribute("kunde");
-                
-        List<Buchung> aktuelleBuchungen = new ArrayList<Buchung>();
+
         //Hier wird anstatt von findAll() die Methode "findByKunde(kunde) eingesetzt wenn Benjamin diese fertig hat
         Response<Buchung> buchungResponse = buchungBean.findByNutzer(k.getResponse());
-        if (buchungResponse.getStatus() == ResponseStatus.ERFOLGREICH) {
-            List<Buchung> buchungen = buchungResponse.getResponseList();
-            if (buchungen != null) {
-                for (Buchung buchung : buchungen) {
-                    System.out.println(buchung);
-                    if (!date.after(buchung.getGeliehenBis())) {
-                        if (date.after(buchung.getGeliehenAb())) {
-                            if (buchung.isActive()) {
-                                aktuelleBuchungen.add(buchung);
-                            }
-                        }
-                    }
-                }
-            }
-        } else {
-            log(buchungResponse.getException() + ": " + buchungResponse.getMessage());
-            request.setAttribute("message", buchungResponse.getMessage());
-        }
-        buchungResponse.setResponseList(aktuelleBuchungen);
-        
-        request.setAttribute(
-                "MeineFahrzeuge", buchungResponse);
+        log(buchungResponse.getException());
+
+        request.setAttribute("MeineFahrzeuge", buchungResponse);
         request.getRequestDispatcher("/WEB-INF/meinebuchungen.jsp").forward(request, response);
     }
 }
