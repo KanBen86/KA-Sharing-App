@@ -9,7 +9,7 @@ import de.kasharing.app.enums.ResponseStatus;
 import de.kasharing.app.helper.Response;
 import de.kasharing.app.jpa.Buchung;
 import de.kasharing.app.jpa.Fahrzeug;
-import de.kasharing.app.jpa.Nutzer;
+import de.kasharing.app.jpa.Kunde;
 import java.util.Date;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -56,7 +56,7 @@ public class BuchungBean {
                     successful = false;
                 }
                 if (b.getGeliehenBis().getTime() >= checkBuchung.getGeliehenAb().getTime()
-                        && b.getGeliehenBis().getTime() <= checkBuchung.getGeliehenBis().getTime()){
+                        && b.getGeliehenBis().getTime() <= checkBuchung.getGeliehenBis().getTime()) {
                     successful = false;
                 }
             }
@@ -123,18 +123,18 @@ public class BuchungBean {
         return response;
     }
 
-    public <E extends Nutzer> Response<Buchung> findByNutzer(E n) {
+    public Response<Buchung> findByKunde(Kunde k) {
         Response<Buchung> response = new Response<Buchung>();
         try {
-            query = em.createQuery("SELECT b FROM Buchung b WHERE b.nutzer LIKE :NUTZER")
-                    .setParameter("NUTZER", n);
-            response.setResponseList(query
+            response.setResponseList(em.createQuery("SELECT b FROM Buchung b WHERE b.nutzer LIKE :NUTZER")
+                    .setParameter("NUTZER", k)
                     .getResultList());
             response.setStatus(ResponseStatus.ERFOLGREICH);
         } catch (Exception ex) {
             response.setException(ex.getClass().getName());
             response.setStatus(ResponseStatus.ERROR);
             response.setMessage(ex.getMessage());
+            response.setStackTrace(ex.getStackTrace());
         }
         return response;
     }
