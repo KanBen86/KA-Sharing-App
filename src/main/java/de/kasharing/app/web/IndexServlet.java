@@ -53,9 +53,11 @@ public class IndexServlet extends HttpServlet {
                     List<Buchung> buchungen = buchungBean.findByFahrzeug(fahrzeug).getResponseList();
                     if (buchungen != null) {
                         for (Buchung buchung : buchungen) {
-                            if (!date.after(buchung.getGeliehenBis())) {
-                                if (date.after(buchung.getGeliehenAb()) && date.before(buchung.getGeliehenBis())) {
-                                    notAvailable = true;
+                            if (buchung.isActive()) {
+                                if (!date.after(buchung.getGeliehenBis())) {
+                                    if (date.after(buchung.getGeliehenAb()) && date.before(buchung.getGeliehenBis())) {
+                                        notAvailable = true;
+                                    }
                                 }
                             }
                         }
@@ -111,8 +113,9 @@ public class IndexServlet extends HttpServlet {
 
     /**
      * Diese Methode filtert die Suchergebnisse bzgl. aller Fahrzeuge, die im gewählten Zeitraum nicht verfügbar sind.
+     *
      * @param request
-     * @param fahrzeugResponse 
+     * @param fahrzeugResponse
      */
     private void filterByDatum(HttpServletRequest request, Response<Fahrzeug> fahrzeugResponse) {
         Response<Fahrzeug> alleFahrzeugeResponse = fahrzeugBean.findAll();
@@ -124,9 +127,11 @@ public class IndexServlet extends HttpServlet {
                 boolean verfuegbar = true;
                 Response<Buchung> buchungenResponse = buchungBean.findByFahrzeug(f);
                 for (Buchung b : buchungenResponse.getResponseList()) {
-                    if ((b.getGeliehenAb().getTime() <= von.getTime() && b.getGeliehenBis().getTime() >= von.getTime())
-                            || (b.getGeliehenAb().getTime() <= bis.getTime() && b.getGeliehenBis().getTime() >= bis.getTime())) {
-                        verfuegbar = false;
+                    if (b.isActive()) {
+                        if ((b.getGeliehenAb().getTime() <= von.getTime() && b.getGeliehenBis().getTime() >= von.getTime())
+                                || (b.getGeliehenAb().getTime() <= bis.getTime() && b.getGeliehenBis().getTime() >= bis.getTime())) {
+                            verfuegbar = false;
+                        }
                     }
                 }
                 if (verfuegbar) {
