@@ -92,14 +92,14 @@ public class IndexServlet extends HttpServlet {
         Response<Fahrzeug> fahrzeugResponse = new Response<>();
         fahrzeugResponse.setResponseList(new ArrayList<Fahrzeug>());
         try {
-            Date von = (new SimpleDateFormat("MM/dd/yyyy").parse(request.getParameter("filterDatumAb")));
-            Date bis = (new SimpleDateFormat("MM/dd/yyyy").parse(request.getParameter("filterDatumBis")));
+            Date von = (new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("filterDatumAb")));
+            Date bis = (new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("filterDatumBis")));
             for (Fahrzeug f : alleFahrzeugeResponse.getResponseList()) {
                 boolean verfuegbar = true;
                 Response<Buchung> buchungenResponse = buchungBean.findByFahrzeug(f);
                 for (Buchung b : buchungenResponse.getResponseList()) {
-                    if ((b.getGeliehenAb().getTime() <= von.getTime() && b.getGeliehenBis().getTime() >= von.getTime()) || 
-                            (b.getGeliehenAb().getTime() <= bis.getTime() && b.getGeliehenBis().getTime() >= bis.getTime())) {
+                    if ((b.getGeliehenAb().getTime() <= von.getTime() && b.getGeliehenBis().getTime() >= von.getTime())
+                            || (b.getGeliehenAb().getTime() <= bis.getTime() && b.getGeliehenBis().getTime() >= bis.getTime())) {
                         verfuegbar = false;
                     }
                 }
@@ -108,11 +108,11 @@ public class IndexServlet extends HttpServlet {
                 }
             }
             request.setAttribute("AlleFahrzeuge", fahrzeugResponse);
-            request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
         } catch (ParseException parseException) {
             log("Datum konnte nicht gesetzt werden:" + parseException.getStackTrace());
         }
 
+        request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
     }
 
     /**
