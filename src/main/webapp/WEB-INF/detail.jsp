@@ -229,7 +229,7 @@
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="treibstoff">Treibstoffart: </label>
-                                    <select name="treibstoff" class="form-control form-control-sm" requried>
+                                    <select name="treibstoff" class="form-control form-control-sm" required >
                                         <option value="" disabled selected style="display: none;">Bitte Treibstoffart wählen</option>
                                     <c:forEach items="${treibstoffList}" var="treibstoffValue">
                                         <option value="${treibstoffValue}"
