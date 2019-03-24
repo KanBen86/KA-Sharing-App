@@ -87,10 +87,36 @@ public class IndexServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //hier muss der Filter geprüft werden
-        Response<Fahrzeug> alleFahrzeugeResponse = fahrzeugBean.findAll();
         Response<Fahrzeug> fahrzeugResponse = new Response<>();
         fahrzeugResponse.setResponseList(new ArrayList<Fahrzeug>());
+
+        // hier wird das Datum der Verfügbarkeit gefiltert
+        filterByDatum(request, fahrzeugResponse);
+
+        // hier können zukünftig weitere Filter eingebunden werden. Jedoch sollten alle Methoden mit dem Grundbestand fahzeugResponse arbeiten.
+        // Hier werden die Fahrzeuge an das Frontend übergeben und in der Liste der Fahrzeuge angezeigt.
+        request.setAttribute("AlleFahrzeuge", fahrzeugResponse);
+        request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
+    }
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+
+    /**
+     * Diese Methode filtert die Suchergebnisse bzgl. aller Fahrzeuge, die im gewählten Zeitraum nicht verfügbar sind.
+     * @param request
+     * @param fahrzeugResponse 
+     */
+    private void filterByDatum(HttpServletRequest request, Response<Fahrzeug> fahrzeugResponse) {
+        Response<Fahrzeug> alleFahrzeugeResponse = fahrzeugBean.findAll();
+
         try {
             Date von = (new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("filterDatumAb")));
             Date bis = (new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("filterDatumBis")));
@@ -107,22 +133,8 @@ public class IndexServlet extends HttpServlet {
                     fahrzeugResponse.getResponseList().add(f);
                 }
             }
-            request.setAttribute("AlleFahrzeuge", fahrzeugResponse);
         } catch (ParseException parseException) {
             log("Datum konnte nicht gesetzt werden:" + parseException.getStackTrace());
         }
-
-        request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }
