@@ -53,13 +53,7 @@
                                                     <i class="fas fa-car fa-9x"></i>
                                                 </div>
                                                 <br />
-                                                <div class="alert alert-danger p-0 m-2" role="alert">
-                                                    Es ist noch keine Bild gespeichert.
-                                                </div>
                                             </c:if>
-                                            <div class="d-flex justify-content-center">
-                                                <input style="max-width: 100%" id="bild" type="file" name="bild" value="${detailFahrzeug.response.bild}"/>
-                                            </div>
                                         </div>                                   
                                     </c:otherwise>
                                 </c:choose>
