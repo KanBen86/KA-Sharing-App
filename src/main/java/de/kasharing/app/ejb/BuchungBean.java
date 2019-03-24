@@ -9,7 +9,7 @@ import de.kasharing.app.enums.ResponseStatus;
 import de.kasharing.app.helper.Response;
 import de.kasharing.app.jpa.Buchung;
 import de.kasharing.app.jpa.Fahrzeug;
-import de.kasharing.app.jpa.Kunde;
+import de.kasharing.app.jpa.Nutzer;
 import java.util.Date;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -123,11 +123,11 @@ public class BuchungBean {
         return response;
     }
 
-    public Response<Buchung> findByKunde(Kunde k) {
+    public <E extends Nutzer> Response<Buchung> findByNutzer(E n) {
         Response<Buchung> response = new Response<Buchung>();
         try {
-            response.setResponseList(em.createQuery("SELECT b FROM Buchung b WHERE b.nutzer LIKE :NUTZER")
-                    .setParameter("NUTZER", k)
+            response.setResponseList(em.createQuery("SELECT b FROM Buchung b WHERE b.nutzer = :NUTZER")
+                    .setParameter("NUTZER", n)
                     .getResultList());
             response.setStatus(ResponseStatus.ERFOLGREICH);
         } catch (Exception ex) {

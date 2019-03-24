@@ -49,7 +49,7 @@ public class MeineBuchungenServlet extends HttpServlet {
         Response<Kunde> k = (Response<Kunde>) session.getAttribute("kunde");
 
         //Hier wird anstatt von findAll() die Methode "findByKunde(kunde) eingesetzt wenn Benjamin diese fertig hat
-        Response<Buchung> buchungResponse = buchungBean.findByKunde(k.getResponse());
+        Response<Buchung> buchungResponse = buchungBean.findByNutzer(k.getResponse());
         if (buchungResponse.getStackTrace() != null) {
             for (StackTraceElement e : buchungResponse.getStackTrace()) {
                 log(e.toString());
