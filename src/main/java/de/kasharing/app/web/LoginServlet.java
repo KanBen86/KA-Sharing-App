@@ -11,7 +11,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import de.kasharing.app.jpa.Nutzer;
 import javax.ejb.EJB;
 import de.kasharing.app.ejb.KundeBean;
 import de.kasharing.app.ejb.MitarbeiterBean;
@@ -28,7 +27,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
 public class LoginServlet extends HttpServlet {
 
-    private final static String URL = "/login/";
+    public final static String URL = "/login";
 
     @EJB
     KundeBean kundeBean;
@@ -50,42 +49,63 @@ public class LoginServlet extends HttpServlet {
 
         String nickName = request.getParameter("nickName");
         String passwort = request.getParameter("passwort");
-        
+        Response<Mitarbeiter> responseM = mitarbeiterBean.findByNick(nickName);
+        Response<Kunde> responseK = kundeBean.findByNick(nickName);
 
         if (Integer.parseInt(request.getParameter("nutzer")) == 1) {
-            
-            Response<Kunde> responseK = kundeBean.findByNick(nickName);
+            log("Kundenanmeldung:\n\tSetze mitarbeiter auf null...");
+            responseM = null;
             if (responseK.getStatus() == ResponseStatus.ERFOLGREICH) {
-                if (responseK.getResponse().getPasswort() == passwort) {
+                log("\tDer Nickname passt zu einem Kunden...");
+                log("\t\tPW der GUI: " + passwort);
+                log("\t\tPW des Obj: " + responseK.getResponse().getPasswort());
+                if (responseK.getResponse().getPasswort().trim().equals(passwort.trim())) {
+                    log("\tDas Passwort wurde richtig eingegeben...");
+                    log("\tSetze Message erfolgreich...");
                     responseK.setMessage("Passworteingabe Erfolgreich!");
-                }
-            } else {
+                } else {
+                    log("\tDas Passwort wurde falsch eingegeben...");
+                    log("\tSetze Message error PW falsch...");
+                    log("\trequest zur einloggen.jsp");
                     responseK.setStatus(ResponseStatus.ERROR);
                     responseK.setMessage("Falsches Passwort!");
                     request.setAttribute("nickName", nickName);
                     request.getRequestDispatcher("/WEB-INF/einloggen.jsp").forward(request, response);
+                    return;
+                }
+            } else {
+                log("\tDer Nickname konnte nicht zu einem User aufgelöst werden...");
+                log("\tSetze Message error...");
+                log("\trequest zur einloggen.jsp");
+                responseK.setMessage("Es gibt keinen Kunden mit dem eingegebenen Namen");
+                responseK.setStatus(ResponseStatus.ERROR);
+                request.getRequestDispatcher("/WEB-INF/einloggen.jsp").forward(request, response);
+                return;
             }
-            session.setAttribute("kunde", responseK);
-            session.setAttribute("mitarbeiter", null);
-            response.sendRedirect(request.getContextPath() + IndexServlet.URL);
-
         } else if (Integer.parseInt(request.getParameter("nutzer")) == 2) {
-            System.out.println(nickName);
-            Response<Mitarbeiter> responseM = mitarbeiterBean.findByNick(nickName);
+            responseK = null;
             if (responseM.getStatus() == ResponseStatus.ERFOLGREICH) {
-                if (responseM.getResponse().getPasswort() == passwort) {
+                if (responseM.getResponse().getPasswort().trim().equals(passwort.trim())) {
                     responseM.setMessage("Passworteingabe Erfolgreich!");
                 } else {
                     responseM.setStatus(ResponseStatus.ERROR);
                     responseM.setMessage("Falsches Passwort!");
                     request.setAttribute("nickName", nickName);
                     request.getRequestDispatcher("/WEB-INF/einloggen.jsp").forward(request, response);
+                    return;
                 }
+            } else {
+                responseM.setStatus(ResponseStatus.ERROR);
+                responseM.setMessage("Es gibt keinen Mitarbeiter mit dem eingegebenen Namen");
+                request.getRequestDispatcher("/WEB-INF/einloggen.jsp").forward(request, response);
+                return;
+
             }
-            session.setAttribute("mitarbeiter", responseM);
-            session.setAttribute("kunde", null);
-            response.sendRedirect(request.getContextPath() + IndexServlet.URL);
         }
-        
+        log("\tSetzte Kunde und Mitarbeiter...");
+        log("\tsendRedirect zur Indexseite");
+        session.setAttribute("mitarbeiter", responseM);
+        session.setAttribute("kunde", responseK);
+        response.sendRedirect(request.getContextPath());
     }
 }

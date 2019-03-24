@@ -13,6 +13,9 @@ import de.kasharing.app.helper.Response;
 import de.kasharing.app.jpa.Buchung;
 import de.kasharing.app.jpa.Fahrzeug;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
@@ -85,6 +88,31 @@ public class IndexServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //hier muss der Filter geprüft werden
+        Response<Fahrzeug> alleFahrzeugeResponse = fahrzeugBean.findAll();
+        Response<Fahrzeug> fahrzeugResponse = new Response<>();
+        fahrzeugResponse.setResponseList(new ArrayList<Fahrzeug>());
+        try {
+            Date von = (new SimpleDateFormat("MM/dd/yyyy").parse(request.getParameter("filterDatumAb")));
+            Date bis = (new SimpleDateFormat("MM/dd/yyyy").parse(request.getParameter("filterDatumBis")));
+            for (Fahrzeug f : alleFahrzeugeResponse.getResponseList()) {
+                boolean verfuegbar = true;
+                Response<Buchung> buchungenResponse = buchungBean.findByFahrzeug(f);
+                for (Buchung b : buchungenResponse.getResponseList()) {
+                    if ((b.getGeliehenAb().getTime() <= von.getTime() && b.getGeliehenBis().getTime() >= von.getTime()) || 
+                            (b.getGeliehenAb().getTime() <= bis.getTime() && b.getGeliehenBis().getTime() >= bis.getTime())) {
+                        verfuegbar = false;
+                    }
+                }
+                if (verfuegbar) {
+                    fahrzeugResponse.getResponseList().add(f);
+                }
+            }
+            request.setAttribute("AlleFahrzeuge", fahrzeugResponse);
+            request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
+        } catch (ParseException parseException) {
+            log("Datum konnte nicht gesetzt werden:" + parseException.getStackTrace());
+        }
+
     }
 
     /**
