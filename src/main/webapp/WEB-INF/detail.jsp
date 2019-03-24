@@ -43,15 +43,22 @@
                                     </c:when>
                                     <c:otherwise> 
                                         <div class="align-middle fulldiv">
+                                            <c:if test="${detailFahrzeug.response.hersteller != null}">
+                                                <img src="<c:url value="/pictures/hersteller/${detailFahrzeug.response.hersteller}.png"/>" class="card-img mx-auto"
+                                                    style="min-height: 110px; max-height: 110px; width:auto; max-width: 100%;" alt="Herstellerbild">
+                                                <br />
+                                            </c:if>
+                                            <c:if test="${detailFahrzeug.response.hersteller == null}">
+                                                <div class="d-flex justify-content-center">
+                                                    <i class="fas fa-car fa-9x"></i>
+                                                </div>
+                                                <br />
+                                                <div class="alert alert-danger p-0 m-2" role="alert">
+                                                    Es ist noch keine Bild gespeichert.
+                                                </div>
+                                            </c:if>
                                             <div class="d-flex justify-content-center">
-                                                <i class="fas fa-car fa-9x"></i>
-                                            </div>
-                                            <br />
-                                            <div class="d-flex justify-content-center">
-                                                <input id="bild" type="file" name="bild" value="${detailFahrzeug.response.bild}"/>
-                                            </div>
-                                            <div class="alert alert-danger p-0 m-2" role="alert">
-                                                Es ist noch keine Bild gespeichert.
+                                                <input style="max-width: 100%" id="bild" type="file" name="bild" value="${detailFahrzeug.response.bild}"/>
                                             </div>
                                         </div>                                   
                                     </c:otherwise>
@@ -298,13 +305,8 @@
                                 </c:when>
                                 <c:otherwise> 
                                     <div class="align-middle fulldiv">
-                                        <div class="d-flex justify-content-center">
-                                            <i class="fas fa-car fa-9x"></i>
-                                        </div>
-                                        <br>
-                                        <div class="alert alert-danger p-0 m-2" role="alert">
-                                            Es ist noch keine Bild gespeichert.
-                                        </div>
+                                        <img src="<c:url value="/pictures/hersteller/${detailFahrzeug.response.hersteller}.png"/>" class="card-img mx-auto"
+                                             style="min-height: 110px; max-height: 110px; width:auto; max-width: 100%;" alt="Herstellerbild">
                                     </div>                                   
                                 </c:otherwise>
                             </c:choose>
