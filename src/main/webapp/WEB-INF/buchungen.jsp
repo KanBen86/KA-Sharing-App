@@ -32,7 +32,7 @@
                                 <c:choose>
                                     <c:when test="${buchung.fahrzeug.bild == null}">
                                         <img src="<c:url value="/pictures/hersteller/${buchung.fahrzeug.hersteller}.png"/>" class="card-img mx-auto"
-                                             style="min-height: 110px; max-height: 110px; width:auto;" alt="Herstellerbild">
+                                             style="min-height: 110px; max-height: 110px; width:auto;  max-width: 100%;" alt="Herstellerbild">
                                     </c:when>
                                     <c:otherwise>
                                         <img src="<c:url value='${buchung.fahrzeug.bild}'/>" class="card-img" alt="Fahrzeugbild">
