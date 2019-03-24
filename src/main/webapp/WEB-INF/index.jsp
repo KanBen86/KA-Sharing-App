@@ -77,9 +77,18 @@
                                 <div class="card-body">
                                     <p class="card-text">Preis/Tag: ${fahrzeug.preisProTag}</p>
                                     <p class="card-text">Sitzplätze: ${fahrzeug.plaetze}</p>
-                                    <a href="<c:url value="/book/${fahrzeug.id}/"/>">
-                                        <button type="button" class="btn btn-primary btn-sm">Buchen</button>
-                                    </a>
+                                    <c:if test="${mitarbeiter.response == null}">
+                                        <c:if test="${kunde.response == null}">
+                                            <a href="<c:url value="/login"/>">
+                                                <button type="button" class="btn btn-primary btn-sm">Buchen</button>
+                                            </a>
+                                        </c:if>
+                                        <c:if test="${kunde.response != null}">
+                                            <a href="<c:url value="/book/${fahrzeug.id}/"/>">
+                                                <button type="button" class="btn btn-primary btn-sm">Buchen</button>
+                                            </a>
+                                        </c:if>
+                                    </c:if>
                                 </div>
                             </div>
                         </div>
