@@ -137,6 +137,7 @@ public class BuchungServlet extends HttpServlet {
         } catch (NullPointerException ex) {
             log("Das Datum konnte nicht gesetzt werden: " + ex.getMessage());
         }
+        buchung.setTimestamp(new Date());
 
         //Kontrolle, ab Buchung korrekt erstellt wurde
         if (buchung.checkValues()) {
