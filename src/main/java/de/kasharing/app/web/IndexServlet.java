@@ -47,24 +47,26 @@ public class IndexServlet extends HttpServlet {
         Response<Fahrzeug> fahrzeugResponse = fahrzeugBean.findAll();
         Date date = new Date();
         if (fahrzeugResponse.getStatus() == ResponseStatus.ERFOLGREICH) {
-            if (!fahrzeugResponse.getResponseList().isEmpty()) {
-                for (Fahrzeug fahrzeug : fahrzeugResponse.getResponseList()) {
-                    boolean notAvailable = fahrzeug.isDeaktiviert();
-                    List<Buchung> buchungen = buchungBean.findByFahrzeug(fahrzeug).getResponseList();
-                    if (buchungen != null) {
-                        for (Buchung buchung : buchungen) {
-                            if (buchung.isActive()) {
-                                if (!date.after(buchung.getGeliehenBis())) {
-                                    if (date.after(buchung.getGeliehenAb()) && date.before(buchung.getGeliehenBis())) {
-                                        notAvailable = true;
+            if (fahrzeugResponse.getResponseList() != null) {
+                if (!fahrzeugResponse.getResponseList().isEmpty()) {
+                    for (Fahrzeug fahrzeug : fahrzeugResponse.getResponseList()) {
+                        boolean notAvailable = fahrzeug.isDeaktiviert();
+                        List<Buchung> buchungen = buchungBean.findByFahrzeug(fahrzeug).getResponseList();
+                        if (buchungen != null) {
+                            for (Buchung buchung : buchungen) {
+                                if (buchung.isActive()) {
+                                    if (!date.after(buchung.getGeliehenBis())) {
+                                        if (date.after(buchung.getGeliehenAb()) && date.before(buchung.getGeliehenBis())) {
+                                            notAvailable = true;
+                                        }
                                     }
                                 }
                             }
                         }
-                    }
-                    if (notAvailable) {
-                        fahrzeug.setLeihStatus(FahrzeugStatus.NICHTVERFUEGBAR);
-                        fahrzeugResponse.getResponseList().remove(fahrzeug);
+                        if (notAvailable) {
+                            fahrzeug.setLeihStatus(FahrzeugStatus.NICHTVERFUEGBAR);
+                            fahrzeugResponse.getResponseList().remove(fahrzeug);
+                        }
                     }
                 }
             }
