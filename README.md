@@ -1,4 +1,5 @@
 # KA-Sharing-App
+## Einrichtung
 Programcode for the KA-Sharing Application
 
 Projektteam: Christopher Pschibila, Orlando Jähde, Dominik Kunzmann, Vincent Neuhoff, Benjamin Kanzler
@@ -37,7 +38,7 @@ Der letzte Schritt der DB-Konfiguration muss nach jedem Neustart der IDE wiederh
 
 Das Starten der App funktioniert via Rechtsklick auf das von Git importierte Projekt und der Auswahl des Punkts Run... evtl. muss der TomEE-Server ausgewählt werden.
 
-# Verwendung:
+## Verwendung:
 
 Die App kann nun sofern die DB und der Server gestartet sind verwendet werden. Alle Interaktionen mit der Datenbank und dem Server können direkt aus der GUI getätigt werden. Für einige Funktionen ist es wichtig als eine spezieller Typ Nutzer eingeloggt zu sein, siehe Klammernotation:
 
