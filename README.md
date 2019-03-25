@@ -36,3 +36,18 @@ Nach der Installation der IDE muss im Installationsverzeichnis in der Konfigurat
 Der letzte Schritt der DB-Konfiguration muss nach jedem Neustart der IDE wiederholt werden, da ansonsten keine DB zur Verfügung steht.
 
 Das Starten der App funktioniert via Rechtsklick auf das von Git importierte Projekt und der Auswahl des Punkts Run... evtl. muss der TomEE-Server ausgewählt werden.
+
+# Verwendung:
+
+Die App kann nun sofern die DB und der Server gestartet sind verwendet werden. Alle Interaktionen mit der Datenbank und dem Server können direkt aus der GUI getätigt werden. Für einige Funktionen ist es wichtig als eine spezieller Typ Nutzer eingeloggt zu sein, siehe Klammernotation:
+
+  - User Registrieren
+  - User anmelden
+  - Fahzeuge anzeigen
+  - Fahrzeuge nach Datum filtern
+  - Fahrzeug anlegen (Mitarbeiter)
+  - Fahrzeug buchen (Kunde)
+  - Alle aktuell vergebenen Fahrzeuge anzeigen, Button Buchungen (Mitarbeiter)
+  - Fahrzeug zurückgeben (Mitarbeiter)
+  - Meine Buchungen anzeigen (Kunde)
+  - Nutzerprofil bearbeiten (Kunde und Mitarbeiter)
