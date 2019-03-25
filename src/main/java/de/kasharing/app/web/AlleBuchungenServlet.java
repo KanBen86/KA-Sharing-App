@@ -50,8 +50,8 @@ public class AlleBuchungenServlet extends HttpServlet {
             if (buchungen != null) {
                 for (Buchung buchung : buchungen) {
                     System.out.println(buchung);
-                    if (date.getTime() < buchung.getGeliehenBis().getTime()) {
-                        if (date.getTime() > buchung.getGeliehenAb().getTime()) {
+                    if (date.getTime() <= buchung.getGeliehenBis().getTime()) {
+                        if (date.getTime() >= buchung.getGeliehenAb().getTime()) {
                             if (buchung.isActive()) {
                                 aktuelleBuchungen.add(buchung);
                             }

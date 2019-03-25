@@ -48,29 +48,10 @@ public class BuchungBean {
         b.setActive(true);
         b.setTimestamp(new Date());
         try {
-            b.getGeliehenBis().setHours(23);
-            b.getGeliehenBis().setMinutes(59);
-            b.getGeliehenBis().setSeconds(59);
-            Response<Buchung> checkList = this.findByFahrzeug(b.getFahrzeug());
-            Boolean successful = true;
-            for (Buchung checkBuchung : checkList.getResponseList()) {
-                if (b.getGeliehenAb().getTime() >= checkBuchung.getGeliehenAb().getTime()
-                        && b.getGeliehenAb().getTime() <= checkBuchung.getGeliehenBis().getTime()) {
-                    successful = false;
-                }
-                if (b.getGeliehenBis().getTime() >= checkBuchung.getGeliehenAb().getTime()
-                        && b.getGeliehenBis().getTime() <= checkBuchung.getGeliehenBis().getTime()) {
-                    successful = false;
-                }
-            }
-            if (successful) {
-                em.persist(b);
-                response.setResponse(em.merge(b));
-                response.setStatus(ResponseStatus.ERFOLGREICH);
-            } else {
-                response.setStatus(ResponseStatus.WARNUNG);
-                response.setMessage("Das Fahzeug ist in diesem Zeitraum leider schon gebucht.");
-            }
+            em.persist(b);
+            response.setResponse(em.merge(b));
+            response.setStatus(ResponseStatus.ERFOLGREICH);
+
         } catch (Exception ex) {
             response.setException(ex.getClass().getName());
             response.setStatus(ResponseStatus.ERROR);

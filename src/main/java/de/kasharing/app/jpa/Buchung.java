@@ -159,14 +159,17 @@ public class Buchung implements Serializable {
 
     public boolean checkValues() {
         Date date = new Date();
+        date.setHours(0);
+        date.setMinutes(0);
+        date.setSeconds(0);
         if (this.nutzer != null) {
             System.out.println("Nutzer gesetzt");
             if (this.fahrzeug != null) {
                 System.out.println("Fahrzeug gesetzt");
-                if (this.geliehenAb.after(date)) {
+                if (this.geliehenAb.getDay() >= date.getDay() && this.geliehenAb.getMonth() >= date.getMonth() && this.geliehenAb.getYear() >= date.getYear() ) {
                     System.out.println("geliehenAb Datum ist später als heute");
-                    if (this.geliehenBis.after(date)) {
-                        System.out.println("geliehenBis Datum ist später als heute");
+                    if (this.geliehenBis.getTime() >= date.getTime()
+                            && this.geliehenBis.getTime() >= this.geliehenAb.getTime()) {
                         return true;
                     }
                 }

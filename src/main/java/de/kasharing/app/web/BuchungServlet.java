@@ -128,6 +128,9 @@ public class BuchungServlet extends HttpServlet {
         try {
             date1 = ft.parse(request.getParameter("startDatum"));
             date2 = ft.parse(request.getParameter("endDatum"));
+            date2.setHours(23);
+            date2.setMinutes(59);
+            date2.setSeconds(59);
             System.out.println(date1.toString());
             buchung.setGeliehenAb(date1);
             System.out.println(date2.toString());
