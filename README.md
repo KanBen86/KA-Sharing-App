@@ -1,8 +1,8 @@
 # KA-Sharing-App
-## Einrichtung
-Programcode for the KA-Sharing Application
+Programmcode für die KA-Sharing Application
 
 Projektteam: Christopher Pschibila, Orlando Jähde, Dominik Kunzmann, Vincent Neuhoff, Benjamin Kanzler
+## Einrichtung:
 
 Um die User-Experience uneingeschränkt erleben zu können, wird vom Entwicklerteam der Google Browser Chrome in der Version 72.0.3626.121 oder höher empfohlen.
 
