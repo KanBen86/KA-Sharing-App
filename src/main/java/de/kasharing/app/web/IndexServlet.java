@@ -57,8 +57,8 @@ public class IndexServlet extends HttpServlet {
                         if (buchungen != null) {
                             for (Buchung buchung : buchungen) {
                                 if (buchung.isActive()) {
-                                    if (!date.after(buchung.getGeliehenBis())) {
-                                        if (date.after(buchung.getGeliehenAb()) && date.before(buchung.getGeliehenBis())) {
+                                    if (date.getTime() > buchung.getGeliehenBis().getTime()) {
+                                        if (date.getTime() >= buchung.getGeliehenAb().getTime() && date.getTime() <= buchung.getGeliehenBis().getTime()) {
                                             notAvailable = true;
                                         }
                                     }
