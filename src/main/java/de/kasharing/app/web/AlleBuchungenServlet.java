@@ -28,12 +28,12 @@ import java.util.ArrayList;
 @WebServlet(name = "AlleBuchungServlet", urlPatterns = {"/buchungen"})
 
 public class AlleBuchungenServlet extends HttpServlet {
-    
+
     public final static String URL = "/buchungen";
-    
+
     @EJB
     FahrzeugBean fahrzeugBean;
-    
+
     @EJB
     BuchungBean buchungBean;
 
@@ -41,7 +41,7 @@ public class AlleBuchungenServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         Date date = new Date();
         List<Buchung> aktuelleBuchungen = new ArrayList<Buchung>();
         Response<Buchung> buchungResponse = buchungBean.findAll();
@@ -50,8 +50,8 @@ public class AlleBuchungenServlet extends HttpServlet {
             if (buchungen != null) {
                 for (Buchung buchung : buchungen) {
                     System.out.println(buchung);
-                    if (!date.after(buchung.getGeliehenBis())) {
-                        if (date.after(buchung.getGeliehenAb())) {
+                    if (date.getTime() < buchung.getGeliehenBis().getTime()) {
+                        if (date.getTime() > buchung.getGeliehenAb().getTime()) {
                             if (buchung.isActive()) {
                                 aktuelleBuchungen.add(buchung);
                             }
