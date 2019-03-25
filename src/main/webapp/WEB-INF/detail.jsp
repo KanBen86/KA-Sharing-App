@@ -42,7 +42,7 @@
                                         </div>        
                                     </c:when>
                                     <c:otherwise> 
-                                        <div class="align-middle fulldiv">
+                                        <div class="align-middle fulldiv herstellerLogo">
                                             <c:if test="${detailFahrzeug.response.hersteller != null}">
                                                 <img src="<c:url value="/pictures/hersteller/${detailFahrzeug.response.hersteller}.png"/>" class="card-img mx-auto"
                                                     style="min-height: 110px; max-height: 110px; width:auto; max-width: 100%;" alt="Herstellerbild">
