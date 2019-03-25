@@ -39,14 +39,14 @@ public class Buchung implements Serializable {
     @JoinColumn(name = "nutzer_id", referencedColumnName = "id")
     private Nutzer nutzer;
 
-    @Column(insertable = false, updatable = false)
+    @Column()
     @Temporal(TemporalType.TIMESTAMP)
     private Date timestamp;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date geliehenAb;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date geliehenBis;
 
     private boolean active;

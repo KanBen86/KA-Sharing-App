@@ -48,6 +48,9 @@ public class BuchungBean {
         b.setActive(true);
         b.setTimestamp(new Date());
         try {
+            b.getGeliehenBis().setHours(23);
+            b.getGeliehenBis().setMinutes(59);
+            b.getGeliehenBis().setSeconds(59);
             Response<Buchung> checkList = this.findByFahrzeug(b.getFahrzeug());
             Boolean successful = true;
             for (Buchung checkBuchung : checkList.getResponseList()) {
